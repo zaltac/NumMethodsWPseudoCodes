@@ -1,0 +1,244 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      8961,        236]
+NotebookOptionsPosition[      7973,        212]
+NotebookOutlinePosition[      8379,        228]
+CellTagsIndexPosition[      8336,        225]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ StyleBox["===================================================================\
+===========\n",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Normal"],
+ StyleBox["CODE1.4-",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Bold"],
+ StyleBox["Quadratic_Eq.nb. A Mathematica (nb) module for implementing \
+Pseudocode 1.4.  \n \n",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Normal"],
+ StyleBox["NUMERICAL METHODS FOR SCIENTISTS AND ENGINEERS: WITH PSEUDOCODES.",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Bold"],
+ StyleBox["\nFirst Edition. (c) By Zekeriya ALTA\[CapitalCCedilla] (2024).\n\
+ISBN: 978-1-032-75474-1 (hbk)\nISBN: 978-1-032-75642-4 (pbk)\nISBN: \
+978-1-003-47494-4 (ebk) \nDOI : 10.1201/9781003474944 C&H/CRC PRESS, Boca \
+Raton & London.\n   \nThis free software is complimented by the author to \
+accompany the textbook.\nE-mail: altacz@gmail.com.\n                          \
+                                                           \n",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Normal"],
+ StyleBox["DESCRIPTION: ",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Bold"],
+ StyleBox["A recursive function for computing n!                              \
+                                                                              \
+       \n",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Normal"],
+ StyleBox["INPUT ARGUMENT  ",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Bold"],
+ StyleBox["                                                                   \
+\n    ",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Normal"],
+ StyleBox["n ",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Normal",
+  FontSlant->"Italic"],
+ StyleBox["   :: Integer (n>=0)                                               \
+                                                                              \
+           \n",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Normal"],
+ StyleBox["ON EXIT   ",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Bold"],
+ StyleBox["                                                                   \
+      \n    Result:: ",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Normal"],
+ StyleBox["n!",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Normal",
+  FontSlant->"Italic"],
+ StyleBox["                                                                   \
+                                                                              \
+           \n",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Normal"],
+ StyleBox["REVISION DATE ",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Bold"],
+ StyleBox[":: 03/21/2024                                                      \
+                                                                              \
+        \n====================================================================\
+========",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Normal"]
+}], "Text",
+ CellChangeTimes->{{3.9345966557359047`*^9, 3.934596669873228*^9}, 
+   3.9345967031729803`*^9, {3.9345967457286625`*^9, 3.9345968895115256`*^9}},
+ Background->RGBColor[
+  1, 1, 0.85],ExpressionUUID->"a10c006e-a9ef-4099-8bd5-ab09d8c53556"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Fact", "[", "n0_", "]"}], ":=", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"n", "=", 
+       RowBox[{"N", "[", "n0", "]"}]}], ",", "k", ",", "fact"}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"(*", " ", 
+     RowBox[{
+     "Factorial", " ", "function", " ", "name", " ", "is", " ", "the", " ", 
+      "default", " ", "name", " ", "for", " ", "factorial", " ", 
+      "operation"}], " ", "*)"}], "\[IndentingNewLine]", 
+    RowBox[{"(*", " ", 
+     RowBox[{"Thus", ",", " ", 
+      RowBox[{"the", " ", "name", " ", "is", " ", "protected"}], ",", " ", 
+      RowBox[{"i", ".", "e", "."}], ",", " ", 
+      RowBox[{
+      "it", " ", "cannot", " ", "be", " ", "used", " ", "for", " ", "other", 
+       " ", "purposes"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+    RowBox[{"(*", " ", 
+     RowBox[{
+     "That", " ", "is", " ", "why", " ", "FACT", " ", "is", " ", "used", " ", 
+      "as", " ", "the", " ", "function", " ", "name", " ", "here"}], " ", 
+     "*)"}], "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"fact", "=", "1"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"For", "[", 
+      RowBox[{
+       RowBox[{"k", "=", "1"}], ",", 
+       RowBox[{"k", "<=", "n"}], ",", " ", 
+       RowBox[{"k", "++"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"fact", "=", 
+        RowBox[{"k", "*", "fact"}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"Return", "[", "fact", " ", "]"}]}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.9236139856005316`*^9, 3.923614003556483*^9}, {
+  3.923614116492199*^9, 3.9236145514406047`*^9}, {3.923614618265191*^9, 
+  3.9236146939209156`*^9}, {3.9236147328706074`*^9, 3.9236147961560917`*^9}, {
+  3.9236149385992126`*^9, 3.9236149406498847`*^9}, {3.923615170917309*^9, 
+  3.923615282266822*^9}, {3.923615365793435*^9, 3.9236153685785055`*^9}, {
+  3.923615400765353*^9, 3.9236154177256746`*^9}, {3.92361548771377*^9, 
+  3.923615502361453*^9}, {3.9236155716004105`*^9, 3.9236156652857227`*^9}, {
+  3.9247542654995575`*^9, 3.92475427666148*^9}, {3.924754326455062*^9, 
+  3.9247543422850294`*^9}},
+ Background->RGBColor[0.87, 0.94, 1],
+ CellLabel->"In[7]:=",ExpressionUUID->"3f2b28b4-5670-486c-86fa-4f995f99c78e"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Fact", "[", "10", "]"}]], "Input",
+ CellChangeTimes->{{3.9236155071266985`*^9, 3.923615519804659*^9}, {
+  3.924754290145387*^9, 3.924754290699384*^9}, {3.92475435065397*^9, 
+  3.924754351242967*^9}},
+ CellLabel->"In[8]:=",ExpressionUUID->"973dc1f2-ddce-4739-847c-9eebc016866e"],
+
+Cell[BoxData["3628800"], "Output",
+ CellChangeTimes->{{3.92361550983322*^9, 3.923615520329314*^9}, {
+   3.924754287037899*^9, 3.924754291273244*^9}, 3.9247543517919827`*^9},
+ CellLabel->"Out[8]=",ExpressionUUID->"609ff2f7-612d-4176-a056-1678332cfa0f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"10", "!"}]], "Input",
+ CellChangeTimes->{{3.9236155591376843`*^9, 3.9236155631425114`*^9}, {
+  3.9247542947963552`*^9, 3.924754302080306*^9}, {3.924754353998946*^9, 
+  3.924754354594941*^9}},
+ CellLabel->"In[9]:=",ExpressionUUID->"b2273076-f263-419f-b252-85727a99c3a4"],
+
+Cell[BoxData["3628800"], "Output",
+ CellChangeTimes->{3.923615563782487*^9, 3.92475430266823*^9, 
+  3.92475435527944*^9},
+ CellLabel->"Out[9]=",ExpressionUUID->"a3faab1e-f3f7-4b36-8b08-b1ab061b337f"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Factorial", " ", "using", " ", "Recursive", " ", "Function"}], 
+   " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Fact", "[", "1", "]"}], "=", "1"}], ";", 
+   RowBox[{
+    RowBox[{"Fact", "[", "n_", "]"}], ":=", 
+    RowBox[{"n", "*", 
+     RowBox[{"Fact", "[", 
+      RowBox[{"n", "-", "1"}], "]"}]}]}]}]}]], "Input",
+ CellChangeTimes->{{3.9236157640618668`*^9, 3.923615788650961*^9}, {
+  3.923615838223648*^9, 3.923615871066452*^9}},
+ Background->RGBColor[0.87, 0.94, 1],
+ CellLabel->"In[51]:=",ExpressionUUID->"cc2f91e2-f6bf-43d3-9b3c-4dc114ad5333"]
+},
+WindowSize->{817.5, 642.75},
+WindowMargins->{{51, Automatic}, {Automatic, 53.25}},
+FrontEndVersion->"13.1 for Microsoft Windows (64-bit) (June 16, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"4695643b-6f68-4548-a1b1-e88f3634c84b"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 3405, 93, 368, "Text",ExpressionUUID->"a10c006e-a9ef-4099-8bd5-ab09d8c53556"],
+Cell[3966, 115, 2240, 47, 178, "Input",ExpressionUUID->"3f2b28b4-5670-486c-86fa-4f995f99c78e"],
+Cell[CellGroupData[{
+Cell[6231, 166, 301, 5, 28, "Input",ExpressionUUID->"973dc1f2-ddce-4739-847c-9eebc016866e"],
+Cell[6535, 173, 251, 3, 32, "Output",ExpressionUUID->"609ff2f7-612d-4176-a056-1678332cfa0f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6823, 181, 293, 5, 28, "Input",ExpressionUUID->"b2273076-f263-419f-b252-85727a99c3a4"],
+Cell[7119, 188, 199, 3, 32, "Output",ExpressionUUID->"a3faab1e-f3f7-4b36-8b08-b1ab061b337f"]
+}, Open  ]],
+Cell[7333, 194, 636, 16, 64, "Input",ExpressionUUID->"cc2f91e2-f6bf-43d3-9b3c-4dc114ad5333"]
+}
+]
+*)
+
