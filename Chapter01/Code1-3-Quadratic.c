@@ -23,7 +23,7 @@ int main() {
 
 void quadratic_eq(double p, double q, double* re1, double* im1, double* re2, double* im2) {
 // ==================================================================================
-// CODE1.3-Quadratic_Eq.c. A python module for implementing Pseudocode 1.3.           
+// CODE1.3-Quadratic_Eq.c. A C module for implementing Pseudocode 1.3.           
 //
 // NUMERICAL METHODS FOR SCIENTISTS AND ENGINEERS With Pseudocodes.
 // First Edition. (c) By Zekeriya ALTAC (2024).
@@ -37,7 +37,7 @@ void quadratic_eq(double p, double q, double* re1, double* im1, double* re2, dou
 // This free software is complimented by the author to accompany the textbook.
 // E-mail: altacz@gmail.com.
 //                                                                                   
-// DESCRIPTION: A Subroutine to find the roots of a quadratic equation of            
+// DESCRIPTION: A module to find the roots of a quadratic equation of            
 //   the form : x*x + p * x + q = 0.                                                 
 //                                                                                   
 // ON ENTRY                                                                          
