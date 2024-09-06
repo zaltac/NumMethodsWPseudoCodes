@@ -30,7 +30,7 @@ def quadratic_eq(p, q):
 #  This free software is complimented by the author to accompany the textbook.
 #  E-mail: altacz@gmail.com.
 #                                                                                    
-#  DESCRIPTION: A Subroutine to find the roots of a quadratic equation of            
+#  DESCRIPTION: A python module to find the roots of a quadratic equation of            
 #    the form : x*x + p * x + q = 0.                                                 
 #                                                                                    
 #  ON ENTRY                                                                          
