@@ -9,7 +9,7 @@ def test_factorial():
 
 def factorial(n):
 #  ==================================================================================
-#  CODE1.4-Quadratic_Eq.py. A python module for implementing Pseudocode 1.4.          
+#  CODE1.4-factorial.py. A python module for implementing Pseudocode 1.4.          
 # 
 #  NUMERICAL METHODS FOR SCIENTISTS AND ENGINEERS With Pseudocodes.
 #  First Edition. (c) By Zekeriya ALTAÇ (2024).

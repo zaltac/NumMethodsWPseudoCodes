@@ -2,7 +2,7 @@
 
 int factorial(int n) {
 // ==================================================================================
-// CODE1.3-Quadratic_Eq.cpp. A C++ module for implementing Pseudocode 1.4.              
+// CODE1.4-factorial.cpp. A C++ module for implementing Pseudocode 1.4.              
 //
 // NUMERICAL METHODS FOR SCIENTISTS AND ENGINEERS With Pseudocodes.
 // First Edition. (c) By Zekeriya ALTAÇ (2024).

@@ -12,7 +12,7 @@ Public Module TestFactorial
 
 	Public Function Factorial(n As Integer) As Integer
 '  ==================================================================================
-'  CODE1.4-Quadratic_Eq.bas. A Basic (VB) Sub for implementing Pseudocode 1.4.          
+'  CODE1.4-factorial.bas. A Basic (VB) Sub for implementing Pseudocode 1.4.          
 ' 
 '  NUMERICAL METHODS FOR SCIENTISTS AND ENGINEERS With Pseudocodes.
 '  First Edition. (c) By Zekeriya ALTAÇ (2024).

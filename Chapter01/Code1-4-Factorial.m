@@ -6,7 +6,7 @@ factorial(n)
 
 function fact = factorial(n)
 % ==================================================================================
-%  CODE1.4-Quadratic_Eq.m. A matlab script module for implementing Pseudocode 1.4.      
+%  CODE1.4-factorial.m. A matlab script module for implementing Pseudocode 1.4.      
 % 
 %  NUMERICAL METHODS FOR SCIENTISTS AND ENGINEERS With Pseudocodes.
 %  First Edition. (c) By Zekeriya ALTAÇ (2024).

@@ -13,7 +13,7 @@ END PROGRAM
 
 INTEGER RECURSIVE FUNCTION FACTORIAL(n) RESULT(fact)
 !  ==================================================================================
-!  CODE1.4-Quadratic_Eq.f95. A fortran module for implementing Pseudocode 1.4.          
+!  CODE1.4-factorial.f95. A fortran module for implementing Pseudocode 1.4.          
 ! 
 !  NUMERICAL METHODS FOR SCIENTISTS AND ENGINEERS With Pseudocodes.
 !  First Edition. (c) By Zekeriya ALTAÇ (2024).

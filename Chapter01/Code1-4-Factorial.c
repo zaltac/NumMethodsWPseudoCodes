@@ -18,7 +18,7 @@ int main() {
 
 int factorial(int n) {
 // ==================================================================================
-// CODE1.4-Quadratic_Eq.c. A C function module for implementing Pseudocode 1.4.
+// CODE1.4-factorial.c. A C function module for implementing Pseudocode 1.4.
 //
 // NUMERICAL METHODS FOR SCIENTISTS AND ENGINEERS With Pseudocodes.
 // First Edition. (c) By Zekeriya ALTAÇ (2024).
