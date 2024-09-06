@@ -18,8 +18,8 @@ def quadratic_eq(p, q):
 #  ==================================================================================
 #  CODE1.3-Quadratic_Eq.py. A python module for implementing Pseudocode 1.3 in          
 # 
-#  NUMERICAL METHODS FOR SCIENTISTS AND ENGINEERS: WITH PSEUDOCODES.
-#  First Edition. (c) By Zekeriya ALTAÇ (2024).
+#  NUMERICAL METHODS FOR SCIENTISTS AND ENGINEERS With Pseudocodes.
+#  First Edition. (c) By Zekeriya ALTAC (2024).
 #  ISBN: 978-1-032-75474-1 (hbk)
 #  ISBN: 978-1-032-75642-4 (pbk)
 #  ISBN: 978-1-003-47494-4 (ebk)
@@ -30,7 +30,7 @@ def quadratic_eq(p, q):
 #  This free software is complimented by the author to accompany the textbook.
 #  E-mail: altacz@gmail.com.
 #                                                                                    
-#  DESCRIPTION: A python module to find the roots of a quadratic equation of            
+#  DESCRIPTION: A Subroutine to find the roots of a quadratic equation of            
 #    the form : x*x + p * x + q = 0.                                                 
 #                                                                                    
 #  ON ENTRY                                                                          
