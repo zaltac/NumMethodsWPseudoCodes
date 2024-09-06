@@ -1,1 +1,6 @@
+CHAPTER 1: NUMERICAL ALGORITHMS AND ERRORS
 
+This folder will contain
+* extra solved examples,
+* comprehension questions,
+* modules and test programs for some of the pseudocodes written in C, c++, py, f95, bas (VB and VBA), m (mat lab), nb (mathematica).
