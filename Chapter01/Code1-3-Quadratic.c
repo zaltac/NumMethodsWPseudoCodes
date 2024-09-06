@@ -25,8 +25,8 @@ void quadratic_eq(double p, double q, double* re1, double* im1, double* re2, dou
 // ==================================================================================
 // CODE1.3-Quadratic_Eq.c. A C module for implementing Pseudocode 1.3.           
 //
-// NUMERICAL METHODS FOR SCIENTISTS AND ENGINEERS With Pseudocodes.
-// First Edition. (c) By Zekeriya ALTAC (2024).
+// NUMERICAL METHODS FOR SCIENTISTS AND ENGINEERS: WITH PSEUDOCODES.
+// First Edition. (c) By Zekeriya ALTAÇ (2024).
 // ISBN: 978-1-032-75474-1 (hbk)
 // ISBN: 978-1-032-75642-4 (pbk)
 // ISBN: 978-1-003-47494-4 (ebk)
