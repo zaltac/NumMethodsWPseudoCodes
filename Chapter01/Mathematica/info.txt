@@ -1,1 +1,1 @@
-
+This folder contains Mathematica (notebook, *.nb) files. 
