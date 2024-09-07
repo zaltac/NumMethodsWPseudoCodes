@@ -1,0 +1,349 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     10984,        341]
+NotebookOptionsPosition[     10084,        318]
+NotebookOutlinePosition[     10493,        334]
+CellTagsIndexPosition[     10450,        331]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ StyleBox["CODE1.3-Quadratic_Eq.nb. A Mathematica nb module for implementing \
+Pseudocode 1.3. ",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Bold"],
+ StyleBox["\n\n",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Normal"],
+ StyleBox["NUMERICAL METHODS FOR SCIENTISTS AND ENGINEERS With Pseudocodes. ",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Bold"],
+ StyleBox["\nFirst Edition.(c) By Zekeriya ALTAC (2024))\n\n\
+ISBN:978-1-032-75474-1 (hbk) \nISBN:978-1-032-75642-4 (pbk) \n\
+ISBN:978-1-003-47494-4 (ebk) \nDOI:10.1201/9781003474944.  C&H/CRC PRESS, \
+Boca Raton, FL, USA & London, UK.\n\nThis free software is complimented by \
+the author to accompany the textbook.\n",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Normal"],
+ StyleBox["Email:",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Bold"],
+ StyleBox["altacz@gmail.com.\n\n",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Normal"],
+ StyleBox["DESCRIPTION:",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Bold"],
+ StyleBox["A Subroutine to find the roots of a quadratic equation of the  \
+form :",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Normal"],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    StyleBox["x",
+     FontFamily->"Times New Roman",
+     FontSize->14,
+     FontWeight->"Normal"], "2"], TraditionalForm]],ExpressionUUID->
+  "038b0c08-db69-4d0e-932b-47e787f4bf01"],
+ StyleBox["+",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Normal"],
+ StyleBox["p x",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Normal",
+  FontSlant->"Italic"],
+ StyleBox["+",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Normal"],
+ StyleBox["q",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Normal",
+  FontSlant->"Italic"],
+ StyleBox["=0.",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Normal"],
+ StyleBox["\n\n",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Normal"],
+ StyleBox["ON ENTRY ",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Bold"],
+ StyleBox["\n   ",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Normal"],
+ StyleBox["p, q",
+  FontFamily->"Times New Roman",
+  FontSize->12],
+ StyleBox[":",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Bold"],
+ StyleBox[":Coefficients of the quadratic equation; \n\n",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Normal"],
+ StyleBox["ON RETURN",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Bold"],
+ StyleBox["\n  ",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Normal"],
+ StyleBox["re",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Bold"],
+ StyleBox[":",
+  FontFamily->"Times New Roman",
+  FontSize->12],
+ StyleBox[":Array of length 2 containing real parts of the roots:re1,re2;\n  ",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Normal"],
+ StyleBox["im",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Bold"],
+ StyleBox["::Array of length 2 containing imaginary parts of the \
+roots:im1,im2\n\n",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Normal"],
+ StyleBox["USES",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Bold"],
+ StyleBox["\n  ",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Normal"],
+ StyleBox[" ",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Bold"],
+ StyleBox["Sqrt:",
+  FontFamily->"Times New Roman",
+  FontSize->12],
+ StyleBox[":Built-in Intrinsic function to evaluate the square root of a real \
+value.\n\n",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Normal"],
+ StyleBox["REVISION DATE:",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Bold"],
+ StyleBox[":03/18/2024",
+  FontFamily->"Times New Roman",
+  FontSize->12,
+  FontWeight->"Normal"]
+}], "Text",
+ CellChangeTimes->{{3.9345925302344217`*^9, 3.9345926414829035`*^9}, {
+   3.9345927175337043`*^9, 3.9345927231427565`*^9}, {3.9345927875011964`*^9, 
+   3.9345928385764737`*^9}, 3.9345928775302606`*^9, {3.9346794894037275`*^9, 
+   3.934679509948847*^9}},
+ Background->RGBColor[
+  1, 1, 0.85],ExpressionUUID->"681d575f-6579-4219-81a6-a12e760060f9"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Quadratic", "[", 
+   RowBox[{"p0_", ",", "q0_"}], "]"}], ":=", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"p", "=", 
+       RowBox[{"N", "[", "p0", "]"}]}], ",", 
+      RowBox[{"q", "=", 
+       RowBox[{"N", "[", "q0", "]"}]}], ",", "d", ",", "re", ",", " ", "im"}],
+      "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"d", "=", 
+      RowBox[{
+       SuperscriptBox["p", "2"], "-", 
+       RowBox[{"4", "q"}]}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"d", "<", "0"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{"Case", " ", "of", " ", "negative", " ", "discriminant"}], 
+        " ", "*)"}], "\[IndentingNewLine]", " ", 
+       RowBox[{
+        RowBox[{"d", "=", 
+         RowBox[{"Sqrt", "[", 
+          RowBox[{"-", "d"}], "]"}]}], ";", "\n", "        ", 
+        RowBox[{
+         RowBox[{"re", "[", "1", "]"}], "=", 
+         RowBox[{"-", 
+          FractionBox["p", "2"]}]}], ";", 
+        RowBox[{
+         RowBox[{"im", "[", "1", "]"}], "=", 
+         RowBox[{"-", 
+          FractionBox["d", "2"]}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"re", "[", "2", "]"}], "=", 
+         RowBox[{"re", "[", "1", "]"}]}], ";", 
+        RowBox[{
+         RowBox[{"im", "[", "2", "]"}], "=", 
+         RowBox[{"-", 
+          RowBox[{"im", "[", "1", "]"}]}]}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{"Case", " ", "of", " ", "positive", " ", "discriminant"}], 
+        " ", "*)"}], "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"d", "=", 
+         RowBox[{"Sqrt", "[", "d", "]"}]}], ";", "\n", "        ", 
+        RowBox[{
+         RowBox[{"re", "[", "1", "]"}], "=", 
+         FractionBox[
+          RowBox[{
+           RowBox[{"-", "p"}], "-", "d"}], "2"]}], ";", 
+        RowBox[{
+         RowBox[{"im", "[", "1", "]"}], "=", "0"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"re", "[", "2", "]"}], "=", 
+         FractionBox[
+          RowBox[{
+           RowBox[{"-", "p"}], "+", "d"}], "2"]}], ";", " ", 
+        RowBox[{
+         RowBox[{"im", "[", "2", "]"}], "=", "0"}], ";"}]}], "]"}], ";", 
+     RowBox[{"Return", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"re", "[", "1", "]"}], ",", 
+          RowBox[{"im", "[", "1", "]"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"re", "[", "2", "]"}], ",", 
+          RowBox[{"im", "[", "2", "]"}]}], "}"}]}], "}"}], "]"}]}]}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.9236139856005316`*^9, 3.923614003556483*^9}, {
+   3.923614116492199*^9, 3.9236145514406047`*^9}, {3.923614618265191*^9, 
+   3.9236146939209156`*^9}, {3.9236147328706074`*^9, 
+   3.9236147961560917`*^9}, {3.924754393134304*^9, 3.9247544515622773`*^9}, {
+   3.9247546094781885`*^9, 3.9247546119491696`*^9}, {3.934592131365741*^9, 
+   3.9345924486247225`*^9}, {3.934592492672056*^9, 3.9345925021096783`*^9}, 
+   3.934592758379387*^9},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"59d0125a-f330-46a8-9ca1-bf1dc9661510"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Quadratic", "[", 
+  RowBox[{"2", ",", "2"}], "]"}]], "Input",
+ CellChangeTimes->{{3.9236144334483333`*^9, 3.9236144403952875`*^9}, {
+  3.9236145129478393`*^9, 3.923614513066841*^9}, {3.923614558896555*^9, 
+  3.923614568690893*^9}, {3.9236146988231726`*^9, 3.9236146998136883`*^9}, {
+  3.9236148072860217`*^9, 3.9236148477132397`*^9}},
+ CellLabel->"In[5]:=",ExpressionUUID->"5f4cf5d2-6345-4aec-bca6-a8d27a82ef38"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "1.`"}], ",", 
+     RowBox[{"-", "1.`"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "1.`"}], ",", "1.`"}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.923614441122574*^9, 3.9236145136318307`*^9}, {
+   3.923614556129103*^9, 3.9236145691705093`*^9}, {3.923614696707611*^9, 
+   3.923614700304319*^9}, {3.923614804408357*^9, 3.923614848246765*^9}, {
+   3.9247544053880844`*^9, 3.924754430874793*^9}, 3.9247544700504475`*^9, 
+   3.9247545571559534`*^9, 3.934592462737978*^9},
+ CellLabel->"Out[5]=",ExpressionUUID->"11327f07-77d3-44a0-a3d8-7d56a1f1a50e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"x", "^", "2"}], "+", 
+     RowBox[{"2", "x"}], "+", "2"}], "==", "0"}], ",", "x"}], "]"}]], "Input",
+ CellChangeTimes->{{3.9236148287863708`*^9, 3.923614836236844*^9}},
+ CellLabel->"In[28]:=",ExpressionUUID->"e9aac97c-bd44-4691-a79c-bb979810de5a"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"x", "\[Rule]", 
+     RowBox[{
+      RowBox[{"-", "1"}], "-", "\[ImaginaryI]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", "\[Rule]", 
+     RowBox[{
+      RowBox[{"-", "1"}], "+", "\[ImaginaryI]"}]}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.923614836859256*^9},
+ CellLabel->"Out[28]=",ExpressionUUID->"47e5e490-a2e9-4a38-a54e-e4204a3810aa"]
+}, Open  ]]
+},
+WindowSize->{773.25, 584.25},
+WindowMargins->{{8.25, Automatic}, {Automatic, 63.75}},
+FrontEndVersion->"13.1 for Microsoft Windows (64-bit) (June 16, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"cd6f2f8e-70b6-4d83-85da-626a058674ff"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 4379, 154, 474, "Text",ExpressionUUID->"681d575f-6579-4219-81a6-a12e760060f9"],
+Cell[4940, 176, 3203, 84, 337, "Input",ExpressionUUID->"59d0125a-f330-46a8-9ca1-bf1dc9661510"],
+Cell[CellGroupData[{
+Cell[8168, 264, 436, 7, 28, "Input",ExpressionUUID->"5f4cf5d2-6345-4aec-bca6-a8d27a82ef38"],
+Cell[8607, 273, 662, 15, 32, "Output",ExpressionUUID->"11327f07-77d3-44a0-a3d8-7d56a1f1a50e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9306, 293, 335, 8, 28, "Input",ExpressionUUID->"e9aac97c-bd44-4691-a79c-bb979810de5a"],
+Cell[9644, 303, 424, 12, 32, "Output",ExpressionUUID->"47e5e490-a2e9-4a38-a54e-e4204a3810aa"]
+}, Open  ]]
+}
+]
+*)
+

@@ -1,0 +1,183 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      6926,        175]
+NotebookOptionsPosition[      6030,        152]
+NotebookOutlinePosition[      6439,        168]
+CellTagsIndexPosition[      6396,        165]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ StyleBox["CODE1.7",
+  FontWeight->"Bold"],
+ "-ExpE.nb. A Mathematica (nb) module implementing Pseudocode 1.7.            \
+            \n  \n",
+ StyleBox["NUMERICAL METHODS FOR SCIENTISTS AND ENGINEERS: WITH PSEUDOCODES",
+  FontWeight->"Bold"],
+ "\nFirst Edition. (c) By Zekeriya ALTA\[CapitalCCedilla] (2024).\nISBN: \
+978-1-032-75474-1 (hbk)\nISBN: 978-1-032-75642-4 (pbk)\nISBN: \
+978-1-003-47494-4 (ebk)\n   \nDOI : 10.1201/9781003474944. C&H/CRC PRESS, \
+Boca Raton, FL, USA & London, UK.\n   \nThis free software is complimented by \
+the author to accompany the textbook.\n",
+ StyleBox["E-mail: ",
+  FontWeight->"Bold"],
+ "altacz@gmail.com.\n                                                         \
+                                      \n",
+ StyleBox["DESCRIPTION:",
+  FontWeight->"Bold"],
+ " A function to compute ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["e", "x"], TraditionalForm]],ExpressionUUID->
+  "cc9b5239-b786-48ae-a1b3-08f73421710c"],
+ " using the MacLaurin series with specified  number of terms.                \
+                                                          \n                  \
+                                                                             \
+\n",
+ StyleBox["ARGUMENTS  ",
+  FontWeight->"Bold"],
+ "                                                                            \
+      \n     ",
+ StyleBox["x",
+  FontSlant->"Italic"],
+ "   :: A real input (exponent) value;                                        \
+             \n     ",
+ StyleBox["n",
+  FontSlant->"Italic"],
+ "   :: The number of terms of the MacLauring series to be included.          \
+             \n                                                               \
+                                \n",
+ StyleBox["USES  ",
+  FontWeight->"Bold"],
+ "                                                                            \
+           \n    FLOAT:: A built-in intrinsic function that converts an \
+integer argument to a real value.   \n                                        \
+                                                       \n",
+ StyleBox["REVISION DATE",
+  FontWeight->"Bold"],
+ " :: 03/18/2024           "
+}], "Text",
+ CellChangeTimes->{
+  3.9346767989350257`*^9, {3.93467685399498*^9, 3.9346769167558365`*^9}, {
+   3.934679429762023*^9, 3.9346794322058*^9}},
+ FontFamily->"Times New Roman",
+ FontSize->12,
+ FontWeight->"Normal",
+ Background->RGBColor[
+  1, 1, 0.85],ExpressionUUID->"ad49ad73-025f-4c51-af88-aecd02a00d33"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ExpE", "[", 
+   RowBox[{"x0_", ",", "n0_"}], "]"}], ":=", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"x", "=", 
+       RowBox[{"N", "[", "x0", "]"}]}], ",", 
+      RowBox[{"n", "=", 
+       RowBox[{"N", "[", "n0", "]"}]}], ",", "k", ",", "term", ",", "sum"}], 
+     "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"term", "=", "1"}], ";", "\n", "    ", 
+     RowBox[{"sum", "=", "1"}], ";", "\n", 
+     RowBox[{"For", "[", 
+      RowBox[{
+       RowBox[{"k", "=", "1"}], ",", 
+       RowBox[{"k", "<=", 
+        RowBox[{"n", "-", "1"}]}], ",", 
+       RowBox[{"k", "++"}], ",", "\n", "      ", 
+       RowBox[{
+        RowBox[{"term", "=", 
+         RowBox[{"term", " ", "*", " ", 
+          RowBox[{"x", "/", "k"}]}]}], ";", "\n", "      ", 
+        RowBox[{"sum", "=", 
+         RowBox[{"sum", "+", "term"}]}]}]}], "\[IndentingNewLine]", "]"}], 
+     ";", "\n", 
+     RowBox[{"Return", "[", "sum", "]"}], ";"}]}], "\[IndentingNewLine]", 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.923615955655117*^9, 3.9236161897596197`*^9}, {
+   3.923616319214979*^9, 3.9236164084011354`*^9}, {3.9236164408589272`*^9, 
+   3.923616444804905*^9}, 3.9247540011660395`*^9, {3.924754036654031*^9, 
+   3.924754081863823*^9}, {3.9247541136586046`*^9, 3.9247541447279053`*^9}, 
+   3.9247541815929933`*^9, {3.925164716622121*^9, 3.9251647862162533`*^9}, {
+   3.9251648333598566`*^9, 3.9251648506517344`*^9}, {3.925164887431967*^9, 
+   3.925164887670496*^9}},
+ Background->RGBColor[0.87, 0.94, 1],
+ CellLabel->"In[8]:=",ExpressionUUID->"e79b998d-e797-41be-af61-2d526125e57e"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ExpE", "[", 
+  RowBox[{"0.2", ",", "3"}], "]"}]], "Input",
+ CellChangeTimes->{{3.923616138734683*^9, 3.923616148788737*^9}, {
+   3.9236163662369204`*^9, 3.9236163669223895`*^9}, 3.923616424068033*^9, {
+   3.9247541500573554`*^9, 3.9247541523093376`*^9}, 3.9247541945780444`*^9, {
+   3.925164789906134*^9, 3.9251648287778673`*^9}, 3.9251648605729*^9, {
+   3.9251648930544624`*^9, 3.9251649057973795`*^9}},
+ CellLabel->"In[12]:=",ExpressionUUID->"167ab40c-24d9-4e4c-9e18-f1255955bcff"],
+
+Cell[BoxData["1.22`"], "Output",
+ CellChangeTimes->{{3.923616330414569*^9, 3.923616367503476*^9}, {
+   3.923616418934472*^9, 3.9236164247564974`*^9}, {3.9247540138653307`*^9, 
+   3.9247540406539335`*^9}, 3.9247541530183344`*^9, 3.9247541960150986`*^9, {
+   3.9251648241125717`*^9, 3.9251649063053694`*^9}},
+ CellLabel->"Out[12]=",ExpressionUUID->"8b200908-6870-4f7f-9c8f-a1f8f719614c"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Exp", "[", ".25", "]"}]], "Input",
+ CellChangeTimes->{{3.9247541870058603`*^9, 3.9247541902010746`*^9}},
+ CellLabel->"In[2]:=",ExpressionUUID->"acb75ff0-30c5-4fca-9be2-fd965a4ebb14"],
+
+Cell[BoxData["1.2840254166877414`"], "Output",
+ CellChangeTimes->{3.9247541908382845`*^9},
+ CellLabel->"Out[2]=",ExpressionUUID->"33867527-9317-4ff3-8f89-9e4e5f58c6af"]
+}, Open  ]]
+},
+WindowSize->{828., 537.75},
+WindowMargins->{{206.25, Automatic}, {51.75, Automatic}},
+FrontEndVersion->"13.1 for Microsoft Windows (64-bit) (June 16, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"b31fe3e4-5361-44b7-97c9-ea74344164aa"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 2475, 57, 419, "Text",ExpressionUUID->"ad49ad73-025f-4c51-af88-aecd02a00d33"],
+Cell[3036, 79, 1644, 39, 197, "Input",ExpressionUUID->"e79b998d-e797-41be-af61-2d526125e57e"],
+Cell[CellGroupData[{
+Cell[4705, 122, 507, 8, 28, "Input",ExpressionUUID->"167ab40c-24d9-4e4c-9e18-f1255955bcff"],
+Cell[5215, 132, 385, 5, 32, "Output",ExpressionUUID->"8b200908-6870-4f7f-9c8f-a1f8f719614c"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5637, 142, 206, 3, 28, "Input",ExpressionUUID->"acb75ff0-30c5-4fca-9be2-fd965a4ebb14"],
+Cell[5846, 147, 168, 2, 32, "Output",ExpressionUUID->"33867527-9317-4ff3-8f89-9e4e5f58c6af"]
+}, Open  ]]
+}
+]
+*)
+

@@ -1,0 +1,192 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      8463,        184]
+NotebookOptionsPosition[      7713,        164]
+NotebookOutlinePosition[      8195,        181]
+CellTagsIndexPosition[      8152,        178]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ StyleBox["CODE1.5",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox["-MachEps.nb. A mathematica (nb) module for implementing Pseudocode \
+1.5.       \n  \n",
+  FontFamily->"Times New Roman",
+  FontWeight->"Normal"],
+ StyleBox["NUMERICAL METHODS FOR SCIENTISTS AND ENGINEERS: WITH PSEUDOCODES",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox["\nFirst Edition. (c) By Zekeriya ALTA\[CapitalCCedilla] (2024).\n\
+ISBN: 978-1-032-75474-1 (hbk)\nISBN: 978-1-032-75642-4 (pbk)\nISBN: \
+978-1-003-47494-4 (ebk)\n   \nDOI : 10.1201/9781003474944. C&H/CRC PRESS, \
+Boca Raton, FL, USA & London, UK.\n   \nThis free software is complimented by \
+the author to accompany the textbook.\n",
+  FontFamily->"Times New Roman",
+  FontWeight->"Normal"],
+ StyleBox["E-mail: ",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox["altacz@gmail.com.\n\n                                              \
+                                       \n",
+  FontFamily->"Times New Roman",
+  FontWeight->"Normal"],
+ StyleBox["DESCRIPTION:",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox[" A function module to calculate the machine epsilon, which  \
+provides a positive machine value that is almost negligible compared to 1.    \
+  \n                                                                          \
+           \n",
+  FontFamily->"Times New Roman",
+  FontWeight->"Normal"],
+ StyleBox["INPUT ARGUMENT  ",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox["                                                                   \
+\n     ",
+  FontFamily->"Times New Roman",
+  FontWeight->"Normal"],
+ StyleBox["x",
+  FontFamily->"Times New Roman",
+  FontWeight->"Normal",
+  FontSlant->"Italic"],
+ StyleBox["   :: A real number, 0<x<=1.                                       \
+            \n                                                                \
+                     \n",
+  FontFamily->"Times New Roman",
+  FontWeight->"Normal"],
+ StyleBox["REVISION DATE",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox[" :: 03/18/2024      ",
+  FontFamily->"Times New Roman",
+  FontWeight->"Normal"]
+}], "Text",
+ CellChangeTimes->{
+  3.934598488621273*^9, {3.9345985242393913`*^9, 3.934598560483124*^9}, {
+   3.9346794564418736`*^9, 3.934679460641842*^9}},
+ Background->RGBColor[
+  1, 1, 0.85],ExpressionUUID->"976701f2-bbe8-47bf-a26e-2884900483f2"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"MachEps", "[", "x0_", "]"}], ":=", "\[IndentingNewLine]", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"x", "=", 
+      RowBox[{"N", "[", "x0", "]"}]}], "}"}], ",", "\[IndentingNewLine]", " ", 
+    RowBox[{
+     RowBox[{"While", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"1", "+", 
+         RowBox[{"x", "/", "2"}]}], ">", "1"}], ",", "\[IndentingNewLine]", 
+       "    ", 
+       RowBox[{"x", "=", 
+        RowBox[{"x", "/", "2"}]}]}], "]"}], " ", ";", "\[IndentingNewLine]", 
+     RowBox[{"Return", "[", "x", "]"}]}]}], "\[IndentingNewLine]", "]"}], 
+  "  "}]], "Input",
+ CellChangeTimes->{{3.846290010760276*^9, 3.8462900157765627`*^9}, {
+   3.846290157335659*^9, 3.8462901807319975`*^9}, {3.8462902290227594`*^9, 
+   3.846290229591792*^9}, {3.846290290735289*^9, 3.8462903304745626`*^9}, {
+   3.846290591208475*^9, 3.8462906390242105`*^9}, {3.846290707992155*^9, 
+   3.846290726423209*^9}, 3.846290767402553*^9, {3.84629088204211*^9, 
+   3.8462909045453973`*^9}, {3.8462909354711657`*^9, 3.846291015189726*^9}, {
+   3.8462910644935455`*^9, 3.846291102451717*^9}, {3.846291155323741*^9, 
+   3.8462911715546694`*^9}, {3.8462914352267504`*^9, 
+   3.8462914613742456`*^9}, {3.846291633283079*^9, 3.8462916392414193`*^9}, {
+   3.84629171863496*^9, 3.846291738597102*^9}, {3.846292527032198*^9, 
+   3.846292532110489*^9}, {3.846292571766757*^9, 3.8462926052756734`*^9}, {
+   3.8462926650300913`*^9, 3.846292940968874*^9}, {3.8462931100005417`*^9, 
+   3.846293120512143*^9}, {3.846295285584978*^9, 3.846295319228903*^9}, {
+   3.8462954395087824`*^9, 3.8462954534115777`*^9}, {3.846297072685195*^9, 
+   3.8462970762123966`*^9}, {3.846297270074485*^9, 3.846297292743781*^9}, {
+   3.8462974232072434`*^9, 3.8462974893750277`*^9}, {3.846297935214528*^9, 
+   3.8462979373826523`*^9}, {3.8462992790703926`*^9, 3.846299326666115*^9}, {
+   3.846299617563753*^9, 3.846299621102956*^9}, {3.8462996689146905`*^9, 
+   3.8462997075188985`*^9}, {3.8462997591508512`*^9, 3.846299804649454*^9}, {
+   3.8463040377298937`*^9, 3.8463040615979357`*^9}, {3.846304105122012*^9, 
+   3.8463041379132695`*^9}, {3.846304264413892*^9, 3.846304379588894*^9}, {
+   3.846304467869449*^9, 3.846304500988307*^9}, {3.846304543233182*^9, 
+   3.8463045706892295`*^9}, {3.846304746251938*^9, 3.8463047463767385`*^9}, {
+   3.8463049695975304`*^9, 3.8463050418880577`*^9}, {3.8463051218381977`*^9, 
+   3.8463051587166624`*^9}, {3.8463053166669397`*^9, 3.846305349005797*^9}, 
+   3.8463053837782583`*^9, {3.84657780903561*^9, 3.8465778218276105`*^9}, {
+   3.846577865258011*^9, 3.8465778867860107`*^9}, {3.8479585448066044`*^9, 
+   3.8479585646682043`*^9}, {3.8479585966958046`*^9, 
+   3.8479588190348063`*^9}, {3.847958984869407*^9, 3.847958991780207*^9}, {
+   3.847959127668208*^9, 3.847959128370208*^9}, {3.8479593812426095`*^9, 
+   3.8479593821162095`*^9}, {3.847959605430811*^9, 3.847959606756811*^9}, 
+   3.847959779301812*^9, {3.8479602011686144`*^9, 3.8479602452854147`*^9}, {
+   3.847960317419815*^9, 3.847960320695815*^9}, {3.847960361645816*^9, 
+   3.8479603764034157`*^9}, {3.847960616275417*^9, 3.847960665384417*^9}, 
+   3.8479607092516174`*^9, {3.8479607450636177`*^9, 3.8479607752204175`*^9}, {
+   3.847960816108018*^9, 3.847960821458818*^9}, {3.8479646984758015`*^9, 
+   3.8479646986162014`*^9}, 3.8479647860854025`*^9, {3.8479648180186024`*^9, 
+   3.8479648208110027`*^9}, {3.9251656537330227`*^9, 3.92516579906056*^9}, {
+   3.9251672442561445`*^9, 3.925167316389674*^9}, {3.925167355866417*^9, 
+   3.9251673902141933`*^9}, {3.925167422448949*^9, 3.9251674331651487`*^9}},
+ Background->RGBColor[0.87, 0.94, 1],
+ CellLabel->"In[21]:=",ExpressionUUID->"2df45929-1a4d-498f-a6d2-73e39b1e6183"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MachEps", "[", "1.", "]"}]], "Input",
+ CellChangeTimes->{{3.8479646667922015`*^9, 3.8479647265558023`*^9}, {
+  3.8479648365670023`*^9, 3.8479648378774023`*^9}, {3.925165781808281*^9, 
+  3.9251658192040544`*^9}, {3.925165881676567*^9, 3.925165898502906*^9}, {
+  3.925167321558011*^9, 3.925167337312676*^9}, {3.925167397255149*^9, 
+  3.925167405777089*^9}, {3.925167437126294*^9, 3.925167445451831*^9}},
+ CellLabel->"In[23]:=",ExpressionUUID->"bbae2674-b557-4aaa-a73c-f93942a5ed95"],
+
+Cell[BoxData["2.842170943040401`*^-14"], "Output",
+ CellChangeTimes->{{3.8479646738746014`*^9, 3.8479647270862017`*^9}, {
+   3.8479648238062024`*^9, 3.8479648801066027`*^9}, {3.9251657894998093`*^9, 
+   3.9251658201213913`*^9}, 3.9251659006502576`*^9, {3.925167332982793*^9, 
+   3.9251674067867966`*^9}, {3.9251674390550995`*^9, 3.9251674461279216`*^9}},
+ CellLabel->"Out[23]=",ExpressionUUID->"583002ec-7e4e-429a-a9be-5ffa76f6cb07"]
+}, Open  ]]
+},
+WindowSize->{822., 659.25},
+WindowMargins->{{23.25, Automatic}, {Automatic, 45}},
+PrivateNotebookOptions->{"VersionedStylesheet"->{"Default.nb"[8.] -> True}},
+FrontEndVersion->"13.1 for Microsoft Windows (64-bit) (June 16, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"d635163d-1020-4f43-8549-980de98a7b76"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 2435, 61, 384, "Text",ExpressionUUID->"976701f2-bbe8-47bf-a26e-2884900483f2"],
+Cell[2995, 83, 3737, 60, 133, "Input",ExpressionUUID->"2df45929-1a4d-498f-a6d2-73e39b1e6183"],
+Cell[CellGroupData[{
+Cell[6757, 147, 504, 7, 29, "Input",ExpressionUUID->"bbae2674-b557-4aaa-a73c-f93942a5ed95"],
+Cell[7264, 156, 433, 5, 30, "Output",ExpressionUUID->"583002ec-7e4e-429a-a9be-5ffa76f6cb07"]
+}, Open  ]]
+}
+]
+*)
+
