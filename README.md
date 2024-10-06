@@ -9,3 +9,5 @@ For instructors, the following video provides information about the learning obj
 https://www.youtube.com/watch?v=X6wh4wymfbk
 
 Prof. Dr. Zekeriya ALTAÇ
+
+<img src="https://t.bkit.co/w_6702b9d07f714.gif" />
