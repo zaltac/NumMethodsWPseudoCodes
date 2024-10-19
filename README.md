@@ -10,14 +10,12 @@ https://www.youtube.com/watch?v=X6wh4wymfbk
 
 Prof. Dr. Zekeriya ALTAÇ
 
-<img src="https://t.bkit.co/w_6702b9d07f714.gif" />
-
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-33BNJ98CQM"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RW3WN58GN0"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-33BNJ98CQM');
+  gtag('config', 'G-RW3WN58GN0');
 </script>
