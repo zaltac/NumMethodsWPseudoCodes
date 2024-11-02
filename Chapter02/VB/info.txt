@@ -1,2 +1,0 @@
-This folder contains programs prepared in Python for Chapter 2.
-
