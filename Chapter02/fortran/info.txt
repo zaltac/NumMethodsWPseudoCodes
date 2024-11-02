@@ -1,1 +1,2 @@
+This folder contains fortran programs prepared in fortran-95 programming language for Chapter 2.
 
