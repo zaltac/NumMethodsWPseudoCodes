@@ -1,0 +1,692 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     22427,        684]
+NotebookOptionsPosition[     21447,        660]
+NotebookOutlinePosition[     21929,        677]
+CellTagsIndexPosition[     21886,        674]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ StyleBox["CODE2.6",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Bold"],
+ StyleBox["-InvMat.nb. A Mathematica (nb) module implementing Pseudocode 2.6. \
+                    \n  \nNUMERICAL METHODS FOR SCIENTISTS AND ENGINEERS: \
+WITH PSEUDOCODES\n   First Edition. (c) By Zekeriya ALTA\[CapitalCCedilla] \
+(2024).\n   ISBN: 978-1-032-75474-1 (hbk)\n   ISBN: 978-1-032-75642-4 (pbk)\n \
+  ISBN: 978-1-003-47494-4 (ebk)\n   \n   DOI : 10.1201/9781003474944\n   \
+C&H/CRC PRESS, Boca Raton, FL, USA & London, UK.\n   \n   This free software \
+is complimented by the author to accompany the textbook.\n",
+  FontFamily->"Times New Roman",
+  FontSize->14],
+ StyleBox["   E-mail: ",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Bold"],
+ StyleBox["altacz@gmail.com.\n   \n",
+  FontFamily->"Times New Roman",
+  FontSize->14],
+ StyleBox["DESCRIPTION: ",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Bold",
+  FontVariations->{"Underline"->True}],
+ StyleBox["A module to find the inverse of a square matrix (with no \
+pivoting).         \n                                                         \
+                                      \n",
+  FontFamily->"Times New Roman",
+  FontSize->14],
+ StyleBox["ON ENTRY ",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Bold",
+  FontVariations->{"Underline"->True}],
+ StyleBox["                                                                   \
+                                                    \n     A  :: An input \
+matrix (nxn).                                                              \n \
+                                                                              \
+                \n",
+  FontFamily->"Times New Roman",
+  FontSize->14],
+ StyleBox["ON  RETURN ",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Bold",
+  FontVariations->{"Underline"->True}],
+ StyleBox["                                                                   \
+                  \n     B  :: Inverse of A (nxn).                            \
+                                     \n                                       \
+                           \n",
+  FontFamily->"Times New Roman",
+  FontSize->14],
+ StyleBox["USES",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Bold",
+  FontVariations->{"Underline"->True}],
+ StyleBox["                                                                   \
+                      \n  ",
+  FontFamily->"Times New Roman",
+  FontSize->14],
+ StyleBox["  Length ",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Bold"],
+ StyleBox[" :: Built-in function returning the length of the array;          \
+\n",
+  FontFamily->"Times New Roman",
+  FontSize->14],
+ StyleBox["    IdentityMatrix ",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Bold"],
+ StyleBox[":: Built-in function returning the identity matrix of size n.     ",
+  FontFamily->"Times New Roman",
+  FontSize->14],
+ StyleBox["\n                                                                 \
+                                  \n",
+  FontFamily->"Times New Roman",
+  FontSize->14],
+ StyleBox["REVISION DATE ",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Bold",
+  FontVariations->{"Underline"->True}],
+ StyleBox[":: 03/18/2024                 ",
+  FontFamily->"Times New Roman",
+  FontSize->14],
+ "                                                 "
+}], "Text",
+ CellChangeTimes->{
+  3.939429692195283*^9, {3.9394297245267277`*^9, 3.939429740122055*^9}, {
+   3.9394299029036093`*^9, 3.939429907967944*^9}, {3.939436394059225*^9, 
+   3.9394364383029547`*^9}, {3.9394364807438726`*^9, 3.939436481107359*^9}, {
+   3.9394366191978445`*^9, 3.9394366228221765`*^9}, {3.93943669034048*^9, 
+   3.9394367520296125`*^9}},
+ Background->RGBColor[
+  1, 1, 0.85],ExpressionUUID->"30422fc6-e776-424e-b2b7-442646d6030c"],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"InvMat", "[", "A0_", "]"}],
+   Background->None], 
+  StyleBox[":=",
+   Background->None], 
+  StyleBox["\[IndentingNewLine]",
+   Background->None], 
+  RowBox[{
+   StyleBox["Module",
+    Background->None], 
+   StyleBox["[",
+    Background->None], 
+   StyleBox[" ",
+    Background->None], 
+   RowBox[{
+    StyleBox[
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"A", "=", "A0"}], ",", "i", ",", "j", ",", "k", ",", "p", ",", 
+       "s"}], "}"}],
+     Background->None], 
+    StyleBox[",",
+     Background->None], 
+    StyleBox[" ",
+     Background->None], 
+    StyleBox["\[IndentingNewLine]",
+     Background->None], 
+    RowBox[{
+     StyleBox[
+      RowBox[{"n", "=", 
+       RowBox[{"Length", "[", "A", "]"}]}],
+      Background->None], 
+     StyleBox[";",
+      Background->None], 
+     StyleBox["\[IndentingNewLine]",
+      Background->None], 
+     RowBox[{
+      StyleBox["B",
+       Background->None], 
+      StyleBox["=",
+       Background->None], 
+      RowBox[{"IdentityMatrix", "[", "n", "]"}]}], ";", 
+     StyleBox["\[IndentingNewLine]",
+      Background->None], 
+     RowBox[{
+      StyleBox["For",
+       Background->None], 
+      StyleBox["[",
+       Background->None], 
+      StyleBox[" ",
+       Background->None], 
+      RowBox[{
+       StyleBox[
+        RowBox[{"j", "=", "1"}],
+        Background->None], 
+       StyleBox[",",
+        Background->None], 
+       StyleBox[" ",
+        Background->None], 
+       StyleBox[
+        RowBox[{"j", "\[LessEqual]", "n"}],
+        Background->None], 
+       StyleBox[",",
+        Background->None], 
+       StyleBox[" ",
+        Background->None], 
+       StyleBox[
+        RowBox[{"j", "++"}],
+        Background->None], 
+       StyleBox[",",
+        Background->None], 
+       StyleBox[" ",
+        Background->None], 
+       StyleBox["\[IndentingNewLine]",
+        Background->None], 
+       StyleBox["   ",
+        Background->None], 
+       RowBox[{
+        StyleBox[
+         RowBox[{"p", "=", 
+          RowBox[{"1", "/", 
+           SubscriptBox["A", 
+            RowBox[{"\[LeftDoubleBracket]", 
+             RowBox[{"j", ",", "j"}], "\[RightDoubleBracket]"}]]}]}],
+         Background->None], 
+        StyleBox[";",
+         Background->None], 
+        StyleBox["\[IndentingNewLine]",
+         Background->None], 
+        StyleBox[
+         RowBox[{"(*", " ", 
+          RowBox[{"Normalization", " ", "step"}], " ", "*)"}],
+         Background->None], 
+        StyleBox[" ",
+         Background->None], 
+        StyleBox["\[IndentingNewLine]",
+         Background->None], 
+        RowBox[{
+         StyleBox["For",
+          Background->None], 
+         StyleBox["[",
+          Background->None], 
+         StyleBox[" ",
+          Background->None], 
+         RowBox[{
+          StyleBox[
+           RowBox[{"k", "=", "1"}],
+           Background->None], 
+          StyleBox[",",
+           Background->None], 
+          StyleBox[" ",
+           Background->None], 
+          StyleBox[
+           RowBox[{"k", "\[LessEqual]", "n"}],
+           Background->None], 
+          StyleBox[",",
+           Background->None], 
+          StyleBox[" ",
+           Background->None], 
+          StyleBox[
+           RowBox[{"k", "++"}],
+           Background->None], 
+          StyleBox[",",
+           Background->None], 
+          StyleBox[" ",
+           Background->None], 
+          StyleBox["\[IndentingNewLine]",
+           Background->None], 
+          StyleBox["  ",
+           Background->None], 
+          StyleBox[" ",
+           Background->None], 
+          RowBox[{
+           RowBox[{
+            StyleBox[
+             SubscriptBox["A", 
+              RowBox[{"\[LeftDoubleBracket]", 
+               RowBox[{"j", ",", "k"}], "\[RightDoubleBracket]"}]],
+             Background->None], 
+            StyleBox[" ",
+             Background->None], 
+            StyleBox["=",
+             Background->None], 
+            StyleBox[" ",
+             Background->None], 
+            RowBox[{
+             StyleBox["p",
+              Background->None], 
+             StyleBox[" ",
+              Background->None], 
+             StyleBox["*",
+              Background->None], 
+             StyleBox[" ",
+              Background->None], 
+             SubscriptBox["A", 
+              RowBox[{"\[LeftDoubleBracket]", 
+               RowBox[{"j", ",", "k"}], "\[RightDoubleBracket]"}]]}]}], 
+           StyleBox[" ",
+            Background->None], 
+           StyleBox[";",
+            Background->None], 
+           StyleBox[" ",
+            Background->None], 
+           StyleBox["\[IndentingNewLine]",
+            Background->None], 
+           StyleBox["     ",
+            Background->None], 
+           RowBox[{
+            SubscriptBox["B", 
+             RowBox[{"\[LeftDoubleBracket]", 
+              RowBox[{"j", ",", "k"}], "\[RightDoubleBracket]"}]], 
+            StyleBox[" ",
+             Background->None], 
+            StyleBox["=",
+             Background->None], 
+            StyleBox[" ",
+             Background->None], 
+            RowBox[{
+             StyleBox["p",
+              Background->None], 
+             StyleBox[" ",
+              Background->None], 
+             StyleBox["*",
+              Background->None], 
+             StyleBox[" ",
+              Background->None], 
+             SubscriptBox[
+              StyleBox["B",
+               Background->None], 
+              RowBox[{"\[LeftDoubleBracket]", 
+               RowBox[{"j", ",", "k"}], "\[RightDoubleBracket]"}]]}]}]}]}], 
+         StyleBox[" ",
+          Background->None], 
+         StyleBox["]",
+          Background->None]}], 
+        StyleBox[";",
+         Background->None], 
+        StyleBox[" ",
+         Background->None], 
+        StyleBox[
+         RowBox[{"(*", " ", 
+          RowBox[{
+           RowBox[{"End", " ", "of", " ", "loop"}], "-", "k"}], " ", "*)"}],
+         Background->None], 
+        StyleBox["\[IndentingNewLine]",
+         Background->None], 
+        StyleBox[
+         RowBox[{"(*", " ", 
+          RowBox[{"Elimination", " ", "step"}], " ", "*)"}],
+         Background->None], 
+        StyleBox[" ",
+         Background->None], 
+        StyleBox["\[IndentingNewLine]",
+         Background->None], 
+        RowBox[{
+         StyleBox["For",
+          Background->None], 
+         StyleBox["[",
+          Background->None], 
+         StyleBox[" ",
+          Background->None], 
+         RowBox[{
+          StyleBox[
+           RowBox[{"i", "=", "1"}],
+           Background->None], 
+          StyleBox[",",
+           Background->None], 
+          StyleBox[" ",
+           Background->None], 
+          StyleBox[
+           RowBox[{"i", "\[LessEqual]", "n"}],
+           Background->None], 
+          StyleBox[",",
+           Background->None], 
+          StyleBox[" ",
+           Background->None], 
+          StyleBox[
+           RowBox[{"i", "++"}],
+           Background->None], 
+          StyleBox[",",
+           Background->None], 
+          StyleBox[" ",
+           Background->None], 
+          StyleBox["\[IndentingNewLine]",
+           Background->None], 
+          StyleBox["   ",
+           Background->None], 
+          RowBox[{
+           StyleBox[
+            RowBox[{"s", "=", 
+             SubscriptBox["A", 
+              RowBox[{"\[LeftDoubleBracket]", 
+               RowBox[{"i", ",", "j"}], "\[RightDoubleBracket]"}]]}],
+            Background->None], 
+           StyleBox[";",
+            Background->None], 
+           StyleBox["\[IndentingNewLine]",
+            Background->None], 
+           StyleBox["   ",
+            Background->None], 
+           RowBox[{
+            StyleBox["If",
+             Background->None], 
+            StyleBox["[",
+             Background->None], 
+            StyleBox[" ",
+             Background->None], 
+            RowBox[{
+             StyleBox[
+              RowBox[{"i", "\[NotEqual]", "j"}],
+              Background->None], 
+             StyleBox[",",
+              Background->None], 
+             StyleBox[" ",
+              Background->None], 
+             StyleBox["\[IndentingNewLine]",
+              Background->None], 
+             StyleBox["     ",
+              Background->None], 
+             RowBox[{
+              RowBox[{
+               StyleBox["For",
+                Background->None], 
+               StyleBox["[",
+                Background->None], 
+               StyleBox[" ",
+                Background->None], 
+               RowBox[{
+                StyleBox[
+                 RowBox[{"k", "=", "1"}],
+                 Background->None], 
+                StyleBox[",",
+                 Background->None], 
+                StyleBox[" ",
+                 Background->None], 
+                StyleBox[
+                 RowBox[{"k", "\[LessEqual]", "n"}],
+                 Background->None], 
+                StyleBox[",",
+                 Background->None], 
+                StyleBox[" ",
+                 Background->None], 
+                StyleBox[
+                 RowBox[{"k", "++"}],
+                 Background->None], 
+                StyleBox[",",
+                 Background->None], 
+                StyleBox[" ",
+                 Background->None], 
+                StyleBox["\[IndentingNewLine]",
+                 Background->None], 
+                StyleBox["      ",
+                 Background->None], 
+                RowBox[{
+                 StyleBox[
+                  RowBox[{
+                   SubscriptBox["A", 
+                    RowBox[{"\[LeftDoubleBracket]", 
+                    RowBox[{"i", ",", "k"}], "\[RightDoubleBracket]"}]], " ", 
+                   "=", 
+                   RowBox[{
+                    SubscriptBox["A", 
+                    RowBox[{"\[LeftDoubleBracket]", 
+                    RowBox[{"i", ",", "k"}], "\[RightDoubleBracket]"}]], " ", 
+                    "-", 
+                    RowBox[{"s", " ", "*", " ", 
+                    SubscriptBox["A", 
+                    RowBox[{"\[LeftDoubleBracket]", 
+                    RowBox[{"j", ",", "k"}], "\[RightDoubleBracket]"}]]}]}]}],
+                  Background->None], 
+                 StyleBox[" ",
+                  Background->None], 
+                 StyleBox[";",
+                  Background->None], 
+                 StyleBox["\[IndentingNewLine]",
+                  Background->None], 
+                 StyleBox["      ",
+                  Background->None], 
+                 RowBox[{
+                  SubscriptBox["B", 
+                   RowBox[{"\[LeftDoubleBracket]", 
+                    RowBox[{"i", ",", "k"}], "\[RightDoubleBracket]"}]], 
+                  StyleBox[" ",
+                   Background->None], "=", 
+                  RowBox[{
+                   SubscriptBox["B", 
+                    RowBox[{"\[LeftDoubleBracket]", 
+                    RowBox[{"i", ",", "k"}], "\[RightDoubleBracket]"}]], 
+                   StyleBox[" ",
+                    Background->None], 
+                   StyleBox["-",
+                    Background->None], 
+                   RowBox[{
+                    StyleBox["s",
+                    Background->None], 
+                    StyleBox[" ",
+                    Background->None], 
+                    StyleBox["*",
+                    Background->None], 
+                    StyleBox[" ",
+                    Background->None], 
+                    SubscriptBox["B", 
+                    RowBox[{"\[LeftDoubleBracket]", 
+                    RowBox[{"j", ",", "k"}], 
+                    "\[RightDoubleBracket]"}]]}]}]}]}]}], 
+               StyleBox[" ",
+                Background->None], 
+               StyleBox["\[IndentingNewLine]",
+                Background->None], 
+               StyleBox["  ",
+                Background->None], 
+               StyleBox["]",
+                Background->None]}], 
+              StyleBox[";",
+               Background->None]}]}], 
+            StyleBox[" ",
+             Background->None], 
+            StyleBox[
+             RowBox[{"(*", " ", 
+              RowBox[{
+               RowBox[{"End", " ", "of", " ", "loop"}], "-", "k"}], " ", 
+              "*)"}],
+             Background->None], 
+            StyleBox[" ",
+             Background->None], 
+            StyleBox["\[IndentingNewLine]",
+             Background->None], 
+            StyleBox["     ",
+             Background->None], 
+            StyleBox["]",
+             Background->None]}], 
+           StyleBox[";",
+            Background->None]}]}], 
+         StyleBox["  ",
+          Background->None], 
+         StyleBox[
+          RowBox[{"(*", " ", 
+           RowBox[{
+            RowBox[{"End", " ", "of", " ", "If"}], "-", "construct"}], " ", 
+           "*)"}],
+          Background->None], 
+         StyleBox["\[IndentingNewLine]",
+          Background->None], 
+         StyleBox["  ",
+          Background->None], 
+         StyleBox["]",
+          Background->None]}], 
+        StyleBox[";",
+         Background->None]}]}], 
+      StyleBox["  ",
+       Background->None], 
+      StyleBox[
+       RowBox[{"(*", " ", 
+        RowBox[{
+         RowBox[{"End", " ", "of", " ", "loop"}], "-", "i"}], " ", "*)"}],
+       Background->None], 
+      StyleBox["\[IndentingNewLine]",
+       Background->None], 
+      StyleBox[" ",
+       Background->None], 
+      StyleBox["]",
+       Background->None]}], 
+     StyleBox[";",
+      Background->None], 
+     StyleBox[" ",
+      Background->None], 
+     StyleBox[
+      RowBox[{"(*", " ", 
+       RowBox[{
+        RowBox[{"End", " ", "of", " ", "loop"}], "-", "j"}], " ", "*)"}],
+      Background->None], 
+     StyleBox[" ",
+      Background->None], 
+     StyleBox["\[IndentingNewLine]",
+      Background->None], 
+     StyleBox[
+      RowBox[{"Return", "[", "B", "]"}],
+      Background->None], 
+     StyleBox[";",
+      Background->None]}]}], 
+   StyleBox["  ",
+    Background->None], 
+   StyleBox["]",
+    Background->None]}], 
+  StyleBox[" ",
+   Background->None]}]], "Input",
+ CellChangeTimes->CompressedData["
+1:eJxTTMoPSmViYGAQBWIQXcXpOk068Y1jbFLLbBD954DtShA9b/q7VSD6Ve09
+JhMgfbZsGyeI1gq8wAuiH7Sf4gfRuwzvqIHonMYdGiD6zI6N/iA6a96bYBDd
+dFDX5YX1W0e1GT1gutOGyxNES2sHRILoJ05Hs0F0gMHefBDN5uhUBqLnzI+f
+DKK9HNpngegZqZ/ngeiPfssXg2gtfrklIHotz6EzYHMNEm+C6NXHJt8H0WJJ
+iz6C6O8LfbUf2L51PHg83BpEV263dAHRK36ZhIPofuHb0SD6XV1QCYiWO5dV
+djfyreOBbYxVILrsh0criFb6Hr8ARF9YWLcKRN//PQtM/7thehhEv9ePBtMA
+n86xtQ==
+  "],
+ Background->RGBColor[0.87, 0.94, 1],
+ CellLabel->"In[1]:=",ExpressionUUID->"600bbd74-306e-4a17-9f4b-22c508a99eb7"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"A", "=", GridBox[{
+     {"3", "2", "4"},
+     {"1", "2", "1"},
+     {"1", 
+      RowBox[{"-", "1"}], "2"}
+    },
+    GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.7]}, 
+        Offset[0.27999999999999997`]}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}}]}], ";", 
+  RowBox[{"InvMat", "[", "A", "]"}]}]], "Input",
+ CellChangeTimes->{{3.9247553692949495`*^9, 3.9247553698209395`*^9}, {
+  3.9247554387823257`*^9, 3.924755439296861*^9}, {3.9394299201495633`*^9, 
+  3.9394299208525753`*^9}},
+ CellLabel->"In[2]:=",ExpressionUUID->"a19522e6-a873-4a61-8195-3a888caaf881"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"5", ",", 
+     RowBox[{"-", "8"}], ",", 
+     RowBox[{"-", "6"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "1"}], ",", "2", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "3"}], ",", "5", ",", "4"}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.9247549351646423`*^9, {3.9247549865308685`*^9, 3.924755123066964*^9}, {
+   3.924755177130452*^9, 3.9247552046102057`*^9}, {3.9247553668955307`*^9, 
+   3.924755370421461*^9}, 3.924755440024528*^9, 3.9394298235084624`*^9, 
+   3.9394299228881006`*^9},
+ CellLabel->"Out[2]=",ExpressionUUID->"d27062de-e6d1-45a7-a5ed-525436c06217"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"InvMat", "[", "A", "]"}], ".", "A"}], "//", 
+  "MatrixForm"}]], "Input",
+ CellChangeTimes->{{3.939429839743002*^9, 3.9394298523321323`*^9}, {
+  3.939429927277645*^9, 3.9394299279805117`*^9}},
+ CellLabel->"In[3]:=",ExpressionUUID->"ac5b3b46-051b-4ea6-9b50-42e826a81e01"],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"(", "\[NoBreak]", GridBox[{
+     {"1", "0", "0"},
+     {"0", "1", "0"},
+     {"0", "0", "1"}
+    },
+    GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.7]}, 
+        Offset[0.27999999999999997`]}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}}], "\[NoBreak]", ")"}],
+  Function[BoxForm`e$, 
+   MatrixForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{3.93942985295695*^9, 3.9394299286954527`*^9},
+ CellLabel->
+  "Out[3]//MatrixForm=",ExpressionUUID->"90b16d3b-ffa4-4f2a-acb4-\
+833364d8a09a"]
+}, Open  ]]
+},
+WindowSize->{908.25, 681.},
+WindowMargins->{{9, Automatic}, {Automatic, 30.75}},
+PrivateNotebookOptions->{"VersionedStylesheet"->{"Default.nb"[8.] -> False}},
+FrontEndVersion->"13.1 for Microsoft Windows (64-bit) (June 16, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"40ae0d57-0cc5-4dbe-a6dd-e60bf923e949"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 3893, 99, 571, "Text",ExpressionUUID->"30422fc6-e776-424e-b2b7-442646d6030c"],
+Cell[4453, 121, 14473, 458, 452, "Input",ExpressionUUID->"600bbd74-306e-4a17-9f4b-22c508a99eb7"],
+Cell[CellGroupData[{
+Cell[18951, 583, 752, 20, 61, "Input",ExpressionUUID->"a19522e6-a873-4a61-8195-3a888caaf881"],
+Cell[19706, 605, 695, 18, 32, "Output",ExpressionUUID->"d27062de-e6d1-45a7-a5ed-525436c06217"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20438, 628, 316, 7, 28, "Input",ExpressionUUID->"ac5b3b46-051b-4ea6-9b50-42e826a81e01"],
+Cell[20757, 637, 674, 20, 79, "Output",ExpressionUUID->"90b16d3b-ffa4-4f2a-acb4-833364d8a09a"]
+}, Open  ]]
+}
+]
+*)
+
