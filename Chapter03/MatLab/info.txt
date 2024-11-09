@@ -1,1 +1,1 @@
-
+This folder contains programs prepared in Matlab M-files for Chapter 3.
