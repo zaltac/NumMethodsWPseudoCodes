@@ -1,1 +1,1 @@
-This folder contains C programs of some of the pseudocodes of Chapter 3.
+This folder contains programs prepared in C programming language for Chapter 3.
