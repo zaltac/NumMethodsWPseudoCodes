@@ -1,1 +1,1 @@
-
+This folder contains programs prepared in Mathematica Wolfram programming language for Chapter 4.
