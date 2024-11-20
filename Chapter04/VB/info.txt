@@ -1,1 +1,1 @@
-
+This folder contains programs prepared in Visual Basic (or VBA) programming language for Chapter 4.
