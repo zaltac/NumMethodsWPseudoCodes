@@ -1,0 +1,445 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     14909,        437]
+NotebookOptionsPosition[     14327,        419]
+NotebookOutlinePosition[     14731,        435]
+CellTagsIndexPosition[     14688,        432]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ "============================================================================\
+======\n",
+ StyleBox["   CODE5.1-EXAMPLE5-4.nb. ",
+  FontWeight->"Bold"],
+ "A Mathematica (nb) module implementing Pseudocode 5.1.                  \n  \
+\n   NUMERICAL METHODS FOR SCIENTISTS AND ENGINEERS: WITH PSEUDOCODES\n   \
+First Edition. (c) By Zekeriya ALTA\[CapitalCCedilla] (2024).\n   ISBN: \
+978-1-032-75474-1 (hbk)\n   ISBN: 978-1-032-75642-4 (pbk)\n   ISBN: \
+978-1-003-47494-4 (ebk)\n   \n   DOI : 10.1201/9781003474944\n   C&H/CRC \
+PRESS, Boca Raton, FL, USA & London, UK.\n   \n   This free software is \
+complimented by the author to accompany the textbook.\n",
+ StyleBox["   E-mail: ",
+  FontWeight->"Bold"],
+ "altacz@gmail.com.\n   \n",
+ StyleBox["  DESCRIPTION: ",
+  FontWeight->"Bold"],
+ "A program that calculates the first and second derivatives of a set of \
+discrete data.                                                                \
+    \n                                                                        \
+                       \n",
+ StyleBox["  INPUT DATA   ",
+  FontWeight->"Bold"],
+ "                                                                           \
+\n     dt  :: Time increment (in seconds);                                    \
+                   \n     s   :: An array of length n, providing the distance \
+traveled in meters.                   \n                                      \
+                                                         \n",
+ StyleBox["  OUTPUT DATA",
+  FontWeight->"Bold"],
+ "                                                                            \
+ \n     v   :: Array of length n containing velocities (m/s) at discrete \
+points;                  \n     a   :: Array of length n containing \
+acelerations (m2/s) at discrete points.               \n                      \
+                                                                         \n",
+ StyleBox["  REVISION DATE :: ",
+  FontWeight->"Bold"],
+ "06/13/2024                                                                  \
+\n ===========================================================================\
+======="
+}], "Text",
+ CellChangeTimes->{
+  3.9418464446686487`*^9, {3.941846493605861*^9, 3.941846526240615*^9}},
+ FontFamily->"Times New Roman",
+ FontSize->14,
+ FontWeight->"Normal",
+ Background->RGBColor[
+  1, 1, 0.85],ExpressionUUID->"7c0a0c1b-4061-4670-bae9-d013a3cd3602"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"PREP", " ", "INPUT"}], " ", "*)"}], " ", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"dt", "=", "5.0"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"s", "=", 
+     RowBox[{"{", 
+      RowBox[{
+      "0.0", ",", "5.45", ",", "21.3", ",", "82.84", ",", "212.86", ",", 
+       "473.6"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"n", "=", 
+     RowBox[{"Length", "[", "s", "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"V", " ", "=", 
+      RowBox[{"Table", "[", 
+       RowBox[{"0", ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "1", ",", "n"}], "}"}]}], "]"}]}], ";", " ", 
+     RowBox[{"a", "=", 
+      RowBox[{"Table", "[", 
+       RowBox[{"0", ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "1", ",", "n"}], "}"}]}], "]"}]}], ";"}], 
+    RowBox[{"(*", " ", 
+     RowBox[{"APPLY", " ", "DIFFERENCE", " ", "EQUATIONS"}], " ", "*)"}], ";",
+     " ", 
+    RowBox[{
+     SubscriptBox["V", 
+      RowBox[{"\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]], " ", 
+     "=", " ", 
+     FractionBox[
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "3"}], 
+        SubscriptBox["s", 
+         RowBox[{"\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]]}], 
+       "+", 
+       RowBox[{"4", " ", 
+        SubscriptBox["s", 
+         RowBox[{"\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}]]}], 
+       " ", "-", 
+       SubscriptBox["s", 
+        RowBox[{"\[LeftDoubleBracket]", "3", "\[RightDoubleBracket]"}]]}], 
+      RowBox[{"2", "dt"}]]}], ";", 
+    RowBox[{
+     SubscriptBox["a", 
+      RowBox[{"\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]], " ", 
+     "=", " ", 
+     FractionBox[
+      RowBox[{
+       RowBox[{"2", 
+        SubscriptBox["s", 
+         RowBox[{"\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]]}], 
+       "-", 
+       RowBox[{"5", " ", 
+        SubscriptBox["s", 
+         RowBox[{"\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}]]}], 
+       " ", "+", 
+       RowBox[{"4", 
+        SubscriptBox["s", 
+         RowBox[{"\[LeftDoubleBracket]", "3", "\[RightDoubleBracket]"}]]}], 
+       "-", 
+       SubscriptBox["s", 
+        RowBox[{"\[LeftDoubleBracket]", "4", "\[RightDoubleBracket]"}]]}], 
+      SuperscriptBox["dt", "2"]]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"Do", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       SubscriptBox["V", 
+        RowBox[{"\[LeftDoubleBracket]", "i", "\[RightDoubleBracket]"}]], " ", 
+       "=", " ", 
+       FractionBox[
+        RowBox[{
+         SubscriptBox["s", 
+          RowBox[{"\[LeftDoubleBracket]", 
+           RowBox[{"i", "+", "1"}], "\[RightDoubleBracket]"}]], " ", "-", " ", 
+         SubscriptBox["s", 
+          RowBox[{"\[LeftDoubleBracket]", 
+           RowBox[{"i", "-", "1"}], "\[RightDoubleBracket]"}]]}], 
+        RowBox[{"2", "dt"}]]}], ";", 
+      RowBox[{
+       SubscriptBox["a", 
+        RowBox[{"\[LeftDoubleBracket]", "i", "\[RightDoubleBracket]"}]], " ", 
+       "=", " ", 
+       FractionBox[
+        RowBox[{
+         SubscriptBox["s", 
+          RowBox[{"\[LeftDoubleBracket]", 
+           RowBox[{"i", "+", "1"}], "\[RightDoubleBracket]"}]], " ", "-", 
+         RowBox[{"2", 
+          SubscriptBox["s", 
+           RowBox[{"\[LeftDoubleBracket]", "i", "\[RightDoubleBracket]"}]]}], 
+         "+", " ", 
+         SubscriptBox["s", 
+          RowBox[{"\[LeftDoubleBracket]", 
+           RowBox[{"i", "-", "1"}], "\[RightDoubleBracket]"}]]}], 
+        SuperscriptBox["dt", "2"]]}]}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "2", ",", 
+       RowBox[{"n", "-", "1"}]}], "}"}]}], "]"}], " ", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      SubscriptBox["V", 
+       RowBox[{"\[LeftDoubleBracket]", "n", "\[RightDoubleBracket]"}]], " ", 
+      "=", " ", 
+      FractionBox[
+       RowBox[{
+        RowBox[{"3", 
+         SubscriptBox["s", 
+          RowBox[{"\[LeftDoubleBracket]", "n", "\[RightDoubleBracket]"}]]}], 
+        "-", 
+        RowBox[{"4", " ", 
+         SubscriptBox["s", 
+          RowBox[{"\[LeftDoubleBracket]", 
+           RowBox[{"n", "-", "1"}], "\[RightDoubleBracket]"}]]}], " ", "+", 
+        SubscriptBox["s", 
+         RowBox[{"\[LeftDoubleBracket]", 
+          RowBox[{"n", "-", "2"}], "\[RightDoubleBracket]"}]]}], 
+       RowBox[{"2", "dt"}]]}], ";", 
+     RowBox[{
+      SubscriptBox["a", 
+       RowBox[{"\[LeftDoubleBracket]", "n", "\[RightDoubleBracket]"}]], " ", 
+      "=", " ", 
+      FractionBox[
+       RowBox[{
+        RowBox[{"2", 
+         SubscriptBox["s", 
+          RowBox[{"\[LeftDoubleBracket]", "n", "\[RightDoubleBracket]"}]]}], 
+        "-", 
+        RowBox[{"5", " ", 
+         SubscriptBox["s", 
+          RowBox[{"\[LeftDoubleBracket]", 
+           RowBox[{"n", "-", "1"}], "\[RightDoubleBracket]"}]]}], " ", "+", 
+        RowBox[{"4", 
+         SubscriptBox["s", 
+          RowBox[{"\[LeftDoubleBracket]", 
+           RowBox[{"n", "-", "2"}], "\[RightDoubleBracket]"}]]}], "-", 
+        SubscriptBox["s", 
+         RowBox[{"\[LeftDoubleBracket]", 
+          RowBox[{"n", "-", "3"}], "\[RightDoubleBracket]"}]]}], 
+       SuperscriptBox["dt", "2"]]}], ";", 
+     RowBox[{"output", "=", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"i", "-", "1"}], ")"}], "*", "dt"}], ",", " ", 
+          SubscriptBox["s", 
+           RowBox[{"\[LeftDoubleBracket]", "i", "\[RightDoubleBracket]"}]], 
+          ",", 
+          SubscriptBox["V", 
+           RowBox[{"\[LeftDoubleBracket]", "i", "\[RightDoubleBracket]"}]], 
+          ",", 
+          SubscriptBox["a", 
+           RowBox[{"\[LeftDoubleBracket]", "i", "\[RightDoubleBracket]"}]]}], 
+         "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "1", ",", "n"}], "}"}]}], "]"}]}], ";"}], 
+    RowBox[{"(*", " ", 
+     RowBox[{"PRINT", " ", "RESULTS"}], " ", "*)"}], ";", " ", 
+    RowBox[{"Print", "[", 
+     RowBox[{"NumberForm", "[", 
+      RowBox[{
+       RowBox[{"TableForm", "[", 
+        RowBox[{"output", ",", 
+         RowBox[{"TableHeadings", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{"None", ",", 
+            RowBox[{"{", 
+             RowBox[{
+             "\"\<t\>\"", ",", "\"\<s\>\"", ",", "\"\<V\>\"", ",", 
+              "\"\<a\>\""}], "}"}]}], "}"}]}]}], "]"}], ",", "12"}], "]"}], 
+     "]"}], ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.923960043719205*^9, 3.923960077600852*^9}, {
+  3.923960211629036*^9, 3.923960244153641*^9}, {3.923960505204615*^9, 
+  3.9239605059040174`*^9}, {3.9418465611673584`*^9, 3.941846653828305*^9}},
+ Background->RGBColor[0.87, 0.94, 1],
+ CellLabel->"In[18]:=",ExpressionUUID->"dda1e68b-683f-48f6-867b-66b398634970"],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[
+   TagBox[GridBox[{
+      {
+       TagBox["\<\"t\"\>",
+        HoldForm], 
+       TagBox["\<\"s\"\>",
+        HoldForm], 
+       TagBox["\<\"V\"\>",
+        HoldForm], 
+       TagBox["\<\"a\"\>",
+        HoldForm]},
+      {
+       InterpretationBox[
+        StyleBox["\<\"0.\"\>",
+         ShowStringCharacters->False],
+        0.,
+        AutoDelete->True], 
+       InterpretationBox[
+        StyleBox["\<\"0.\"\>",
+         ShowStringCharacters->False],
+        0.,
+        AutoDelete->True], 
+       InterpretationBox[
+        StyleBox["\<\"0.05\"\>",
+         ShowStringCharacters->False],
+        0.05,
+        AutoDelete->True], 
+       InterpretationBox[
+        StyleBox["\<\"-0.9956\"\>",
+         ShowStringCharacters->False],
+        -0.9956,
+        AutoDelete->True]},
+      {
+       InterpretationBox[
+        StyleBox["\<\"5.\"\>",
+         ShowStringCharacters->False],
+        5.,
+        AutoDelete->True], 
+       InterpretationBox[
+        StyleBox["\<\"5.45\"\>",
+         ShowStringCharacters->False],
+        5.45,
+        AutoDelete->True], 
+       InterpretationBox[
+        StyleBox["\<\"2.13\"\>",
+         ShowStringCharacters->False],
+        2.1300000000000003`,
+        AutoDelete->True], 
+       InterpretationBox[
+        StyleBox["\<\"0.416\"\>",
+         ShowStringCharacters->False],
+        0.41600000000000004`,
+        AutoDelete->True]},
+      {
+       InterpretationBox[
+        StyleBox["\<\"10.\"\>",
+         ShowStringCharacters->False],
+        10.,
+        AutoDelete->True], 
+       InterpretationBox[
+        StyleBox["\<\"21.3\"\>",
+         ShowStringCharacters->False],
+        21.3,
+        AutoDelete->True], 
+       InterpretationBox[
+        StyleBox["\<\"7.739\"\>",
+         ShowStringCharacters->False],
+        7.739000000000001,
+        AutoDelete->True], 
+       InterpretationBox[
+        StyleBox["\<\"1.8276\"\>",
+         ShowStringCharacters->False],
+        1.8276000000000003`,
+        AutoDelete->True]},
+      {
+       InterpretationBox[
+        StyleBox["\<\"15.\"\>",
+         ShowStringCharacters->False],
+        15.,
+        AutoDelete->True], 
+       InterpretationBox[
+        StyleBox["\<\"82.84\"\>",
+         ShowStringCharacters->False],
+        82.84,
+        AutoDelete->True], 
+       InterpretationBox[
+        StyleBox["\<\"19.156\"\>",
+         ShowStringCharacters->False],
+        19.156000000000002`,
+        AutoDelete->True], 
+       InterpretationBox[
+        StyleBox["\<\"2.7392\"\>",
+         ShowStringCharacters->False],
+        2.7392000000000003`,
+        AutoDelete->True]},
+      {
+       InterpretationBox[
+        StyleBox["\<\"20.\"\>",
+         ShowStringCharacters->False],
+        20.,
+        AutoDelete->True], 
+       InterpretationBox[
+        StyleBox["\<\"212.86\"\>",
+         ShowStringCharacters->False],
+        212.86,
+        AutoDelete->True], 
+       InterpretationBox[
+        StyleBox["\<\"39.076\"\>",
+         ShowStringCharacters->False],
+        39.076,
+        AutoDelete->True], 
+       InterpretationBox[
+        StyleBox["\<\"5.2288\"\>",
+         ShowStringCharacters->False],
+        5.2288,
+        AutoDelete->True]},
+      {
+       InterpretationBox[
+        StyleBox["\<\"25.\"\>",
+         ShowStringCharacters->False],
+        25.,
+        AutoDelete->True], 
+       InterpretationBox[
+        StyleBox["\<\"473.6\"\>",
+         ShowStringCharacters->False],
+        473.6,
+        AutoDelete->True], 
+       InterpretationBox[
+        StyleBox["\<\"65.22\"\>",
+         ShowStringCharacters->False],
+        65.22000000000001,
+        AutoDelete->True], 
+       InterpretationBox[
+        StyleBox["\<\"7.7184\"\>",
+         ShowStringCharacters->False],
+        7.718399999999995,
+        AutoDelete->True]}
+     },
+     GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+     GridBoxDividers->{
+      "Columns" -> {{False}}, "Rows" -> {False, True, {False}, False}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[2.0999999999999996`]}, 
+         Offset[0.27999999999999997`]}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}}],
+    {None, OutputFormsDump`HeadedColumns}],
+   Function[BoxForm`e$, 
+    TableForm[BoxForm`e$, TableHeadings -> {None, {"t", "s", "V", "a"}}]]],
+  NumberForm[#, 12]& ]], "Print",
+ CellChangeTimes->{3.941846660111865*^9},
+ CellLabel->
+  "During evaluation of \
+In[18]:=",ExpressionUUID->"5a9bef55-2ca3-4e16-a3d3-613db91dd3f4"]
+}, Open  ]]
+},
+WindowSize->{795., 607.5},
+WindowMargins->{{87.75, Automatic}, {Automatic, 30}},
+FrontEndVersion->"13.1 for Microsoft Windows (64-bit) (June 16, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"d4091303-f6ff-4568-a51b-d5292881ca72"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 2427, 47, 568, "Text",ExpressionUUID->"7c0a0c1b-4061-4670-bae9-d013a3cd3602"],
+Cell[CellGroupData[{
+Cell[3010, 71, 6767, 186, 340, "Input",ExpressionUUID->"dda1e68b-683f-48f6-867b-66b398634970"],
+Cell[9780, 259, 4531, 157, 116, "Print",ExpressionUUID->"5a9bef55-2ca3-4e16-a3d3-613db91dd3f4"]
+}, Open  ]]
+}
+]
+*)
+
