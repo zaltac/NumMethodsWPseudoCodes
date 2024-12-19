@@ -1,6 +1,6 @@
 #  VIDEOS FOR CHAPTER 2 
 
-[Video 1. Elementary Matrix Operations](https://www.youtube.com/watch?v=27h1lN6Lx1I) This video describes elementary matrix (row/column) operations with illustrated examples..
+[Video 1. Elementary Matrix Operations](https://www.youtube.com/watch?v=oEI00KDgYX0) This video describes elementary matrix (row/column) operations with illustrated examples..
 
 [Video 2. Solution of Upper-/Lower Triangular System of Linear Equations](https://www.youtube.com/watch?v=OD53a2GlTyU) This video describes forward and backward substitution algorithms, using 4 x 4 upper- and lower-triangular system of linear equations.
 
