@@ -92,7 +92,7 @@ def jacobi(n, eps, a, b, xo, maxit):
     while (del0>eps and p<maxit):
         p += 1
         (del1,x)=jacobi_drv(n, a, b, xo)
-        # printout the ietartion progress 
+        # printout the iteration progress 
         print(f" iter={p:5}  delta = {del1:8.2e}")
         xo[:] = x
         del0 = del1
