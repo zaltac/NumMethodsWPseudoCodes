@@ -4,7 +4,7 @@
 
 [Video 2. False Position Method](https://www.youtube.com/watch?v=CiMMPGa3T-c) This video covers the method of false position as a bracketing root-finding method. After presenting the theoretical background, a numerical example is solved step by step.
 
-[Video 3. Bisection Method](https://www.youtube.com/watch?v=_r_02YWNltg) The video describes the fixed point iteration method and includes a numerical example.
+[Video 3. Fixed Point Iteration Method](https://www.youtube.com/watch?v=_r_02YWNltg) The video describes the fixed point iteration method and includes a numerical example.
 
 [Video 4. Newton-Raphson and Modified Newton-Raphson Methods](https://www.youtube.com/watch?v=HYZjn2O-1ng) This video covers the theoretical and implementation aspects of the Newton Raphson and Modified Newton raphson Methods and provides an illustrative numercial example.
 
