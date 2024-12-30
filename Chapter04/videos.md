@@ -10,4 +10,6 @@
 
 [Video 5. Secant and Modified Secant Methods](https://www.youtube.com/watch?v=49JJwT6vxMg) This video covers the theoretical and implementation aspects of the secant and modified secant methods. An illustrative numerical problem is presented.
 
-[Video 6.  Aitken's and Steffensen's Acceleration Methods](https://www.youtube.com/watch?v=RYsva1tesvg) This video covers Aitken's and Steffensen's Acceleration Methods. An example is solved step by step to illustrate the implementations of each method..
+[Video 6.  Aitken's and Steffensen's Acceleration Methods](https://www.youtube.com/watch?v=RYsva1tesvg) This video covers Aitken's and Steffensen's Acceleration Methods. An example is solved step by step to illustrate the implementations of each method.
+
+[Video 7.  Systems of Nonlinear Equations. Solving by Newton's Methods](https://www.youtube.com/watch?v=s_pHaKM5S3Q) This video covers the numerical solution of systems of nonlinear equations using Newton's method. A two by two numerical example is used to illustrate how the method works.
