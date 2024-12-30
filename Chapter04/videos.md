@@ -9,3 +9,5 @@
 [Video 4. Newton-Raphson and Modified Newton-Raphson Methods](https://www.youtube.com/watch?v=HYZjn2O-1ng) This video covers the theoretical and implementation aspects of the Newton Raphson and Modified Newton raphson Methods and provides an illustrative numercial example.
 
 [Video 5. Secant and Modified Secant Methods](https://www.youtube.com/watch?v=49JJwT6vxMg) This video covers the theoretical and implementation aspects of the secant and modified secant methods. An illustrative numerical problem is presented.
+
+[Video 6.  Aitken's and Steffensen's Acceleration Methods](https://www.youtube.com/watch?v=RYsva1tesvg) This video covers Aitken's and Steffensen's Acceleration Methods. An example is solved step by step to illustrate the implementations of each method..
