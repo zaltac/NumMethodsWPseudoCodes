@@ -13,3 +13,5 @@
 [Video 6.  Aitken's and Steffensen's Acceleration Methods](https://www.youtube.com/watch?v=RYsva1tesvg) This video covers Aitken's and Steffensen's Acceleration Methods. An example is solved step by step to illustrate the implementations of each method.
 
 [Video 7.  Systems of Nonlinear Equations. Solving by Newton's Methods](https://www.youtube.com/watch?v=s_pHaKM5S3Q) This video covers the numerical solution of systems of nonlinear equations using Newton's method. A two by two numerical example is used to illustrate how the method works.
+
+[Video 8.  Roots of a Polynomial. Bairstow's Method](https://www.youtube.com/watch?v=s_pHaKM5S3Q) This video describes the Bairstow's method for finding all real and imaginary roots of an nth degree polynomial. A numerical example is provided for better comprehension.
