@@ -15,3 +15,5 @@
 [Video 7.  Systems of Nonlinear Equations. Solving by Newton's Methods](https://www.youtube.com/watch?v=s_pHaKM5S3Q) This video covers the numerical solution of systems of nonlinear equations using Newton's method. A two by two numerical example is used to illustrate how the method works.
 
 [Video 8.  Roots of a Polynomial. Bairstow's Method](https://www.youtube.com/watch?v=s_pHaKM5S3Q) This video describes the Bairstow's method for finding all real and imaginary roots of an nth degree polynomial. A numerical example is provided for better comprehension.
+
+[Video 9.  Roots of a Polynomial. Polynomial Reduction](https://www.youtube.com/watch?v=_3-DrOEKwXU) This video describes polynomial reduction as a means of finding roots of a polynomial. A numerical example is provided.
