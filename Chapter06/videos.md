@@ -4,7 +4,7 @@
 
 [Video 2. Newton's Divided Difference](https://youtu.be/a8i4Xn3R83M) This video covers the theoretical and practical aspects of the Newton's Divided Difference as an interplation method. A numerical interpolation problem involves step by step construction of the divided difference table and interpolation procedure.
 
-[Video 3. Newton's Divided Difference](https://www.youtube.com/watch?v=k9VH3dOYvA0) This video covers the Gregory-Newton (backward, forward, and central) Interpolation formulas, specifically generated for uniformly spaced discrete functions. Numerical example is presented after explaining the construction of difference tables.
+[Video 3. Newton's Interpolation Formulas For Uniformly Spaced Datasets](https://www.youtube.com/watch?v=k9VH3dOYvA0) This video covers the Gregory-Newton (backward, forward, and central) Interpolation formulas, specifically generated for uniformly spaced discrete functions. Numerical example is presented after explaining the construction of difference tables.
 
 [Video 4. Cubic Spline Interpolation](https://www.youtube.com/watch?v=IsOmJx9Or60) This video lays out the theoretical aspects of obtaining cubic splines coefficients for natural splines and linear extrapolation end conditions. A step by step explaination is provided using a numerical  example.
 
