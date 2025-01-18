@@ -7,3 +7,5 @@
 [Video 3. Nonlinear (Linearizable) Least Squares Regression](https://www.youtube.com/watch?v=wG4J4nnjgxk) This video covers transformation techniques to convert complex or nonlinear models to linear models. Numerical solution of an example problem is given step-by-step with emphasis on calculating and assessing the goodness of fit metrics.
 
 [Video 4. Multivariate Regression](https://www.youtube.com/watch?v=CXTDLgHHwgs) This video covers linear and exponential multivariate regression models. A numerical example, describing how to obtain a multivariate regression model and assess its goodness of fit, has been provided. 
+
+[Video 5. Continuous Least Squares Approximation](https://youtu.be/eGxh6KWnqU4) This video covers practical iimplementational aspects of the continious least squares approximation. An example problem is solved step-by-step.
