@@ -8,4 +8,4 @@
 
 [Video 4. Multivariate Regression](https://www.youtube.com/watch?v=CXTDLgHHwgs) This video covers linear and exponential multivariate regression models. A numerical example, describing how to obtain a multivariate regression model and assess its goodness of fit, has been provided. 
 
-[Video 5. Continuous Least Squares Approximation](https://youtu.be/eGxh6KWnqU4) This video covers practical iimplementational aspects of the continious least squares approximation. An example problem is solved step-by-step.
+[Video 5. Continuous Least Squares Approximation](https://www.youtube.com/watch?v=eGxh6KWnqU4) This video covers practical iimplementational aspects of the continious least squares approximation. An example problem is solved step-by-step.
