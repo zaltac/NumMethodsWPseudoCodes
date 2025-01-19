@@ -9,3 +9,5 @@
 [Video 4. Multivariate Regression](https://www.youtube.com/watch?v=CXTDLgHHwgs) This video covers linear and exponential multivariate regression models. A numerical example, describing how to obtain a multivariate regression model and assess its goodness of fit, has been provided. 
 
 [Video 5. Continuous Least Squares Approximation](https://www.youtube.com/watch?v=eGxh6KWnqU4) This video covers practical iimplementational aspects of the continious least squares approximation. An example problem is solved step-by-step.
+
+[Video 6. Over- and Under-Determined Systems of Linear Equations](https://www.youtube.com/watch?v=8WNpPwRQzQ4) This video covers the numerical overdetermined and underdetermined systems of linear equations using the least squares method. Two numerical examples, one for the over- and one for the under-determined systems, are presented explaining step-by-step solution.
