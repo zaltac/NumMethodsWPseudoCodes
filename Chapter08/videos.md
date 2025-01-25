@@ -7,3 +7,5 @@
 [Video 3. Romberg's Rule](https://youtube.com/video/4EIfPGYe3L8/) This video covers the theoretical and practval aspects of the Romberg's rule. A numerical example problem is solved step by step.
 
 [Video 4. Adaptive Integration](https://youtu.be/bDPjUDB9m9s) This video covers the theoretical and practical aspects of adaptive Simpson's 1/3 rule. The solution of an example integral problem is illustrated step by step.
+
+[Video 5. Newton-Cotes Integration](https://youtu.be/EbT8k_gU5dM) This video deals with the closed and open Newton-Cotes rules. However, this lecture is largely devoted to closed Newton-Cotes rules. It provides step-by-step solution of an itegral with an endpoint singularity.
