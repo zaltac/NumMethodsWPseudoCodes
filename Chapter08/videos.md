@@ -9,3 +9,5 @@
 [Video 4. Adaptive Integration](https://youtu.be/bDPjUDB9m9s) This video covers the theoretical and practical aspects of adaptive Simpson's 1/3 rule. The solution of an example integral problem is illustrated step by step.
 
 [Video 5. Newton-Cotes Integration](https://youtu.be/EbT8k_gU5dM) This video deals with the closed and open Newton-Cotes rules. However, this lecture is largely devoted to closed Newton-Cotes rules. It provides step-by-step solution of an itegral with an endpoint singularity.
+
+[Video 6. Integration of Nonuniformly Spaced Discrete Functions](https://youtu.be/41FAic-ZOjw) This video covers numerical integration of nonuniformly spaced discrete datasets using variants of the trapezoidal and simpsons's rules.
