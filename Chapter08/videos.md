@@ -11,3 +11,5 @@
 [Video 5. Newton-Cotes Integration](https://youtu.be/EbT8k_gU5dM) This video deals with the closed and open Newton-Cotes rules. However, this lecture is largely devoted to closed Newton-Cotes rules. It provides step-by-step solution of an itegral with an endpoint singularity.
 
 [Video 6. Integration of Nonuniformly Spaced Discrete Functions](https://youtu.be/41FAic-ZOjw) This video covers numerical integration of nonuniformly spaced discrete datasets using variants of the trapezoidal and simpsons's rules.
+
+[Video 7. Gauss-Legendre Method](https://youtu.be/0ZqziMFom6U) This video covers the Gauss-Legendre method as a numerical method for integrating explicitly given functions. Legendre polynomials, their recurrence relations, along with the numerical computation of the Gauss-Legendre quadratures. An example is presented explaining the step-by-step solution process with this method.
