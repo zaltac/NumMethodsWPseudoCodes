@@ -13,3 +13,5 @@
 [Video 6. Integration of Nonuniformly Spaced Discrete Functions](https://youtu.be/41FAic-ZOjw) This video covers numerical integration of nonuniformly spaced discrete datasets using variants of the trapezoidal and simpsons's rules.
 
 [Video 7. Gauss-Legendre Method](https://youtu.be/0ZqziMFom6U) This video covers the Gauss-Legendre method as a numerical method for integrating explicitly given functions. Legendre polynomials, their recurrence relations, along with the numerical computation of the Gauss-Legendre quadratures. An example is presented explaining the step-by-step solution process with this method.
+
+[Video 8. Computing Improper Integrals](https://youtu.be/Fftq-DSoaD0) This video covers the computation of Type I (integrals with infinite limits) and Type II (integrals with singularities) improper integrals. Avoiding improper integrals by coordinate transformation, truncating the integrals, subtraction of singularity, ignoring the singularity, techniques are presented and illustrated with examples.
