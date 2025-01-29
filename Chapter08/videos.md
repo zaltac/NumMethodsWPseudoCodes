@@ -15,3 +15,7 @@
 [Video 7. Gauss-Legendre Method](https://youtu.be/0ZqziMFom6U) This video covers the Gauss-Legendre method as a numerical method for integrating explicitly given functions. Legendre polynomials, their recurrence relations, along with the numerical computation of the Gauss-Legendre quadratures. An example is presented explaining the step-by-step solution process with this method.
 
 [Video 8. Computing Improper Integrals](https://youtu.be/Fftq-DSoaD0) This video covers the computation of Type I (integrals with infinite limits) and Type II (integrals with singularities) improper integrals. Avoiding improper integrals by coordinate transformation, truncating the integrals, subtraction of singularity, ignoring the singularity, techniques are presented and illustrated with examples.
+
+[Video 9. Gauss-Laguerre Method and Gauss-Laguerre Quadrature](https://youtu.be/_54xFHDDOGo) This video describes the Gauss-Laguerre method, along with Laguerre polynomials and generating the Gauss-Laguerre quadrature set. An example problem is also presented, with a step-by-step solution.
+
+[Video 10. Gauss-Hermite Method and Gauss-Hermite Quadrature](https://youtu.be/hoCFDnR4XuU) This video describes the Gauss-Hermite method, along with Hermite polynomials and generating the Gauss-Hermite quadrature set. An example problem is also presented, with a step-by-step solution.
