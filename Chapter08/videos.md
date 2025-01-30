@@ -19,3 +19,7 @@
 [Video 9. Gauss-Laguerre Method and Gauss-Laguerre Quadrature](https://youtu.be/_54xFHDDOGo) This video describes the Gauss-Laguerre method, along with Laguerre polynomials and generating the Gauss-Laguerre quadrature set. An example problem is also presented, with a step-by-step solution.
 
 [Video 10. Gauss-Hermite Method and Gauss-Hermite Quadrature](https://youtu.be/hoCFDnR4XuU) This video describes the Gauss-Hermite method, along with Hermite polynomials and generating the Gauss-Hermite quadrature set. An example problem is also presented, with a step-by-step solution.
+
+[Video 11. Gauss-Chebyshev Method and Gauss-Hermite Quadrature](https://youtu.be/won82wgw6QE) This video covers the Gauss-Chebyshev method and Gauss-Chevshev quadrature. An example problem is presented, with a step-by-step solution.
+
+[Video 12. Computing Integrals with Variable Limits](https://youtu.be/-WJPo2gDDww) This video covers the numerical integration of integrals with at least one of the limits of integration depends on a parameter or variable. The integrals are transformed to the ones over a fixed integration range. The solution to an example problem is carried out step by step.
