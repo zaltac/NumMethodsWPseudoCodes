@@ -10,12 +10,4 @@ https://www.youtube.com/watch?v=X6wh4wymfbk
 
 Prof. Dr. Zekeriya ALTAÇ
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RW3WN58GN0"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-RW3WN58GN0');
-</script>
+ 
