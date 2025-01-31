@@ -23,3 +23,5 @@
 [Video 11. Gauss-Chebyshev Method and Gauss-Hermite Quadrature](https://youtu.be/won82wgw6QE) This video covers the Gauss-Chebyshev method and Gauss-Chevshev quadrature. An example problem is presented, with a step-by-step solution.
 
 [Video 12. Computing Integrals with Variable Limits](https://youtu.be/-WJPo2gDDww) This video covers the numerical integration of integrals with at least one of the limits of integration depends on a parameter or variable. The integrals are transformed to the ones over a fixed integration range. The solution to an example problem is carried out step by step.
+
+[Video 13. Numerical Computation of Multiple Integrals ](https://youtu.be/zkbDMtPJqqM) This video cover two- and three-dimensional integrals, application areas, and numerical solution strategies. An illustrative example problem is solved step-by-step.
