@@ -9,3 +9,7 @@
 [Video 4. One Step Methods: Implicit and Linearized Euler Methods](https://youtu.be/1vpJoTgDHCk) This video covers the implicit Euler and linearized implicit Euler methods for solving the intial value problems. An example that illustrates the application of the method is presented step-by-step.
 
 [Video 5. One Step Methods: Trapezoidal, Linearized Trapezoidal, Midpoint, and Modified Euler Methods](https://youtu.be/io2lq9DOTZs) This video covers the implicit Euler and linearized implicit Euler methods for solving the intial value problems. An example that illustrates the application of the method is presented step-by-step.
+
+[Video 6. One Step Methods: Runge-Kutta Methods](https://youtu.be/LPqqpLKPJH0) This video describes the a family of explicit methods referred to as Runge-Kutta methods. Second-, third-, and fourth-order RK schemes are presented and a numerical example is solved with the RK4.
+
+[Video 7. One Step Methods: Numerical Stability and Stiffness](https://youtu.be/yABmV2qnzcg) This video covers the concept of numerical stability and stiffness. The stability criterion for the explicit and implicit euler, trapezoidal rule, and runge-kutta methods are presented and discussed. 
