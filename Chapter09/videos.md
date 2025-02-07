@@ -17,3 +17,5 @@
 [Video 8. Multi Step Methods: Adams-Bashforth and Adams-Moulton Methods](https://youtu.be/6nCA0K3ARo8) This video covers the multistep methods, specifically explicit Adams-Bashforth and implicit Adams-Moulton methods. A step-by-step example is presented showing the implementation of both methods using second-order formulas.
 
 [Video 9. Multi Step Methods: Backward Differentiation Formulas](https://youtu.be/Lp1_YH-_OIQ) This video covers the derivation and implementation of the backward differentiation formulas (BDFs). A step-by-step example is presented showing the implementation of BDF2.
+
+[Video 10. Runge-Kutta-Fehlberg (RKF45) Method with Adaptive Size Control](https://youtu.be/pWZqqcFRTvQ) This video covers the Runge-Kutta-Fehlberg (also known as RKF45 algorithm) method and its implementation with two step size adjustmen techniques. An example problem illustrating the step-by-step implementation of the adaptive step size control is presented.
