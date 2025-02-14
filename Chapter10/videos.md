@@ -11,3 +11,5 @@
 [Video 5.Use of Non-Uniform Grids](https://youtu.be/m92TRex82s0) This video briefly covers non-uniform grid generation techniques for finite difference implementation of two-point BVPs. The process of transforming ODEs to another domain, where uniform grids can be used is also explained, and a linear two-point BVP example is solved by transforming it to a prescribed domain.
 
 [Video 6.Finite Volume Method for ODEs](https://youtu.be/ycAyynpVyEo) This video covers the finite volume method (for one-dimensional ordinary differential equations) and its step-by-step implementation to second-order two-point linear BVPs.
+
+[Video 7.Finite Volume Method for ODEs: EXAMPLE](https://youtu.be/zhqC-wn-Vss) This video explains the step-by-step solution of a two-point linear boundary value example problem given in conservative form using the finite volume method.
