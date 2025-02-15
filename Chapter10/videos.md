@@ -14,4 +14,4 @@
 
 [Video 7.Finite Volume Method for ODEs: EXAMPLE](https://youtu.be/zhqC-wn-Vss) This video explains the step-by-step solution of a two-point linear boundary value example problem given in conservative form using the finite volume method.
 
-[Video 8.FSolving two-Point Nonlinear BVPs Using Finite Difference Method](https://youtu.be/kSgGmcQMirM) This video cover the numerical solution of two-point nonlinear BVPs using the finite difference method. The solution of an example problem is presented.
+[Video 8.Solving Two-Point Nonlinear BVPs Using Finite Difference Method](https://youtu.be/kSgGmcQMirM) This video cover the numerical solution of two-point nonlinear BVPs using the finite difference method. The solution of an example problem is presented.
