@@ -9,3 +9,5 @@
 [Video 4.Shifted Inverse Power Method](https://youtu.be/YjRd8Hrr-0M) This video covers the shifted inverse power method in connection with computing the any eigenvalue of a matrix in the vicinity of a specified value. An example problem illustrating the step-by-step implementation of the shifted inverse power method is presented.
 
 [Video 5.Similarity and Orthogonal Transformations](https://youtu.be/oQiqGDCYOYk) This video covers the properties of similar and orthogonal matrices along with the similarity and orthogonal transformations.
+
+[Video 6.Jacobi Method](https://youtu.be/yIWfeX_XIWg) This video describes the Jacobi method, an iterative method based on orthogonal transformations, to compute the eigenvalues and eigenvectors of a symmetric matrix. An example problem illustrating the step-by-step implementation of the Jacobi method is presented.
