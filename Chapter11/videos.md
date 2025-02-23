@@ -11,3 +11,5 @@
 [Video 5.Similarity and Orthogonal Transformations](https://youtu.be/oQiqGDCYOYk) This video covers the properties of similar and orthogonal matrices along with the similarity and orthogonal transformations.
 
 [Video 6.Jacobi Method](https://youtu.be/yIWfeX_XIWg) This video describes the Jacobi method, an iterative method based on orthogonal transformations, to compute the eigenvalues and eigenvectors of a symmetric matrix. An example problem illustrating the step-by-step implementation of the Jacobi method is presented.
+
+[Video 7.Generalized Eigenvalue Problem](https://youtu.be/qPjVBkhFtY8) This video describes how to transform a generalized eigenvalue problem to a standard edigenvalue problem. Also an algorithm to invert a lower triangular  matrix is given along with an example illustrating the transformation.
