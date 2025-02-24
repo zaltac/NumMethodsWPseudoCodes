@@ -13,3 +13,5 @@
 [Video 6.Jacobi Method](https://youtu.be/yIWfeX_XIWg) This video describes the Jacobi method, an iterative method based on orthogonal transformations, to compute the eigenvalues and eigenvectors of a symmetric matrix. An example problem illustrating the step-by-step implementation of the Jacobi method is presented.
 
 [Video 7.Generalized Eigenvalue Problem](https://youtu.be/qPjVBkhFtY8) This video describes how to transform a generalized eigenvalue problem to a standard edigenvalue problem. Also an algorithm to invert a lower triangular  matrix is given along with an example illustrating the transformation.
+
+[Video 8.Householder Method](https://youtu.be/emT-XepADq4) This video covers the theoretical and practical implementation aspects of the Householder method to find eigenvalues and eigenvectores of a positive definite and symmetric matrix. An example problem illustrating the step-by-step implementation of the Householder power method is also presented.
