@@ -15,3 +15,5 @@
 [Video 7.Generalized Eigenvalue Problem](https://youtu.be/qPjVBkhFtY8) This video describes how to transform a generalized eigenvalue problem to a standard edigenvalue problem. Also an algorithm to invert a lower triangular  matrix is given along with an example illustrating the transformation.
 
 [Video 8.Householder Method](https://youtu.be/emT-XepADq4) This video covers the theoretical and practical implementation aspects of the Householder method to find eigenvalues and eigenvectores of a positive definite and symmetric matrix. An example problem illustrating the step-by-step implementation of the Householder power method is also presented.
+
+[Video 9.The QR Method for Thridiagonal Matrices](https://youtu.be/oFqoF9Wq-xI) This video describes the QR method or QR algorithm to determine the eigenvalues and eiegenvectors for tridiagonal symmetric matrices.
