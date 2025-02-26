@@ -17,3 +17,5 @@
 [Video 8.Householder Method](https://youtu.be/emT-XepADq4) This video covers the theoretical and practical implementation aspects of the Householder method to find eigenvalues and eigenvectores of a positive definite and symmetric matrix. An example problem illustrating the step-by-step implementation of the Householder power method is also presented.
 
 [Video 9.The QR Method for Tridiagonal Matrices](https://youtu.be/oFqoF9Wq-xI) This video describes the QR method or QR algorithm to determine the eigenvalues and eiegenvectors for tridiagonal symmetric matrices.
+
+[Video 10.The QR Method for Tridiagonal Matrices: Example](https://youtu.be/zyH0W2NxaGU) An example problem is presented that illustrates the step-by-step implementation of the QR method to find the eigenvalues ​​and eigenvectors of a positive definite and symmetric tridiagonal matrix.
