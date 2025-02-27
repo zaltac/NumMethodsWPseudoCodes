@@ -19,3 +19,5 @@
 [Video 9.The QR Method for Tridiagonal Matrices](https://youtu.be/oFqoF9Wq-xI) This video describes the QR method or QR algorithm to determine the eigenvalues and eiegenvectors for tridiagonal symmetric matrices.
 
 [Video 10.The QR Method for Tridiagonal Matrices: Example](https://youtu.be/zyH0W2NxaGU) An example problem is presented that illustrates the step-by-step implementation of the QR method to find the eigenvalues ​​and eigenvectors of a positive definite and symmetric tridiagonal matrix.
+
+[Video 11.Classic Gram-Schmidth Process for Tridiagonal Matrices](https://youtu.be/9WR0Ov7Ffu4) This video describes the Gram-Schmidt process for a symmetric tridiagonal matrix to find its QR decomposition. An example problem illustrating the step-by-step implementation of the Gram-Schmidt process is presented.
