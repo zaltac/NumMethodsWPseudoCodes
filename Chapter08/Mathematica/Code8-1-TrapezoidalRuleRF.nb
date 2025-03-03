@@ -1,0 +1,297 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     11257,        289]
+NotebookOptionsPosition[     10312,        267]
+NotebookOutlinePosition[     10799,        284]
+CellTagsIndexPosition[     10756,        281]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ StyleBox["===================================================================\
+===============\n",
+  FontFamily->"Source Sans Pro ExtraLight"],
+ StyleBox["CODE8.1-Trapezoidal_Rule_RF.nb",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox[". A Mathematica (nb) module implementing ",
+  FontFamily->"Times New Roman"],
+ StyleBox["Pseudocode 8.1",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox[".                  \n  \n NUMERICAL METHODS FOR SCIENTISTS AND \
+ENGINEERS: WITH PSEUDOCODES\n   First Edition. (c) By Zekeriya ALTA\
+\[CapitalCCedilla] (2024).\n   ISBN: 978-1-032-75474-1 (hbk)\n   ISBN: \
+978-1-032-75642-4 (pbk)\n   ISBN: 978-1-003-47494-4 (ebk)\n   \n   DOI : \
+10.1201/9781003474944\n   C&H/CRC PRESS, Boca Raton, FL, USA & London, UK.\n  \
+ \n This free software is complimented by the author to accompany the \
+textbook.\n",
+  FontFamily->"Times New Roman"],
+ StyleBox[" E-mail: ",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox["altacz@gmail.com.\n   \n",
+  FontFamily->"Times New Roman"],
+ StyleBox["DESCRIPTION: ",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox["A modue to estimate the integral of ",
+  FontFamily->"Times New Roman"],
+ StyleBox["y=f ",
+  FontFamily->"Times New Roman",
+  FontSlant->"Italic"],
+ StyleBox["(",
+  FontFamily->"Times New Roman"],
+ StyleBox["x",
+  FontFamily->"Times New Roman",
+  FontSlant->"Italic"],
+ StyleBox[") on [",
+  FontFamily->"Times New Roman"],
+ StyleBox["a,b",
+  FontFamily->"Times New Roman",
+  FontSlant->"Italic"],
+ StyleBox["] using the Trapezoidal rule ",
+  FontFamily->"Times New Roman"],
+ StyleBox["with/without end correction",
+  FontFamily->"Times New Roman",
+  FontSlant->"Italic"],
+ StyleBox[".  \n                                                              \
+                                 \n",
+  FontFamily->"Times New Roman"],
+ StyleBox["ON ENTRY   ",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox["                                                                   \
+               \n      ",
+  FontFamily->"Times New Roman"],
+ StyleBox["n",
+  FontFamily->"Times New Roman",
+  FontSlant->"Italic"],
+ StyleBox["     :: Number of panels (i.e., n+1 integration points);           \
+                        \n   [",
+  FontFamily->"Times New Roman"],
+ StyleBox["a,b",
+  FontFamily->"Times New Roman",
+  FontSlant->"Italic"],
+ StyleBox["]  :: Integration interval.   \n                                   \
+                                                            \n",
+  FontFamily->"Times New Roman"],
+ StyleBox["ON RETURN  ",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox["                                                                   \
+                ",
+  FontFamily->"Times New Roman"],
+ StyleBox["\n   intg   :: Integral estimate using the ordinary Trapezoidal \
+rule;                            \n   intgc  :: Integral estimate using the \
+Trapezoidal rule with the end-point correction.",
+  FontFamily->"Times New Roman",
+  FontSlant->"Italic"],
+ StyleBox["                                                             \n\n",
+  FontFamily->"Times New Roman"],
+ StyleBox["USES ",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox[" \n     ",
+  FontFamily->"Times New Roman"],
+ StyleBox["FX",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox["   :: User-defined external function providing the function,  ",
+  FontFamily->"Times New Roman"],
+ StyleBox["f ",
+  FontFamily->"Times New Roman",
+  FontSlant->"Italic"],
+ StyleBox["(",
+  FontFamily->"Times New Roman"],
+ StyleBox["x",
+  FontFamily->"Times New Roman",
+  FontSlant->"Italic"],
+ StyleBox[");                         \n                                      \
+                                                              \n",
+  FontFamily->"Times New Roman"],
+ StyleBox["REVISION DATE ::",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox[" 03/03/2025        ",
+  FontFamily->"Times New Roman"],
+ StyleBox["                                                          \n \
+==============================================================================\
+====",
+  FontFamily->"Source Sans Pro ExtraLight"]
+}], "Text",
+ CellChangeTimes->{{3.9403951873269863`*^9, 3.9403953253676434`*^9}, {
+   3.9403955293588257`*^9, 3.9403955304378166`*^9}, 3.9403961886849546`*^9, 
+   3.9497114571256013`*^9, {3.949711501845655*^9, 3.9497116564171596`*^9}, {
+   3.9497116925896244`*^9, 3.9497117792671533`*^9}, {3.949713037240203*^9, 
+   3.9497130433201714`*^9}, {3.949714528281869*^9, 3.9497145324678245`*^9}, {
+   3.949714571182501*^9, 3.9497145777944474`*^9}, {3.949714611571165*^9, 
+   3.9497146283980217`*^9}, {3.9497146677071195`*^9, 3.949714771417821*^9}, {
+   3.9497152718646283`*^9, 3.94971527365773*^9}, {3.949715356556028*^9, 
+   3.9497153823746967`*^9}, {3.9499837342871404`*^9, 3.949983925480977*^9}, {
+   3.949984192352562*^9, 3.9499842036608124`*^9}, {3.9499842411057415`*^9, 
+   3.949984283425668*^9}},
+ FontSize->14,
+ Background->RGBColor[
+  1, 1, 0.85],ExpressionUUID->"6fdc5c4a-5737-4b3d-ab62-490a78214cc2"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"TrapezoidalRuleRF", "[", 
+     RowBox[{"a0_", ",", "b0_", ",", "n0_"}], "]"}], ":=", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"a", "=", 
+         RowBox[{"N", "[", "a0", "]"}]}], ",", 
+        RowBox[{"b", "=", 
+         RowBox[{"N", "[", "b0", "]"}]}], ",", 
+        RowBox[{"n", "=", "n0"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"h", " ", "=", " ", 
+        FractionBox[
+         RowBox[{"b", "-", "a"}], "n"]}], ";", " ", "\[IndentingNewLine]", 
+       RowBox[{"xi", " ", "=", " ", 
+        RowBox[{"a", " ", "h"}]}], ";", 
+       RowBox[{"intg", "=", 
+        RowBox[{"0.5", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"FX", "[", "a", "]"}], "+", 
+           RowBox[{"FX", "[", "b", "]"}]}], ")"}]}]}], ";", 
+       RowBox[{"For", "[", " ", 
+        RowBox[{
+         RowBox[{"i", "=", "1"}], ",", " ", 
+         RowBox[{"i", "\[LessEqual]", 
+          RowBox[{"n", "-", "1"}]}], ",", " ", 
+         RowBox[{"i", "++"}], ",", " ", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"xi", "=", 
+           RowBox[{"xi", "+", "h"}]}], ";", 
+          RowBox[{"intg", "=", 
+           RowBox[{"intg", "+", 
+            RowBox[{"FX", "[", "xi", "]"}]}]}], ";"}]}], " ", "]"}], ";", " ", 
+       RowBox[{"intg", "=", 
+        RowBox[{"h", "*", "intg"}]}], ";", 
+       RowBox[{"corr", "=", 
+        RowBox[{
+         RowBox[{"-", 
+          FractionBox[
+           SuperscriptBox["h", "2"], "12"]}], 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{
+            SuperscriptBox["FX", "\[Prime]",
+             MultilineFunction->None], "[", "b", "]"}], "-", 
+           RowBox[{
+            SuperscriptBox["FX", "\[Prime]",
+             MultilineFunction->None], "[", "a", "]"}]}], ")"}]}]}], ";", 
+       RowBox[{"intgc", "=", 
+        RowBox[{"intg", "+", "corr"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"Return", "[", " ", 
+        RowBox[{"{", 
+         RowBox[{"intg", ",", "intgc"}], "}"}], " ", "]"}], ";"}]}], " ", 
+     "]"}]}], ";"}], " "}]], "Input",
+ CellChangeTimes->{{3.7411459230424285`*^9, 3.7411459241188283`*^9}, {
+   3.7411460117908287`*^9, 3.7411460829892297`*^9}, {3.741146344379631*^9, 
+   3.7411463533808312`*^9}, {3.7411464976652317`*^9, 
+   3.7411465025948324`*^9}, {3.7411472023484364`*^9, 3.741147232019637*^9}, {
+   3.74114772931644*^9, 3.74114772962844*^9}, {3.7411509405789604`*^9, 
+   3.741150978159361*^9}, {3.7411520399969673`*^9, 3.741152066233367*^9}, {
+   3.8136503282896805`*^9, 3.8136503811397038`*^9}, {3.923208556791404*^9, 
+   3.923208785269005*^9}, {3.9232088274358053`*^9, 3.9232088407114053`*^9}, 
+   3.9232090911236067`*^9, {3.923209126956807*^9, 3.9232091581100073`*^9}, 
+   3.9232092170624075`*^9, {3.9232093383212085`*^9, 3.9232093562612085`*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"7339adb1-0fb2-428f-92ae-f5b51f198321"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"User", "-", 
+     RowBox[{"defined", " ", "function", " ", "providing", " ", "y"}]}], "=", 
+    RowBox[{"f", 
+     RowBox[{"(", "x", ")"}], " ", "to", " ", "be", " ", 
+     RowBox[{"integrated", ".", " ", "The"}], " ", "derivative", " ", "is", 
+     " ", "evaluated", " ", "symbolically"}]}], " ", "*)"}], " ", 
+  RowBox[{
+   RowBox[{"FX", "[", "x_", "]"}], ":=", 
+   RowBox[{"x", "^", "4"}]}]}]], "Input",
+ CellChangeTimes->{{3.923208814550205*^9, 3.923208815486205*^9}, {
+  3.9232088500090055`*^9, 3.9232088650006056`*^9}, {3.923208956135806*^9, 
+  3.923208956635006*^9}, {3.9232089948238063`*^9, 3.9232089950578065`*^9}, {
+  3.9232090759916067`*^9, 3.923209100889207*^9}, {3.923209367930009*^9, 
+  3.9232093695836086`*^9}, {3.9499839611526527`*^9, 3.949984028464902*^9}},
+ Background->RGBColor[
+  1, 1, 0.85],ExpressionUUID->"e726d656-889c-4419-9e09-9dc23a928763"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"TrapezoidalRuleRF", "[", 
+  RowBox[{"0", ",", "1", ",", "10"}], "]"}]], "Input",
+ CellChangeTimes->{{3.923208931940206*^9, 3.923208946089406*^9}, 
+   3.9232091752856073`*^9, 
+   3.9232092204944077`*^9},ExpressionUUID->"ae1e2757-a2f1-4518-a95a-\
+621d8dd97508"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0.10743049849999996`", ",", "0.09993049849999995`"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{
+  3.923209372251209*^9},ExpressionUUID->"77320285-049d-4f56-8d4c-\
+7ac3ad0c1cc0"]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{
+  3.923209409441609*^9},ExpressionUUID->"9bf086f8-dd98-4538-8d9a-\
+a3624eefa909"]
+},
+WindowSize->{1003.5, 731.25},
+WindowMargins->{{15.75, Automatic}, {Automatic, 6.75}},
+PrivateNotebookOptions->{"VersionedStylesheet"->{"Default.nb"[8.] -> False}},
+FrontEndVersion->"13.1 for Microsoft Windows (64-bit) (June 16, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"37e18b35-620c-42f7-9170-88867de66126"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 5128, 126, 631, "Text",ExpressionUUID->"6fdc5c4a-5737-4b3d-ab62-490a78214cc2"],
+Cell[5688, 148, 3009, 72, 197, "Input",ExpressionUUID->"7339adb1-0fb2-428f-92ae-f5b51f198321"],
+Cell[8700, 222, 938, 19, 44, "Input",ExpressionUUID->"e726d656-889c-4419-9e09-9dc23a928763"],
+Cell[CellGroupData[{
+Cell[9663, 245, 283, 6, 28, "Input",ExpressionUUID->"ae1e2757-a2f1-4518-a95a-621d8dd97508"],
+Cell[9949, 253, 216, 6, 32, "Output",ExpressionUUID->"77320285-049d-4f56-8d4c-7ac3ad0c1cc0"]
+}, Open  ]],
+Cell[10180, 262, 128, 3, 28, "Input",ExpressionUUID->"9bf086f8-dd98-4538-8d9a-a3624eefa909"]
+}
+]
+*)
+
