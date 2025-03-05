@@ -33,7 +33,7 @@ def explicit_euler(h, x0, y0, xlast):
 #    abs  :: Built-in NP library function returning the absolute value of a real value;
 #    fcn  :: User-defined external function providing y'=f(x,y).                               
 #                                                                                              
-#  REVISION DATE :: 03/05/2024                                                                 
+#  REVISION DATE :: 03/05/2025                                                                 
 #  ==================================================================================
     x , y = x0, y0
     print(f'{"x":>6}  {"y":>9} {"True Error":>14}')
