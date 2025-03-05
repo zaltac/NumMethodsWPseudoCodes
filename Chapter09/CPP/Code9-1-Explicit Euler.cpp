@@ -60,7 +60,7 @@ void Explicit_Euler(double h, double x0, double y0, double xlast) {
 //   abs  :: Built-in intrinsic function returning the absolute value of a real value;
 //   FCN  :: User-defined external function providing y'=f(x,y).                               
 //                                                                                             
-// REVISION DATE :: 03/05/2024                                                                 
+// REVISION DATE :: 03/05/2025                                                                 
 // ==================================================================================
     double x = x0;
     double y = y0;
