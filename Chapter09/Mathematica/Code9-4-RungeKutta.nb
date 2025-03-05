@@ -1,0 +1,969 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     37323,        961]
+NotebookOptionsPosition[     36367,        939]
+NotebookOutlinePosition[     36851,        956]
+CellTagsIndexPosition[     36808,        953]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ StyleBox["===================================================================\
+===============\n",
+  FontFamily->"Source Sans Pro ExtraLight"],
+ StyleBox["CODE9.4-Runge_Kutta.nb.",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox[" A Mathematica (nb) module implementing ",
+  FontFamily->"Times New Roman"],
+ StyleBox["Pseudocode 9.4",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox[".                  \n  \n NUMERICAL METHODS FOR SCIENTISTS AND \
+ENGINEERS: WITH PSEUDOCODES\n   First Edition. (c) By Zekeriya ALTA\
+\[CapitalCCedilla] (2024).\n   ISBN: 978-1-032-75474-1 (hbk)\n   ISBN: \
+978-1-032-75642-4 (pbk)\n   ISBN: 978-1-003-47494-4 (ebk)\n   \n   DOI : \
+10.1201/9781003474944\n   C&H/CRC PRESS, Boca Raton, FL, USA & London, UK.\n  \
+ \n This free software is complimented by the author to accompany the \
+textbook.\n",
+  FontFamily->"Times New Roman"],
+ StyleBox[" E-mail: ",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox["altacz@gmail.com.\n   \n",
+  FontFamily->"Times New Roman"],
+ StyleBox["DESCRIPTION: ",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox["A module to estimate the solution of a first order IVP on [",
+  FontFamily->"Times New Roman"],
+ StyleBox["x0,xlast",
+  FontFamily->"Times New Roman",
+  FontSlant->"Italic"],
+ StyleBox["] using the 2nd to 4th order Runge-Kutta schemes. Numerical \
+estimates are printed out, not stored. ",
+  FontFamily->"Times New Roman"],
+ StyleBox["\n                                                                 \
+                              \n",
+  FontFamily->"Times New Roman"],
+ StyleBox["ON ENTRY   ",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox["                                                                   \
+               \n     ",
+  FontFamily->"Times New Roman"],
+ StyleBox["n",
+  FontFamily->"Times New Roman",
+  FontSlant->"Italic"],
+ StyleBox["     :: Order of the Runge-Kutta scheme;  \n     ",
+  FontFamily->"Times New Roman"],
+ StyleBox["h",
+  FontFamily->"Times New Roman",
+  FontSlant->"Italic"],
+ StyleBox["     :: Step size (it must be uniform);                            \
+                        \n   ",
+  FontFamily->"Times New Roman"],
+ StyleBox["x0, y0:",
+  FontFamily->"Times New Roman",
+  FontSlant->"Italic"],
+ StyleBox[": Initial values, also denotes prior estimates, ",
+  FontFamily->"Times New Roman"],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["x", 
+    RowBox[{"(", "p", ")"}]], TraditionalForm]],ExpressionUUID->
+  "c069296b-db36-4e25-8a86-73b723f629d9"],
+ StyleBox[" and ",
+  FontFamily->"Times New Roman"],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["y", 
+    RowBox[{"(", "p", ")"}]], TraditionalForm]],ExpressionUUID->
+  "3329c385-ce30-41be-bb06-e6adca742d65"],
+ StyleBox[", on following steps; \n   ",
+  FontFamily->"Times New Roman"],
+ StyleBox["xlast  ",
+  FontFamily->"Times New Roman",
+  FontSlant->"Italic"],
+ StyleBox[":: End point of the solution interval.\n\n",
+  FontFamily->"Times New Roman"],
+ StyleBox["Other Internal Variables",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox["                                                                   \
+           \n   ",
+  FontFamily->"Times New Roman"],
+ StyleBox["x, y ",
+  FontFamily->"Times New Roman",
+  FontSlant->"Italic"],
+ StyleBox["  :: Current estimates, ",
+  FontFamily->"Times New Roman"],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["x", 
+    RowBox[{"(", 
+     RowBox[{"p", "+", "1"}], ")"}]], TraditionalForm]],ExpressionUUID->
+  "9820d22d-a542-4a04-a5ba-f9eeeeb412bd"],
+ StyleBox[" and ",
+  FontFamily->"Times New Roman"],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["y", 
+    RowBox[{"(", 
+     RowBox[{"p", "+", "1"}], ")"}]], TraditionalForm]],ExpressionUUID->
+  "5d54af41-a88c-4bf3-a52b-062ae9ec6b4f"],
+ StyleBox[".                                                           \n\n",
+  FontFamily->"Times New Roman"],
+ StyleBox["USES ",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox[" \n     ",
+  FontFamily->"Times New Roman"],
+ StyleBox["Abs",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox["   :: Built-in function returning the absolute value of a real \
+value.                                                                        \
+                              \n       ",
+  FontFamily->"Times New Roman"],
+ StyleBox["f  ",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox["    :: User-defined external function providing \
+y\[CloseCurlyQuote]=f(x,y).                                                   \
+                                                   \n\n",
+  FontFamily->"Times New Roman"],
+ StyleBox["REVISION DATE ::",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox[" 03/05/2025        ",
+  FontFamily->"Times New Roman"],
+ StyleBox["                                                          \n \
+==============================================================================\
+====",
+  FontFamily->"Source Sans Pro ExtraLight"]
+}], "Text",
+ CellChangeTimes->{{3.9403951873269863`*^9, 3.9403953253676434`*^9}, {
+   3.9403955293588257`*^9, 3.9403955304378166`*^9}, 3.9403961886849546`*^9, 
+   3.9497114571256013`*^9, {3.949711501845655*^9, 3.9497116564171596`*^9}, {
+   3.9497116925896244`*^9, 3.9497117792671533`*^9}, {3.949713037240203*^9, 
+   3.9497130433201714`*^9}, {3.949714528281869*^9, 3.9497145324678245`*^9}, {
+   3.949714571182501*^9, 3.9497145777944474`*^9}, {3.949714611571165*^9, 
+   3.9497146283980217`*^9}, {3.9497146677071195`*^9, 3.949714771417821*^9}, {
+   3.9497152718646283`*^9, 3.94971527365773*^9}, {3.949715356556028*^9, 
+   3.9497153823746967`*^9}, {3.9499837342871404`*^9, 3.949983925480977*^9}, {
+   3.949984192352562*^9, 3.9499842036608124`*^9}, {3.9499842411057415`*^9, 
+   3.949984283425668*^9}, {3.950146246340176*^9, 3.950146600655897*^9}, {
+   3.9501520673942413`*^9, 3.950152109131445*^9}, {3.950152194074498*^9, 
+   3.950152238687272*^9}, {3.950154118406584*^9, 3.950154118476582*^9}},
+ FontSize->14,
+ Background->RGBColor[
+  1, 1, 0.85],ExpressionUUID->"2dd4190c-89de-411c-9fb9-8fbbef5ab755"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"RungeKutta", "[", 
+    RowBox[{"n_", ",", "h_", ",", "x00_", ",", "y00_", ",", "xlast_"}], "]"}],
+    ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"x0", "=", 
+        RowBox[{"N", "[", "x00", "]"}]}], ",", 
+       RowBox[{"y0", "=", 
+        RowBox[{"N", "[", "y00", "]"}]}]}], "}"}], ",", "\[IndentingNewLine]",
+      " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"f", "[", 
+        RowBox[{"x_", ",", "y_"}], "]"}], ":=", 
+       FractionBox[
+        RowBox[{"-", "y"}], 
+        RowBox[{"x", "+", "1"}]]}], ";", " ", 
+      RowBox[{"(*", " ", 
+       StyleBox[
+        RowBox[{
+         RowBox[{"ENTER", " ", "the", " ", "ODE", " ", "here"}], ",", " ", 
+         RowBox[{"i", ".", "e", "."}], ",", " ", 
+         RowBox[{"f", 
+          RowBox[{"(", 
+           RowBox[{"x", ",", "y"}], ")"}]}]}],
+        FontWeight->"Bold",
+        FontColor->RGBColor[1, 0, 0]], " ", "*)"}], "\[IndentingNewLine]", 
+      " ", 
+      RowBox[{"output", "=", 
+       RowBox[{"{", 
+        RowBox[{"{", 
+         RowBox[{"x0", ",", "y0", ",", "y0"}], "}"}], "}"}]}], ";", " ", 
+      "\[IndentingNewLine]", 
+      RowBox[{"x", "=", "x0"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"While", "[", 
+       RowBox[{
+        RowBox[{"x", "<", "xlast"}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"sol", "=", 
+          RowBox[{"DRVRK", "[", 
+           RowBox[{"n", ",", "h", ",", "x0", ",", "y0"}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"x", "=", 
+          RowBox[{"sol", "[", 
+           RowBox[{"[", "1", "]"}], "]"}]}], ";", " ", 
+         RowBox[{"y", "=", 
+          RowBox[{"sol", "[", 
+           RowBox[{"[", "2", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"yt", "=", 
+          FractionBox["2", 
+           RowBox[{"x", "+", "1"}]]}], ";", " ", 
+         RowBox[{"(*", " ", 
+          StyleBox[
+           RowBox[{
+           "Enter", " ", "the", " ", "true", " ", "solution", " ", "here", 
+            " ", "if", " ", "available"}],
+           FontWeight->"Bold",
+           FontColor->RGBColor[1., 0., 0.]], " ", "*)"}], " ", 
+         "\[IndentingNewLine]", 
+         RowBox[{"err", "=", 
+          RowBox[{"Abs", "[", 
+           RowBox[{"yt", "-", "y"}], "]"}]}], ";", " ", 
+         RowBox[{"(*", " ", 
+          RowBox[{
+          "Calculates", " ", "the", " ", "true", " ", "error", " ", "if", " ",
+            "the", " ", "true", " ", "solution", " ", "is", " ", 
+           "available"}], " ", "*)"}], " ", "\[IndentingNewLine]", 
+         RowBox[{"output", "=", 
+          RowBox[{"Append", "[", 
+           RowBox[{"output", ",", 
+            RowBox[{"{", 
+             RowBox[{"x", ",", "yt", ",", "y", ",", 
+              RowBox[{"ScientificForm", "[", 
+               RowBox[{"err", ",", "4"}], "]"}]}], "}"}]}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"x0", "=", "x"}], ";", " ", 
+         RowBox[{"y0", "=", "y"}], ";"}]}], "\[IndentingNewLine]", "]"}], ";",
+       " ", 
+      RowBox[{"(*", " ", 
+       RowBox[{"End", " ", "of", " ", "While", " ", "loop"}], " ", "*)"}], 
+      " ", "\[IndentingNewLine]", 
+      RowBox[{"Print", "[", 
+       RowBox[{"NumberForm", "[", 
+        RowBox[{
+         RowBox[{"TableForm", "[", 
+          RowBox[{"output", ",", 
+           RowBox[{"TableHeadings", "\[Rule]", 
+            RowBox[{"{", 
+             RowBox[{"None", ",", 
+              RowBox[{"{", 
+               RowBox[{
+               "\"\<x\>\"", ",", 
+                "\"\<\!\(\*SubscriptBox[\(y\), \(true\)]\)\>\"", ",", 
+                "\"\<\!\(\*SubscriptBox[\(y\), \(num\)]\)\>\"", ",", 
+                "\"\<Abs. Error\>\""}], "}"}]}], "}"}]}]}], "]"}], ",", 
+         "10"}], "]"}], "]"}], ";"}]}], "\[IndentingNewLine]", 
+    "\[IndentingNewLine]", "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.924150827920534*^9, 3.924150944896799*^9}, {
+   3.9241509910738544`*^9, 3.924151200907906*^9}, {3.924151339263131*^9, 
+   3.924151413450383*^9}, {3.924151469997069*^9, 3.9241514865907636`*^9}, {
+   3.9241516255434256`*^9, 3.9241516257934246`*^9}, {3.9241517919647465`*^9, 
+   3.9241517929491177`*^9}, {3.924152151550597*^9, 3.924152317752983*^9}, {
+   3.924152354167932*^9, 3.924152393483712*^9}, {3.9241524242551527`*^9, 
+   3.9241525037309294`*^9}, {3.924152651089783*^9, 3.9241527935963917`*^9}, {
+   3.9241529728681993`*^9, 3.924152984187997*^9}, {3.9241530177485657`*^9, 
+   3.9241530189361014`*^9}, {3.9241530631102715`*^9, 3.924153129135088*^9}, 
+   3.9241531640618725`*^9, {3.924153401979834*^9, 3.9241534108182445`*^9}, {
+   3.9241534625858383`*^9, 3.924153480365258*^9}, {3.9241549330847425`*^9, 
+   3.9241551040926647`*^9}, {3.9241551548930416`*^9, 
+   3.9241552885597258`*^9}, {3.9241556874858475`*^9, 
+   3.9241557082897224`*^9}, {3.924215552173612*^9, 3.9242156060712237`*^9}, {
+   3.9242157384642696`*^9, 3.9242157518691783`*^9}, {3.924215851032183*^9, 
+   3.9242159031650887`*^9}, {3.92421604513455*^9, 3.9242160483816576`*^9}, {
+   3.924216138840399*^9, 3.9242161624242244`*^9}, {3.9242162221622505`*^9, 
+   3.9242162474676185`*^9}, {3.9242162774723797`*^9, 
+   3.9242162839841905`*^9}, {3.9242164705100183`*^9, 3.9242165033527813`*^9}, 
+   3.9242165900171604`*^9, {3.924216710304305*^9, 3.924216727608392*^9}, {
+   3.924216788263735*^9, 3.924216793094702*^9}, {3.9243052767914467`*^9, 
+   3.9243053302215395`*^9}, {3.924305626079668*^9, 3.924305630038643*^9}, {
+   3.9243056676220646`*^9, 3.924305712226737*^9}, 3.924305792947325*^9, {
+   3.9476365842954245`*^9, 3.947636602257784*^9}, {3.9476372485780077`*^9, 
+   3.9476372785884867`*^9}, {3.947637366458023*^9, 3.947637370639633*^9}, {
+   3.947637639998382*^9, 3.947637643741762*^9}, {3.94763769811906*^9, 
+   3.9476377437850046`*^9}, {3.9501521449538045`*^9, 3.950152158313999*^9}},
+ Background->RGBColor[0.87, 0.94, 1],
+ CellLabel->"In[1]:=",ExpressionUUID->"32833012-e462-406a-ae25-1df0b73c36c5"],
+
+Cell[TextData[{
+ StyleBox["===================================================================\
+===============\n",
+  FontFamily->"Source Sans Pro ExtraLight"],
+ StyleBox["CODE9.4-DRVRK.nb.",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox[" A Mathematica (nb) module implementing driver module in ",
+  FontFamily->"Times New Roman"],
+ StyleBox["Pseudocode 9.4",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox[".                  \n  \n NUMERICAL METHODS FOR SCIENTISTS AND \
+ENGINEERS: WITH PSEUDOCODES\n   First Edition. (c) By Zekeriya ALTA\
+\[CapitalCCedilla] (2024).\n   ISBN: 978-1-032-75474-1 (hbk)\n   ISBN: \
+978-1-032-75642-4 (pbk)\n   ISBN: 978-1-003-47494-4 (ebk)\n   \n   DOI : \
+10.1201/9781003474944\n   C&H/CRC PRESS, Boca Raton, FL, USA & London, UK.\n  \
+ \n This free software is complimented by the author to accompany the \
+textbook.\n",
+  FontFamily->"Times New Roman"],
+ StyleBox[" E-mail: ",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox["altacz@gmail.com.\n   \n",
+  FontFamily->"Times New Roman"],
+ StyleBox["DESCRIPTION: ",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox["A driver module employing one-step RK2, RK3, or RK4 scheme.  ",
+  FontFamily->"Times New Roman"],
+ StyleBox["\n                                                                 \
+                              \n",
+  FontFamily->"Times New Roman"],
+ StyleBox["ON ENTRY   ",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox["                                                                   \
+               \n     ",
+  FontFamily->"Times New Roman"],
+ StyleBox["n",
+  FontFamily->"Times New Roman",
+  FontSlant->"Italic"],
+ StyleBox["     :: Order of the Runge-Kutta scheme;  \n     ",
+  FontFamily->"Times New Roman"],
+ StyleBox["h",
+  FontFamily->"Times New Roman",
+  FontSlant->"Italic"],
+ StyleBox["     :: Step size (it must be uniform);                            \
+                        \n   ",
+  FontFamily->"Times New Roman"],
+ StyleBox["x0, y0:",
+  FontFamily->"Times New Roman",
+  FontSlant->"Italic"],
+ StyleBox[": Initial values, also denotes prior estimates, ",
+  FontFamily->"Times New Roman"],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["x", 
+    RowBox[{"(", "p", ")"}]], TraditionalForm]],ExpressionUUID->
+  "321242cd-cf7b-48e4-818a-2b3669c53d79"],
+ StyleBox[" and ",
+  FontFamily->"Times New Roman"],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["y", 
+    RowBox[{"(", "p", ")"}]], TraditionalForm]],ExpressionUUID->
+  "e2df438e-3f94-4d6a-8201-ac4f9a8320c2"],
+ StyleBox[", on following steps. \n\n",
+  FontFamily->"Times New Roman"],
+ StyleBox["ON RETURN  ",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox["                                                                   \
+          \n   ",
+  FontFamily->"Times New Roman"],
+ StyleBox["x, y ",
+  FontFamily->"Times New Roman",
+  FontSlant->"Italic"],
+ StyleBox["  :: Current estimates, ",
+  FontFamily->"Times New Roman"],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["x", 
+    RowBox[{"(", 
+     RowBox[{"p", "+", "1"}], ")"}]], TraditionalForm]],ExpressionUUID->
+  "6d7e584d-52a7-42fd-a2b7-a88b639ba364"],
+ StyleBox[" and ",
+  FontFamily->"Times New Roman"],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["y", 
+    RowBox[{"(", 
+     RowBox[{"p", "+", "1"}], ")"}]], TraditionalForm]],ExpressionUUID->
+  "5e3dfe56-2d6a-4bcc-9da1-2e26666e42c0"],
+ StyleBox[".                                                           \n\n",
+  FontFamily->"Times New Roman"],
+ StyleBox["USES ",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox[" \n     ",
+  FontFamily->"Times New Roman"],
+ StyleBox["Abs",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox["   :: Built-in function returning the absolute value of a real \
+value.                                                                        \
+                              \n       ",
+  FontFamily->"Times New Roman"],
+ StyleBox["f  ",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox["    :: User-defined external function providing \
+y\[CloseCurlyQuote]=f(x,y).                                                   \
+                                                   \n\n",
+  FontFamily->"Times New Roman"],
+ StyleBox["REVISION DATE ::",
+  FontFamily->"Times New Roman",
+  FontWeight->"Bold"],
+ StyleBox[" 03/05/2025        ",
+  FontFamily->"Times New Roman"],
+ StyleBox["                                                          \n \
+==============================================================================\
+====",
+  FontFamily->"Source Sans Pro ExtraLight"]
+}], "Text",
+ CellChangeTimes->{{3.9403951873269863`*^9, 3.9403953253676434`*^9}, {
+   3.9403955293588257`*^9, 3.9403955304378166`*^9}, 3.9403961886849546`*^9, 
+   3.9497114571256013`*^9, {3.949711501845655*^9, 3.9497116564171596`*^9}, {
+   3.9497116925896244`*^9, 3.9497117792671533`*^9}, {3.949713037240203*^9, 
+   3.9497130433201714`*^9}, {3.949714528281869*^9, 3.9497145324678245`*^9}, {
+   3.949714571182501*^9, 3.9497145777944474`*^9}, {3.949714611571165*^9, 
+   3.9497146283980217`*^9}, {3.9497146677071195`*^9, 3.949714771417821*^9}, {
+   3.9497152718646283`*^9, 3.94971527365773*^9}, {3.949715356556028*^9, 
+   3.9497153823746967`*^9}, {3.9499837342871404`*^9, 3.949983925480977*^9}, {
+   3.949984192352562*^9, 3.9499842036608124`*^9}, {3.9499842411057415`*^9, 
+   3.949984283425668*^9}, {3.950146246340176*^9, 3.950146600655897*^9}, {
+   3.9501520673942413`*^9, 3.950152109131445*^9}, {3.950152194074498*^9, 
+   3.950152238687272*^9}, {3.9501530402720184`*^9, 3.9501531086944017`*^9}, {
+   3.9501532868367867`*^9, 3.9501532910047503`*^9}},
+ FontSize->14,
+ Background->RGBColor[
+  1, 1, 0.85],ExpressionUUID->"d148f99b-f01b-43c7-9f84-3337acd92eb2"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"DRVRK", "[", 
+    RowBox[{"n_", ",", "h_", ",", "x00_", ",", "y00_"}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"x0", "=", 
+        RowBox[{"N", "[", "x00", "]"}]}], ",", 
+       RowBox[{"y0", "=", 
+        RowBox[{"N", "[", "y00", "]"}]}]}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"xh", "=", 
+       RowBox[{"x0", "+", 
+        RowBox[{"h", "/", "2"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"x1", "=", 
+       RowBox[{"x0", "+", "h"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Which", "[", 
+       RowBox[{
+        RowBox[{"n", "==", "2"}], ",", " ", 
+        RowBox[{
+         RowBox[{"xk1", "=", 
+          RowBox[{"h", " ", 
+           RowBox[{"f", "[", 
+            RowBox[{"x0", ",", " ", "y0"}], "]"}]}]}], " ", ";", "  ", 
+         RowBox[{"(*", " ", 
+          RowBox[{"case", " ", "of", " ", "RK2"}], " ", "*)"}], " ", 
+         "\[IndentingNewLine]", " ", 
+         RowBox[{"ym", "=", 
+          RowBox[{"y0", "+", "xk1"}]}], ";", "\n", "       ", 
+         RowBox[{"xk2", "=", 
+          RowBox[{"h", " ", 
+           RowBox[{"f", "[", 
+            RowBox[{"x1", ",", "ym"}], "]"}]}]}], ";", "\n", "       ", 
+         RowBox[{"xk", "=", 
+          RowBox[{"0.5", " ", 
+           RowBox[{"(", 
+            RowBox[{"xk1", "+", "xk2"}], ")"}]}]}]}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"n", "==", "3"}], ",", " ", 
+        RowBox[{"(*", " ", 
+         RowBox[{"case", " ", "of", " ", "RK3"}], " ", "*)"}], " ", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"xk1", "=", 
+          RowBox[{"h", " ", 
+           RowBox[{"f", "[", 
+            RowBox[{"x0", ",", "y0"}], "]"}]}]}], ";", "\n", "          ", 
+         RowBox[{"ym", "=", 
+          RowBox[{"y0", "+", 
+           RowBox[{"0.5", " ", "xk1"}]}]}], ";", "\n", "         ", 
+         RowBox[{"xk2", "=", 
+          RowBox[{"h", " ", 
+           RowBox[{"f", "[", 
+            RowBox[{"xh", ",", "ym"}], "]"}]}]}], ";", "\n", "          ", 
+         RowBox[{"ym", "=", 
+          RowBox[{"y0", "-", "xk1", "+", 
+           RowBox[{"2", "xk2"}]}]}], ";", "\n", "         ", 
+         RowBox[{"xk3", "=", 
+          RowBox[{"h", " ", 
+           RowBox[{"f", "[", 
+            RowBox[{"x1", ",", "ym"}], "]"}]}]}], ";", "\n", "           ", 
+         RowBox[{"xk", "=", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"xk1", "+", 
+             RowBox[{"4", "xk2"}], "+", "xk3"}], ")"}], "/", "6"}]}]}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"n", "==", "4"}], ",", " ", 
+        RowBox[{"(*", " ", 
+         RowBox[{"case", " ", "of", " ", "RK4"}], " ", "*)"}], " ", 
+        "\[IndentingNewLine]", "  ", 
+        RowBox[{
+         RowBox[{"xk1", "=", 
+          RowBox[{"h", " ", 
+           RowBox[{"f", "[", 
+            RowBox[{"x0", ",", "y0"}], "]"}]}]}], ";", "\n", "             ", 
+         RowBox[{"ym", "=", 
+          RowBox[{"y0", "+", 
+           RowBox[{"0.5", " ", "xk1"}]}]}], ";", "\n", "           ", 
+         RowBox[{"xk2", "=", 
+          RowBox[{"h", " ", 
+           RowBox[{"f", "[", 
+            RowBox[{"xh", ",", "ym"}], "]"}]}]}], ";", "\n", "            ", 
+         RowBox[{"ym", "=", 
+          RowBox[{"y0", "+", 
+           RowBox[{"0.5", " ", "xk2"}]}]}], ";", "\n", "           ", 
+         RowBox[{"xk3", "=", 
+          RowBox[{"h", " ", 
+           RowBox[{"f", "[", 
+            RowBox[{"xh", ",", "ym"}], "]"}]}]}], ";", "\n", "            ", 
+         RowBox[{"ym", "=", 
+          RowBox[{"y0", "+", "xk3"}]}], ";", "\n", "            ", 
+         RowBox[{"xk4", "=", 
+          RowBox[{"h", " ", 
+           RowBox[{"f", "[", 
+            RowBox[{"x1", ",", "ym"}], "]"}]}]}], ";", "\n", "             ", 
+         RowBox[{"xk", "=", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"xk1", "+", 
+             RowBox[{"2", "xk2"}], "+", 
+             RowBox[{"2", "xk3"}], "+", "xk4"}], ")"}], "/", "6"}]}]}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"n", "<", "2"}], "||", 
+         RowBox[{"n", ">", "4"}]}], ",", "  ", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+          RowBox[{"case", " ", "of", " ", "n"}], "<=", 
+          RowBox[{"1", " ", "or", " ", "n"}], ">=", "5"}], " ", "*)"}], " ", 
+        "\[IndentingNewLine]", "  ", 
+        RowBox[{
+         RowBox[{"Print", "[", 
+          RowBox[{"\"\<RK\>\"", ",", "n", ",", 
+           RowBox[{"\"\< is NOT available\>\"", ";", 
+            RowBox[{"Abort", "[", "]"}]}]}], "]"}], ";"}]}], "  ", 
+       "\[IndentingNewLine]", "]"}], ";", " ", 
+      RowBox[{"(*", " ", 
+       RowBox[{"End", " ", "of", " ", "Which", " ", "construct"}], " ", 
+       "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"y", "=", 
+       RowBox[{"y0", "+", "xk"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"x", "=", "x1"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", 
+       RowBox[{"{", 
+        RowBox[{"x", ",", "y"}], "}"}], "]"}], ";"}]}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.924150827920534*^9, 3.924150944896799*^9}, {
+   3.9241509910738544`*^9, 3.924151200907906*^9}, {3.924151339263131*^9, 
+   3.924151413450383*^9}, {3.924151469997069*^9, 3.9241514865907636`*^9}, {
+   3.9241516255434256`*^9, 3.9241516257934246`*^9}, {3.9241517919647465`*^9, 
+   3.9241517929491177`*^9}, {3.924152151550597*^9, 3.924152317752983*^9}, {
+   3.924152354167932*^9, 3.924152393483712*^9}, {3.9241524242551527`*^9, 
+   3.9241525037309294`*^9}, {3.924152651089783*^9, 3.9241527935963917`*^9}, {
+   3.9241529728681993`*^9, 3.924152984187997*^9}, {3.9241530177485657`*^9, 
+   3.9241530189361014`*^9}, {3.9241530631102715`*^9, 3.924153129135088*^9}, 
+   3.9241531640618725`*^9, {3.924153401979834*^9, 3.9241534108182445`*^9}, {
+   3.9241534625858383`*^9, 3.924153480365258*^9}, {3.9241549330847425`*^9, 
+   3.9241551040926647`*^9}, {3.9241551548930416`*^9, 
+   3.9241552885597258`*^9}, {3.9241556874858475`*^9, 
+   3.9241557082897224`*^9}, {3.924215552173612*^9, 3.9242156060712237`*^9}, {
+   3.9242157384642696`*^9, 3.9242157518691783`*^9}, {3.924215851032183*^9, 
+   3.9242159031650887`*^9}, {3.92421604513455*^9, 3.9242160483816576`*^9}, {
+   3.924216138840399*^9, 3.9242161624242244`*^9}, {3.9242162221622505`*^9, 
+   3.9242162474676185`*^9}, {3.9242162774723797`*^9, 
+   3.9242162839841905`*^9}, {3.9242164705100183`*^9, 3.9242165033527813`*^9}, 
+   3.9242165900171604`*^9, {3.924216710304305*^9, 3.924216727608392*^9}, {
+   3.924216788263735*^9, 3.924216793094702*^9}, {3.9243052767914467`*^9, 
+   3.9243053302215395`*^9}, {3.92430537043089*^9, 3.9243055166725364`*^9}, {
+   3.924305549707984*^9, 3.924305661814392*^9}, {3.9243057389686546`*^9, 
+   3.9243057408827667`*^9}, 3.9243057881153903`*^9, {3.92430593061919*^9, 
+   3.924305933814232*^9}, {3.924306120525629*^9, 3.924306199349125*^9}, 
+   3.9243062958572755`*^9, {3.9243064657006345`*^9, 3.9243067977138314`*^9}, {
+   3.9243068887692394`*^9, 3.9243070431964283`*^9}},
+ Background->RGBColor[0.87, 0.94, 1],
+ CellLabel->"In[2]:=",ExpressionUUID->"e283f5f9-3433-4df6-b405-6d4186c4f937"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"n", "=", "4"}], ";", 
+  RowBox[{"x0", "=", "0"}], ";", 
+  RowBox[{"y0", "=", "2"}], ";", 
+  RowBox[{"xlast", "=", "1."}], ";", 
+  RowBox[{"h", "=", "0.1"}], ";", 
+  RowBox[{"RungeKutta", "[", 
+   RowBox[{"n", ",", "h", ",", "x0", ",", "y0", ",", "xlast"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->CompressedData["
+1:eJxTTMoPSmViYGCQBGIQXdE7s2SnzVtHxV7VMhB96M2jehC96E13A4juT+ZZ
+BaJrkrPBtA6jTMAuIB0crQCmD554GwyiN2j/A9PHLQwjQPQsBxMwbfPn+BQQ
+/WJ36FQQrcXwMGY3kN4ncyIWRPOUdfaC6FsPp00A0Wfib129AaQnGFTcAtFB
+M2bw3QTSD1gMBUB0SHa5IojOlJ0KpnukWmxBNLvnTTsQ/erS82gQnXV4YxKI
+Vvpt9JnF9q2ju+/CXyC6bS8vPyuQ/jAnWwBEB/xNUQTRFd0lYHq2yZEiEO3A
+7V4Oor8U6fSC6IXhXBNAtE/l2Wkgeo/azOkger7kl/ctmUBzjWs/g+iFhQWu
+rUDaq/ovmH6z5n4AiF5g/A5Mz9gengyivd9NSQHRYsKN1SD6j2wfmAYAmbfF
+2g==
+  "],
+ CellLabel->"In[3]:=",ExpressionUUID->"0978fb05-c9f2-4690-94ae-9a51775754cd"],
+
+Cell[BoxData[
+ TagBox[
+  InterpretationBox[GridBox[{
+     {"\<\"x\"\>", "\<\"\\!\\(\\*SubscriptBox[\\(y\\), \\(true\\)]\\)\"\>", "\
+\<\"\\!\\(\\*SubscriptBox[\\(y\\), \\(num\\)]\\)\"\>", "\<\"Abs. Error\"\>"},
+     {
+      InterpretationBox[
+       StyleBox["\<\"0.\"\>",
+        ShowStringCharacters->False],
+       0.,
+       AutoDelete->True], 
+      InterpretationBox[
+       StyleBox["\<\"2.\"\>",
+        ShowStringCharacters->False],
+       2.,
+       AutoDelete->True], 
+      InterpretationBox[
+       StyleBox["\<\"2.\"\>",
+        ShowStringCharacters->False],
+       2.,
+       AutoDelete->True], "\<\"\"\>"},
+     {
+      InterpretationBox[
+       StyleBox["\<\"0.1\"\>",
+        ShowStringCharacters->False],
+       0.1,
+       AutoDelete->True], 
+      InterpretationBox[
+       StyleBox["\<\"1.818181818\"\>",
+        ShowStringCharacters->False],
+       1.8181818181818181`,
+       AutoDelete->True], 
+      InterpretationBox[
+       StyleBox["\<\"1.818181818\"\>",
+        ShowStringCharacters->False],
+       1.8181818181818181`,
+       AutoDelete->True], 
+      TagBox[
+       InterpretationBox[
+        StyleBox["\<\"0.\"\>",
+         ShowStringCharacters->False],
+        0.,
+        AutoDelete->True],
+       ScientificForm[#, 4]& ]},
+     {
+      InterpretationBox[
+       StyleBox["\<\"0.2\"\>",
+        ShowStringCharacters->False],
+       0.2,
+       AutoDelete->True], 
+      InterpretationBox[
+       StyleBox["\<\"1.666666667\"\>",
+        ShowStringCharacters->False],
+       1.6666666666666667`,
+       AutoDelete->True], 
+      InterpretationBox[
+       StyleBox["\<\"1.666666667\"\>",
+        ShowStringCharacters->False],
+       1.6666666666666665`,
+       AutoDelete->True], 
+      TagBox[
+       InterpretationBox[
+        StyleBox[
+         RowBox[{"\<\"2.22\"\>", "\[Times]", 
+          SuperscriptBox["10", "\<\"-16\"\>"]}],
+         ShowStringCharacters->False],
+        2.220446049250313*^-16,
+        AutoDelete->True],
+       ScientificForm[#, 4]& ]},
+     {
+      InterpretationBox[
+       StyleBox["\<\"0.3\"\>",
+        ShowStringCharacters->False],
+       0.30000000000000004`,
+       AutoDelete->True], 
+      InterpretationBox[
+       StyleBox["\<\"1.538461538\"\>",
+        ShowStringCharacters->False],
+       1.5384615384615383`,
+       AutoDelete->True], 
+      InterpretationBox[
+       StyleBox["\<\"1.538461538\"\>",
+        ShowStringCharacters->False],
+       1.5384615384615383`,
+       AutoDelete->True], 
+      TagBox[
+       InterpretationBox[
+        StyleBox["\<\"0.\"\>",
+         ShowStringCharacters->False],
+        0.,
+        AutoDelete->True],
+       ScientificForm[#, 4]& ]},
+     {
+      InterpretationBox[
+       StyleBox["\<\"0.4\"\>",
+        ShowStringCharacters->False],
+       0.4,
+       AutoDelete->True], 
+      InterpretationBox[
+       StyleBox["\<\"1.428571429\"\>",
+        ShowStringCharacters->False],
+       1.4285714285714286`,
+       AutoDelete->True], 
+      InterpretationBox[
+       StyleBox["\<\"1.428571429\"\>",
+        ShowStringCharacters->False],
+       1.4285714285714284`,
+       AutoDelete->True], 
+      TagBox[
+       InterpretationBox[
+        StyleBox[
+         RowBox[{"\<\"2.22\"\>", "\[Times]", 
+          SuperscriptBox["10", "\<\"-16\"\>"]}],
+         ShowStringCharacters->False],
+        2.220446049250313*^-16,
+        AutoDelete->True],
+       ScientificForm[#, 4]& ]},
+     {
+      InterpretationBox[
+       StyleBox["\<\"0.5\"\>",
+        ShowStringCharacters->False],
+       0.5,
+       AutoDelete->True], 
+      InterpretationBox[
+       StyleBox["\<\"1.333333333\"\>",
+        ShowStringCharacters->False],
+       1.3333333333333333`,
+       AutoDelete->True], 
+      InterpretationBox[
+       StyleBox["\<\"1.333333333\"\>",
+        ShowStringCharacters->False],
+       1.333333333333333,
+       AutoDelete->True], 
+      TagBox[
+       InterpretationBox[
+        StyleBox[
+         RowBox[{"\<\"2.22\"\>", "\[Times]", 
+          SuperscriptBox["10", "\<\"-16\"\>"]}],
+         ShowStringCharacters->False],
+        2.220446049250313*^-16,
+        AutoDelete->True],
+       ScientificForm[#, 4]& ]},
+     {
+      InterpretationBox[
+       StyleBox["\<\"0.6\"\>",
+        ShowStringCharacters->False],
+       0.6,
+       AutoDelete->True], 
+      InterpretationBox[
+       StyleBox["\<\"1.25\"\>",
+        ShowStringCharacters->False],
+       1.25,
+       AutoDelete->True], 
+      InterpretationBox[
+       StyleBox["\<\"1.25\"\>",
+        ShowStringCharacters->False],
+       1.2499999999999998`,
+       AutoDelete->True], 
+      TagBox[
+       InterpretationBox[
+        StyleBox[
+         RowBox[{"\<\"2.22\"\>", "\[Times]", 
+          SuperscriptBox["10", "\<\"-16\"\>"]}],
+         ShowStringCharacters->False],
+        2.220446049250313*^-16,
+        AutoDelete->True],
+       ScientificForm[#, 4]& ]},
+     {
+      InterpretationBox[
+       StyleBox["\<\"0.7\"\>",
+        ShowStringCharacters->False],
+       0.7,
+       AutoDelete->True], 
+      InterpretationBox[
+       StyleBox["\<\"1.176470588\"\>",
+        ShowStringCharacters->False],
+       1.1764705882352942`,
+       AutoDelete->True], 
+      InterpretationBox[
+       StyleBox["\<\"1.176470588\"\>",
+        ShowStringCharacters->False],
+       1.176470588235294,
+       AutoDelete->True], 
+      TagBox[
+       InterpretationBox[
+        StyleBox[
+         RowBox[{"\<\"2.22\"\>", "\[Times]", 
+          SuperscriptBox["10", "\<\"-16\"\>"]}],
+         ShowStringCharacters->False],
+        2.220446049250313*^-16,
+        AutoDelete->True],
+       ScientificForm[#, 4]& ]},
+     {
+      InterpretationBox[
+       StyleBox["\<\"0.8\"\>",
+        ShowStringCharacters->False],
+       0.7999999999999999,
+       AutoDelete->True], 
+      InterpretationBox[
+       StyleBox["\<\"1.111111111\"\>",
+        ShowStringCharacters->False],
+       1.1111111111111112`,
+       AutoDelete->True], 
+      InterpretationBox[
+       StyleBox["\<\"1.111111111\"\>",
+        ShowStringCharacters->False],
+       1.111111111111111,
+       AutoDelete->True], 
+      TagBox[
+       InterpretationBox[
+        StyleBox[
+         RowBox[{"\<\"2.22\"\>", "\[Times]", 
+          SuperscriptBox["10", "\<\"-16\"\>"]}],
+         ShowStringCharacters->False],
+        2.220446049250313*^-16,
+        AutoDelete->True],
+       ScientificForm[#, 4]& ]},
+     {
+      InterpretationBox[
+       StyleBox["\<\"0.9\"\>",
+        ShowStringCharacters->False],
+       0.8999999999999999,
+       AutoDelete->True], 
+      InterpretationBox[
+       StyleBox["\<\"1.052631579\"\>",
+        ShowStringCharacters->False],
+       1.0526315789473684`,
+       AutoDelete->True], 
+      InterpretationBox[
+       StyleBox["\<\"1.052631579\"\>",
+        ShowStringCharacters->False],
+       1.0526315789473684`,
+       AutoDelete->True], 
+      TagBox[
+       InterpretationBox[
+        StyleBox["\<\"0.\"\>",
+         ShowStringCharacters->False],
+        0.,
+        AutoDelete->True],
+       ScientificForm[#, 4]& ]},
+     {
+      InterpretationBox[
+       StyleBox["\<\"1.\"\>",
+        ShowStringCharacters->False],
+       0.9999999999999999,
+       AutoDelete->True], 
+      InterpretationBox[
+       StyleBox["\<\"1.\"\>",
+        ShowStringCharacters->False],
+       1.,
+       AutoDelete->True], 
+      InterpretationBox[
+       StyleBox["\<\"1.\"\>",
+        ShowStringCharacters->False],
+       0.9999999999999999,
+       AutoDelete->True], 
+      TagBox[
+       InterpretationBox[
+        StyleBox[
+         RowBox[{"\<\"1.11\"\>", "\[Times]", 
+          SuperscriptBox["10", "\<\"-16\"\>"]}],
+         ShowStringCharacters->False],
+        1.1102230246251565`*^-16,
+        AutoDelete->True],
+       ScientificForm[#, 4]& ]}
+    },
+    GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[2.0999999999999996`]}, 
+        Offset[0.27999999999999997`]}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}}],
+   TableForm[{{0., 2., 2.}, {0.1, 1.8181818181818181`, 1.8181818181818181`, 
+      ScientificForm[0., 4]}, {0.2, 1.6666666666666667`, 1.6666666666666665`, 
+      ScientificForm[2.220446049250313*^-16, 4]}, {
+     0.30000000000000004`, 1.5384615384615383`, 1.5384615384615383`, 
+      ScientificForm[0., 4]}, {0.4, 1.4285714285714286`, 1.4285714285714284`, 
+      ScientificForm[2.220446049250313*^-16, 4]}, {
+     0.5, 1.3333333333333333`, 1.333333333333333, 
+      ScientificForm[2.220446049250313*^-16, 4]}, {
+     0.6, 1.25, 1.2499999999999998`, 
+      ScientificForm[2.220446049250313*^-16, 4]}, {
+     0.7, 1.1764705882352942`, 1.176470588235294, 
+      ScientificForm[2.220446049250313*^-16, 4]}, {
+     0.7999999999999999, 1.1111111111111112`, 1.111111111111111, 
+      ScientificForm[2.220446049250313*^-16, 4]}, {
+     0.8999999999999999, 1.0526315789473684`, 1.0526315789473684`, 
+      ScientificForm[0., 4]}, {0.9999999999999999, 1., 0.9999999999999999, 
+      ScientificForm[1.1102230246251565`*^-16, 4]}}, 
+    TableHeadings -> {
+     None, {"x", "\!\(\*SubscriptBox[\(y\), \(true\)]\)", 
+       "\!\(\*SubscriptBox[\(y\), \(num\)]\)", "Abs. Error"}}]],
+  NumberForm[#, 10]& ]], "Print",
+ CellChangeTimes->{
+  3.9243068044852376`*^9, {3.9243068394664955`*^9, 3.9243068747706985`*^9}, {
+   3.9243070245428267`*^9, 3.9243070729295197`*^9}, {3.9243071272966847`*^9, 
+   3.9243071333049793`*^9}, {3.947636614662018*^9, 3.9476366366257267`*^9}, {
+   3.9476372873724422`*^9, 3.9476372966520596`*^9}, {3.9476373784369555`*^9, 
+   3.947637384009506*^9}, {3.9476375319280634`*^9, 3.9476375412200766`*^9}, {
+   3.9476377056449184`*^9, 3.9476377494423285`*^9}, 3.9501531597766533`*^9},
+ CellLabel->
+  "During evaluation of \
+In[3]:=",ExpressionUUID->"9d53e332-2f88-4a4f-aefa-e4540365071b"]
+}, Open  ]]
+},
+WindowSize->{866.25, 660.75},
+WindowMargins->{{1.5, Automatic}, {Automatic, 40.5}},
+PrivateNotebookOptions->{"VersionedStylesheet"->{"Default.nb"[8.] -> True}},
+FrontEndVersion->"13.1 for Microsoft Windows (64-bit) (June 16, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"f87967e3-ba7f-4342-b2c4-a6753c5c72d8"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 6136, 151, 690, "Text",ExpressionUUID->"2dd4190c-89de-411c-9fb9-8fbbef5ab755"],
+Cell[6696, 173, 5982, 130, 356, "Input",ExpressionUUID->"32833012-e462-406a-ae25-1df0b73c36c5"],
+Cell[12681, 305, 5796, 141, 650, "Text",ExpressionUUID->"d148f99b-f01b-43c7-9f84-3337acd92eb2"],
+Cell[18480, 448, 7180, 158, 537, "Input",ExpressionUUID->"e283f5f9-3433-4df6-b405-6d4186c4f937"],
+Cell[CellGroupData[{
+Cell[25685, 610, 867, 20, 29, "Input",ExpressionUUID->"0978fb05-c9f2-4690-94ae-9a51775754cd"],
+Cell[26555, 632, 9796, 304, 216, "Print",ExpressionUUID->"9d53e332-2f88-4a4f-aefa-e4540365071b"]
+}, Open  ]]
+}
+]
+*)
+
