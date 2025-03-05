@@ -23,7 +23,7 @@ SUBROUTINE Explicit_Euler(h,x0,y0,xlast)
 !  CODE9.1-Explicit_Euler.f95. A Fortran95 module implementing Pseudocode 9.1.                    
 !  
 !  NUMERICAL METHODS FOR SCIENTISTS AND ENGINEERS: WITH PSEUDOCODES
-!  First Edition. (c) By Zekeriya ALTAÇ (2024).
+!  First Edition. (c) By Zekeriya ALTAÃ‡ (2024).
 !  ISBN: 978-1-032-75474-1 (hbk)
 !  ISBN: 978-1-032-75642-4 (pbk)
 !  ISBN: 978-1-003-47494-4 (ebk)
@@ -51,7 +51,7 @@ SUBROUTINE Explicit_Euler(h,x0,y0,xlast)
 !    DABS :: Built-in Intrinsic function returning the absolute value of a real value.                                                                                           
 !    FCN  :: User-defined external function providing y'=f(x,y).                               
 !                                                                                              
-!  REVISION DATE :: 03/05/2024                                                                 
+!  REVISION DATE :: 03/05/2025                                                                 
 !  ==================================================================================
 IMPLICIT NONE
 DOUBLE PRECISION, INTENT( IN) :: h, xlast
