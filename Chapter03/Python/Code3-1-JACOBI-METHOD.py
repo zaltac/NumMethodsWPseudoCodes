@@ -46,7 +46,7 @@ def jacobi_drv(n, a, b, xo):
         x[i] =  (b[i] - sums) / a[i, i]
         d[i] = x[i] - xo[i]
     
-    delta = ENorm(d)
+    delta = ENORM(d)
     return  (delta, x) # End of module JACOBI_DRV
 
 #  ==================================================================================
@@ -104,14 +104,34 @@ def jacobi(n, eps, a, b, xo, maxit):
     return (iter, error, x) # End of module jacobi
 
 
-def ENorm(x):
-    """
-    DESCRIPTION: A funcion module to compute Euclidean (L2) norm of a vector.
-
-    On ENTRY
-        n  :: Length of vector; 
-        x  :: An array (vector)) of length n.
-    """
+def ENORM(x):
+    # ==================================================================================
+    # CODE3.1-ENORM.PY of a module in Pseudocode 3.1.                                      
+    #
+    # NUMERICAL METHODS FOR SCIENTISTS AND ENGINEERS: WITH PSEUDOCODES
+    # First Edition. (c) By Zekeriya ALTAÇ (2024).
+    # ISBN: 978-1-032-75474-1 (hbk)
+    # ISBN: 978-1-032-75642-4 (pbk)
+    # ISBN: 978-1-003-47494-4 (ebk)
+    # 
+    # DOI : 10.1201/9781003474944
+    # C&H/CRC PRESS, Boca Raton, FL, USA & London, UK.
+    # 
+    # This free software is complimented by the author to accompany the textbook.
+    # E-mail: altacz@gmail.com.
+    # 
+    # DESCRIPTION: A Python function module to compute Euclidean (L2) norm of a vector.                  
+    #                                                                                             
+    # ARGUMENTS                                                                                   
+    #     n  :: The length of an input vector;                                                    
+    #     x  :: A vector (array) of length n.                                                     
+    #                                                                                             
+    # USES                                                                                        
+    #   sqrt :: Built-in NumPy library function returning the square root of a real value.      
+    #   len, range  :: Built-in NumPy library functions    
+    #                                                                                             
+    # REVISION DATE :: 11/09/2024                                                                  
+    # ==================================================================================
     n=len(x)
     delta = 0.0
     for i in range(n):
@@ -119,10 +139,11 @@ def ENorm(x):
     
     return np.sqrt(delta)  # End of E-norm module
 
-# ==============================================================================
-#  The main program to test JACOBI.PY
-# ==============================================================================
+
 def test_jacobi_method():
+    # ==============================================================================
+    #  The main program to test JACOBI.PY
+    # ==============================================================================
     n = 3
     a = np.zeros((n, n))  # Coefficient matrix
     b = np.zeros(n)  # rhs vector
