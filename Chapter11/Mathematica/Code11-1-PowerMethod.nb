@@ -1,0 +1,1918 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     65591,       1910]
+NotebookOptionsPosition[     64349,       1885]
+NotebookOutlinePosition[     64830,       1902]
+CellTagsIndexPosition[     64787,       1899]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ StyleBox["CODE11.1-PowerMethodS.nb.",
+  FontSize->14,
+  FontWeight->"Bold"],
+ StyleBox[" A Mathematica (nb) module implementing Pseudocode 11.1.           \
+     \n  \nNUMERICAL METHODS FOR SCIENTISTS AND ENGINEERS: WITH PSEUDOCODES\n \
+  First Edition. (c) By Zekeriya ALTA\[CapitalCCedilla] (2024).\n   ISBN: \
+978-1-032-75474-1 (hbk)\n   ISBN: 978-1-032-75642-4 (pbk)\n   ISBN: \
+978-1-003-47494-4 (ebk)\n   \n   DOI : 10.1201/9781003474944\n   C&H/CRC \
+PRESS, Boca Raton, FL, USA & London, UK.\n   \nThis free software is \
+complimented by the author to accompany the textbook.\nE-mail: \
+altacz@gmail.com.\n   \n",
+  FontSize->14],
+ StyleBox["DESCRIPTION:",
+  FontSize->14,
+  FontWeight->"Bold",
+  FontVariations->{"Underline"->True}],
+ StyleBox["  A module to find the dominant eigenvalue (largest in absolute \
+value)    \n      using the Power Method with ",
+  FontSize->14],
+ StyleBox["scaling ",
+  FontSize->14,
+  FontWeight->"Bold",
+  FontSlant->"Italic"],
+ StyleBox["technique.               \n                                        \
+                                                       \n",
+  FontSize->14],
+ StyleBox["ON ENTRY",
+  FontSize->14,
+  FontWeight->"Bold",
+  FontVariations->{"Underline"->True}],
+ StyleBox["                                                                   \
+                                                                           \n \
+     ",
+  FontSize->14],
+ StyleBox["n",
+  FontSize->14,
+  FontSlant->"Italic"],
+ StyleBox["   :: Size of the matrix;                                          \
+                   \n      ",
+  FontSize->14],
+ StyleBox["A",
+  FontSize->14,
+  FontWeight->"Bold"],
+ StyleBox["  :: A real square matrix (nxn);                                   \
+                  \n      ",
+  FontSize->14],
+ StyleBox["x",
+  FontSize->14,
+  FontWeight->"Bold"],
+ StyleBox["   :: Array of length n containing the initial guess for the \
+eigenvector;             \n      \[Lambda]  :: An initial guess for the \
+dominant eigenvalue;                                   \n      eps   :: \
+Convergence tolerance;                                                        \
+  \n     maxit  :: Maximum number of iterations permitted.                    \
+            \n                                                                \
+                               \n",
+  FontSize->14],
+ StyleBox["ON RETURN",
+  FontSize->14,
+  FontWeight->"Bold",
+  FontVariations->{"Underline"->True}],
+ StyleBox["                                                                   \
+                   \n      \[Lambda]   :: Estimated dominant (largest in \
+absolute value) eigenvalue;                      \n      ",
+  FontSize->14],
+ StyleBox["x",
+  FontSize->14,
+  FontWeight->"Bold"],
+ StyleBox["   :: Array of length n containing the estimated eigenvector;      \
+                   \n     error  :: Error, max of both L2-norm of \
+displacement vector and relative error  for eigenvalue.                       \
+     \n                                                                       \
+                        \n",
+  FontSize->14],
+ StyleBox["USES",
+  FontSize->14,
+  FontWeight->"Bold",
+  FontVariations->{"Underline"->True}],
+ StyleBox["                                                                   \
+                      \n    ",
+  FontSize->14],
+ StyleBox["Abs ",
+  FontSize->14,
+  FontWeight->"Bold"],
+ StyleBox[" :: Built-in function returning the absolute value of a real \
+value;    ",
+  FontSize->14],
+ StyleBox["                                                                   \
+            \n",
+  FontFamily->"Times New Roman",
+  FontSize->14],
+ StyleBox["    ",
+  FontFamily->"Times New Roman",
+  FontSize->14],
+ StyleBox["Max ",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Bold"],
+ StyleBox[" :: Built-in function returning the maximum value of a real value; \
+   ",
+  FontFamily->"Times New Roman",
+  FontSize->14],
+ StyleBox[" \n  ",
+  FontFamily->"Times New Roman",
+  FontSize->14],
+ StyleBox["  Length ",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Bold"],
+ StyleBox[" :: Built-in function returning the length of the array;           \
+",
+  FontFamily->"Times New Roman",
+  FontSize->14],
+ StyleBox["      \n    ",
+  FontSize->14],
+ StyleBox["BackSubstitute ",
+  FontSize->14,
+  FontWeight->"Bold"],
+ StyleBox[":: A module to solve an upper-triangular system.                   \
+     \n                                                                       \
+                        \n",
+  FontSize->14],
+ StyleBox["  REVISION DATE",
+  FontSize->14,
+  FontWeight->"Bold",
+  FontVariations->{"Underline"->True}],
+ StyleBox[" :: 03/18/2024            ",
+  FontSize->14],
+ "                                                   "
+}], "Text",
+ CellChangeTimes->{{3.9394331822906322`*^9, 3.939433416978672*^9}, 
+   3.939436631190604*^9, {3.939436792919129*^9, 3.939436818665069*^9}, {
+   3.9506758372301335`*^9, 3.9506759308850822`*^9}, {3.9506761670850835`*^9, 
+   3.9506761907568936`*^9}, {3.950676276886732*^9, 3.950676299059561*^9}},
+ Background->RGBColor[
+  1, 1, 0.85],ExpressionUUID->"ee217595-f78f-42bb-a9f9-094383752994"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"PowerMethod", "[", 
+     RowBox[{
+     "A0_", ",", "X0_", ",", "\[Lambda]00_", ",", "eps_", ",", "maxit_"}], 
+     "]"}], ":=", "\[IndentingNewLine]", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"A", " ", "=", " ", 
+         RowBox[{"N", "[", "A0", "]"}]}], ",", "c1", ",", "count", ",", "err",
+         ",", 
+        RowBox[{"\[Lambda]0", "=", 
+         RowBox[{"N", "[", "\[Lambda]00", "]"}]}], ",", 
+        RowBox[{"X", " ", "=", 
+         RowBox[{"N", "[", "X0", "]"}]}], ",", "Y"}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"error", "=", 
+        RowBox[{"MAXSIZE", "[", "X", "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"p", "=", "0"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"\[Lambda]", " ", "=", " ", "\[Lambda]0"}], ";", " ", 
+       "\[IndentingNewLine]", " ", 
+       RowBox[{"output", "=", 
+        RowBox[{"{", 
+         RowBox[{"{", 
+          RowBox[{"p", ",", "\[Lambda]", " ", ",", "X"}], "}"}], "}"}]}], ";",
+        " ", "\[IndentingNewLine]", 
+       RowBox[{"output", "=", 
+        RowBox[{"Append", "[", 
+         RowBox[{"output", ",", 
+          RowBox[{"{", 
+           RowBox[{
+           "\"\<---\>\"", ",", "\"\<----------\>\"", ",", 
+            "\"\<-------------\>\""}], " ", "}"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"While", "[", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"error", ">", "eps"}], "&&", 
+          RowBox[{"p", "<", "maxit"}]}], ",", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"p", "=", 
+           RowBox[{"p", "+", "1"}]}], ";", " ", "\[IndentingNewLine]", 
+          RowBox[{"XN", "=", " ", 
+           RowBox[{"A", ".", "X"}]}], ";", " ", "\[IndentingNewLine]", 
+          RowBox[{"\[Lambda]", " ", "=", " ", 
+           RowBox[{"MAXSIZE", "[", "XN", "]"}]}], ";", " ", 
+          "\[IndentingNewLine]", 
+          RowBox[{"XN", " ", "=", 
+           RowBox[{
+            FractionBox["1", "\[Lambda]"], " ", "XN"}]}], ";", " ", 
+          "\[IndentingNewLine]", 
+          RowBox[{"err1", "=", 
+           RowBox[{"ENORM", "[", 
+            RowBox[{"Abs", "[", 
+             RowBox[{"X", "-", "XN"}], "]"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"err2", "=", 
+           RowBox[{"Abs", "[", 
+            RowBox[{"1", "-", 
+             RowBox[{"\[Lambda]0", "/", "\[Lambda]"}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"error", "=", 
+           RowBox[{"Max", "[", 
+            RowBox[{"err1", ",", "err2"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"output", "=", 
+           RowBox[{"Append", "[", 
+            RowBox[{"output", ",", 
+             RowBox[{"{", 
+              RowBox[{"p", ",", 
+               RowBox[{"NumberForm", "[", 
+                RowBox[{"\[Lambda]", ",", 
+                 RowBox[{"{", 
+                  RowBox[{"7", ",", "7"}], "}"}]}], "]"}], " ", ",", "X", ",",
+                " ", "error"}], "}"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"output", "=", 
+           RowBox[{"Append", "[", 
+            RowBox[{"output", ",", 
+             RowBox[{"{", 
+              RowBox[{
+              "\"\<---\>\"", ",", "\"\<----------\>\"", ",", 
+               "\"\<-------------\>\""}], " ", "}"}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"(*", " ", 
+           RowBox[{
+            RowBox[{"Print", "[", 
+             RowBox[{
+             "\"\<Iter= \>\"", ",", "p", ",", "\"\< \[Lambda]= \>\"", ",", 
+              RowBox[{"NumberForm", "[", 
+               RowBox[{"\[Lambda]", ",", "6"}], "]"}], ",", "\"\< Error \>\"",
+               ",", "error"}], "]"}], ";"}], " ", "*)"}], 
+          "\[IndentingNewLine]", 
+          RowBox[{"X", " ", "=", " ", "XN"}], ";", "  ", 
+          "\[IndentingNewLine]", 
+          RowBox[{"\[Lambda]0", " ", "=", " ", "\[Lambda]"}], ";"}]}], "  ", 
+        "]"}], ";", " ", "\[IndentingNewLine]", 
+       RowBox[{"Print", "[", 
+        RowBox[{"NumberForm", "[", 
+         RowBox[{
+          RowBox[{"TableForm", "[", 
+           RowBox[{"output", ",", 
+            RowBox[{"TableHeadings", "\[Rule]", 
+             RowBox[{"{", 
+              RowBox[{"None", ",", 
+               RowBox[{"{", 
+                RowBox[{
+                "\"\<p\>\"", ",", 
+                 "\"\<\!\(\*SuperscriptBox[\(\[Lambda]\), \((p)\)]\)\>\"", 
+                 ",", "\"\<\!\(\*SuperscriptBox[\(X\), \((p)\)]\)\>\""}], 
+                "}"}]}], "}"}]}]}], "]"}], ",", "7"}], "]"}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Return", "[", 
+        RowBox[{"{", 
+         RowBox[{"\[Lambda]", ",", 
+          RowBox[{"Chop", "[", 
+           RowBox[{"X", ",", 
+            RowBox[{"eps", "^", "2"}]}], "]"}], ",", "error"}], "}"}], "]"}], 
+       ";"}]}], " ", "]"}]}], ";"}], " "}]], "Input",
+ CellChangeTimes->{{3.9244347802548027`*^9, 3.924434780348403*^9}, 
+   3.924435151212205*^9, {3.9244352461622057`*^9, 3.924435432848607*^9}, {
+   3.9244354818688073`*^9, 3.924435490747207*^9}, {3.924435612413808*^9, 
+   3.924436033635811*^9}, {3.9244363902692127`*^9, 3.9244364097566133`*^9}, {
+   3.9244366513402147`*^9, 3.9244366605442147`*^9}, {3.9244698295280023`*^9, 
+   3.9244698306668024`*^9}, {3.9244779872650385`*^9, 3.92447814162704*^9}, {
+   3.9244781961252403`*^9, 3.92447820833184*^9}, {3.9244782559792404`*^9, 
+   3.9244783266254406`*^9}, {3.924478443870841*^9, 3.924478512581442*^9}, {
+   3.924478552427442*^9, 3.924478589673242*^9}, {3.924478989043244*^9, 
+   3.9244790912232447`*^9}, {3.924479126448045*^9, 3.924479127618045*^9}, {
+   3.9244984883220034`*^9, 3.9244984904280033`*^9}, {3.9244985440140038`*^9, 
+   3.924498633495604*^9}, {3.924499125227207*^9, 3.9244991297512074`*^9}, {
+   3.924584285016182*^9, 3.924584285500554*^9}, {3.950675706275055*^9, 
+   3.9506757343899007`*^9}, 3.9506762256454325`*^9, {3.9506763273719835`*^9, 
+   3.95067632855948*^9}, {3.9506777556313066`*^9, 3.9506777845062323`*^9}, {
+   3.950761541954856*^9, 3.950761543589562*^9}},
+ AspectRatioFixed->True,
+ Background->RGBColor[0.87, 0.94, 1],
+ CellLabel->"In[1]:=",ExpressionUUID->"ad51bda5-2a47-4367-99b2-595a11785bda"],
+
+Cell[TextData[{
+ StyleBox["CODE11.1-MAXSIZE.nb",
+  FontSize->14,
+  FontWeight->"Bold"],
+ StyleBox[" of a module in Pseudocode 11.1.",
+  FontSize->14],
+ StyleBox[" ",
+  FontSize->14,
+  FontWeight->"Bold"],
+ StyleBox["              \n  \nNUMERICAL METHODS FOR SCIENTISTS AND \
+ENGINEERS: WITH PSEUDOCODES\n   First Edition. (c) By Zekeriya ALTA\
+\[CapitalCCedilla] (2024).\n   ISBN: 978-1-032-75474-1 (hbk)\n   ISBN: \
+978-1-032-75642-4 (pbk)\n   ISBN: 978-1-003-47494-4 (ebk)\n   \n   DOI : \
+10.1201/9781003474944\n   C&H/CRC PRESS, Boca Raton, FL, USA & London, UK.\n  \
+ \nThis free software is complimented by the author to accompany the \
+textbook.\nE-mail: altacz@gmail.com.\n   \n",
+  FontSize->14],
+ StyleBox["DESCRIPTION:",
+  FontSize->14,
+  FontWeight->"Bold",
+  FontVariations->{"Underline"->True}],
+ StyleBox["  A function module to find the largest element (in absolute \
+value) of an array.         \n                                                \
+                                               \n",
+  FontSize->14],
+ StyleBox["ARGUMENTS",
+  FontSize->14,
+  FontWeight->"Bold",
+  FontVariations->{"Underline"->True}],
+ StyleBox["                                                                   \
+                                                                              \
+                                                                              \
+                    \n      ",
+  FontSize->14],
+ StyleBox["x",
+  FontSize->14,
+  FontWeight->"Bold"],
+ StyleBox["   :: Array of length n.                                           \
+           \n                                                                 \
+                              \n",
+  FontSize->14],
+ StyleBox["USES",
+  FontSize->14,
+  FontWeight->"Bold",
+  FontVariations->{"Underline"->True}],
+ StyleBox["                                                                   \
+                      \n    ",
+  FontSize->14],
+ StyleBox["Abs ",
+  FontSize->14,
+  FontWeight->"Bold"],
+ StyleBox["      :: Built-in function returning the absolute value of a real \
+value;    ",
+  FontSize->14],
+ StyleBox["                                                                   \
+            \n    ",
+  FontFamily->"Times New Roman",
+  FontSize->14],
+ StyleBox["Max ",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Bold"],
+ StyleBox["     :: Built-in function returning the maximum value of a real \
+value;     \n  ",
+  FontFamily->"Times New Roman",
+  FontSize->14],
+ StyleBox["  Length",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Bold"],
+ StyleBox[" :: Built-in function returning the length of the array;           \
+",
+  FontFamily->"Times New Roman",
+  FontSize->14],
+ StyleBox["      \n    ",
+  FontSize->14],
+ StyleBox["Sort      ",
+  FontSize->14,
+  FontWeight->"Bold"],
+ StyleBox[":: A module to sort the array.                        \n           \
+                                                                              \
+      \n",
+  FontSize->14],
+ StyleBox["  REVISION DATE",
+  FontSize->14,
+  FontWeight->"Bold",
+  FontVariations->{"Underline"->True}],
+ StyleBox[" :: 03/10/2025             ",
+  FontSize->14],
+ "                                                   "
+}], "Text",
+ CellChangeTimes->{{3.9394331822906322`*^9, 3.939433416978672*^9}, 
+   3.939436631190604*^9, {3.939436792919129*^9, 3.939436818665069*^9}, {
+   3.9506758372301335`*^9, 3.9506759308850822`*^9}, {3.9506761670850835`*^9, 
+   3.9506761907568936`*^9}, {3.950676276886732*^9, 3.950676299059561*^9}, {
+   3.9506778745628777`*^9, 3.950677968734505*^9}, {3.950678057953*^9, 
+   3.9506780740275874`*^9}, 3.950678131996179*^9, {3.9506782236159587`*^9, 
+   3.9506782459908977`*^9}, {3.9508326930471354`*^9, 
+   3.9508326933032026`*^9}, {3.9509252585788817`*^9, 3.950925266505818*^9}},
+ Background->RGBColor[
+  1, 1, 0.85],ExpressionUUID->"5e460005-f28a-4220-b4ea-37755f2b986e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"MAXSIZE", "[", "V_", "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"v", " ", "=", " ", 
+         RowBox[{"Sort", "[", "V", "]"}]}], ",", "msize"}], "}"}], ",", " ", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "A", " ", "function", " ", "module", " ", "to", " ", "find", " ", 
+        "the", " ", "largest", " ", "element", " ", 
+        RowBox[{"(", 
+         RowBox[{"in", " ", "absolute", " ", "value"}], ")"}], " ", "of", " ",
+         "an", " ", 
+        RowBox[{"array", "."}]}], " ", "*)"}], "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"n", "=", 
+        RowBox[{"Length", "[", "V", "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Abs", "[", 
+           SubscriptBox["v", 
+            RowBox[{"\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]], 
+           "]"}], "\[GreaterEqual]", 
+          RowBox[{"Abs", "[", 
+           SubscriptBox["v", 
+            RowBox[{"\[LeftDoubleBracket]", "n", "\[RightDoubleBracket]"}]], 
+           "]"}]}], ",", "\[IndentingNewLine]", 
+         RowBox[{"msize", " ", "=", " ", 
+          SubscriptBox["v", 
+           RowBox[{"\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]]}], 
+         ",", "\[IndentingNewLine]", 
+         RowBox[{"msize", " ", "=", " ", 
+          SubscriptBox["v", 
+           RowBox[{
+           "\[LeftDoubleBracket]", "n", "\[RightDoubleBracket]"}]]}]}], "]"}],
+        ";", " ", "\[IndentingNewLine]", 
+       RowBox[{"Return", "[", "msize", "]"}], ";"}]}], " ", "]"}]}], ";"}], 
+  " "}]], "Input",
+ Background->RGBColor[0.87, 0.94, 1],
+ CellLabel->"In[2]:=",ExpressionUUID->"9462c877-b401-4cb0-ab65-29b502a77699"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"ENORM", "[", "V_", "]"}], ":=", 
+    SqrtBox[
+     RowBox[{"V", ".", "V"}]]}], ";"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Define", " ", "L2", " ", "norm", " ", "of", " ", "a", " ", "vector"}], 
+   " ", "*)"}]}]], "Input",
+ CellChangeTimes->{{3.950677794912449*^9, 3.950677806397827*^9}, 
+   3.950761550521838*^9},
+ Background->RGBColor[0.87, 0.94, 1],
+ CellLabel->"In[3]:=",ExpressionUUID->"bd28c339-ea7d-4a58-978b-a119f3e936e5"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"A", "=", 
+   RowBox[{"(", GridBox[{
+      {"8", "9", "10", "9"},
+      {
+       RowBox[{"-", "13"}], 
+       RowBox[{"-", "12"}], 
+       RowBox[{"-", "12"}], 
+       RowBox[{"-", "11"}]},
+      {
+       RowBox[{"-", "18"}], 
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "20"}], 
+       RowBox[{"-", "9"}]},
+      {"11", "1", "10", "0"}
+     }], ")"}]}], ";", 
+  RowBox[{"X", "=", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "0", ",", "0", ",", "0"}], "}"}]}], ";", 
+  RowBox[{"\[Lambda]", "=", "1"}], ";", 
+  RowBox[{"eps", "=", "0.01"}], ";", 
+  RowBox[{"maxit", "=", "99"}], ";"}]], "Input",
+ CellChangeTimes->{{3.9244778231096373`*^9, 3.9244778288680377`*^9}, {
+   3.9244778690766377`*^9, 3.924477871557038*^9}, 3.9244789323528433`*^9, {
+   3.9244977678634014`*^9, 3.9244977686902013`*^9}, {3.9506757655945168`*^9, 
+   3.950675778488599*^9}, {3.9507613863977737`*^9, 3.9507614419453983`*^9}, 
+   3.9508327038253684`*^9},
+ CellLabel->"In[4]:=",ExpressionUUID->"63713152-1e89-4a87-8670-2da71315af24"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"\[Lambda]", ",", " ", "X", ",", " ", "error"}], "}"}], " ", "=", 
+  RowBox[{"PowerMethod", "[", 
+   RowBox[{"A", ",", "X", ",", "\[Lambda]", ",", "eps", ",", "maxit"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.924436213155612*^9, 3.924436220721612*^9}, {
+  3.950676351340671*^9, 3.9506763718573256`*^9}},
+ CellLabel->"In[5]:=",ExpressionUUID->"4ff4d20f-8716-49b5-91f7-7ee8d970841d"],
+
+Cell[BoxData[
+ TagBox[
+  InterpretationBox[GridBox[{
+     {"\<\"p\"\>", "\<\"\\!\\(\\*SuperscriptBox[\\(\[Lambda]\\), \
+\\((p)\\)]\\)\"\>", "\<\"\\!\\(\\*SuperscriptBox[\\(X\\), \\((p)\\)]\\)\"\>", \
+"\<\"\"\>"},
+     {
+      InterpretationBox[
+       StyleBox["\<\"0\"\>",
+        ShowStringCharacters->False],
+       0,
+       Editable->False], 
+      InterpretationBox[
+       StyleBox["\<\"1.\"\>",
+        ShowStringCharacters->False],
+       1.,
+       AutoDelete->True], GridBox[{
+        {
+         InterpretationBox[
+          StyleBox["\<\"1.\"\>",
+           ShowStringCharacters->False],
+          1.,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"0.\"\>",
+           ShowStringCharacters->False],
+          0.,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"0.\"\>",
+           ShowStringCharacters->False],
+          0.,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"0.\"\>",
+           ShowStringCharacters->False],
+          0.,
+          AutoDelete->True]}
+       },
+       GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+       GridBoxSpacings->{"Columns" -> {
+           Offset[0.27999999999999997`], {
+            Offset[0.7]}, 
+           Offset[0.27999999999999997`]}, "Rows" -> {
+           Offset[0.2], {
+            Offset[0.1]}, 
+           Offset[0.2]}}], "\<\"\"\>"},
+     {"\<\"---\"\>", "\<\"----------\"\>", "\<\"-------------\"\>", \
+"\<\"\"\>"},
+     {
+      InterpretationBox[
+       StyleBox["\<\"1\"\>",
+        ShowStringCharacters->False],
+       1,
+       Editable->False], 
+      TagBox[
+       InterpretationBox[
+        StyleBox["\<\"-18.0000000\"\>",
+         ShowStringCharacters->False],
+        -18.,
+        AutoDelete->True],
+       NumberForm[#, {7, 7}]& ], GridBox[{
+        {
+         InterpretationBox[
+          StyleBox["\<\"1.\"\>",
+           ShowStringCharacters->False],
+          1.,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"0.\"\>",
+           ShowStringCharacters->False],
+          0.,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"0.\"\>",
+           ShowStringCharacters->False],
+          0.,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"0.\"\>",
+           ShowStringCharacters->False],
+          0.,
+          AutoDelete->True]}
+       },
+       GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+       GridBoxSpacings->{"Columns" -> {
+           Offset[0.27999999999999997`], {
+            Offset[0.7]}, 
+           Offset[0.27999999999999997`]}, "Rows" -> {
+           Offset[0.2], {
+            Offset[0.1]}, 
+           Offset[0.2]}}], 
+      InterpretationBox[
+       StyleBox["\<\"1.995365\"\>",
+        ShowStringCharacters->False],
+       1.9953649995631078`,
+       AutoDelete->True]},
+     {"\<\"---\"\>", "\<\"----------\"\>", "\<\"-------------\"\>", \
+"\<\"\"\>"},
+     {
+      InterpretationBox[
+       StyleBox["\<\"2\"\>",
+        ShowStringCharacters->False],
+       2,
+       Editable->False], 
+      TagBox[
+       InterpretationBox[
+        StyleBox["\<\"-13.0000000\"\>",
+         ShowStringCharacters->False],
+        -13.,
+        AutoDelete->True],
+       NumberForm[#, {7, 7}]& ], GridBox[{
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.4444444\"\>",
+           ShowStringCharacters->False],
+          -0.4444444444444444,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"0.7222222\"\>",
+           ShowStringCharacters->False],
+          0.7222222222222222,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"1.\"\>",
+           ShowStringCharacters->False],
+          1.,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.6111111\"\>",
+           ShowStringCharacters->False],
+          -0.611111111111111,
+          AutoDelete->True]}
+       },
+       GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+       GridBoxSpacings->{"Columns" -> {
+           Offset[0.27999999999999997`], {
+            Offset[0.7]}, 
+           Offset[0.27999999999999997`]}, "Rows" -> {
+           Offset[0.2], {
+            Offset[0.1]}, 
+           Offset[0.2]}}], 
+      InterpretationBox[
+       StyleBox["\<\"0.3846154\"\>",
+        ShowStringCharacters->False],
+       0.3846153846153846,
+       AutoDelete->True]},
+     {"\<\"---\"\>", "\<\"----------\"\>", "\<\"-------------\"\>", \
+"\<\"\"\>"},
+     {
+      InterpretationBox[
+       StyleBox["\<\"3\"\>",
+        ShowStringCharacters->False],
+       3,
+       Editable->False], 
+      TagBox[
+       InterpretationBox[
+        StyleBox["\<\"-11.3076900\"\>",
+         ShowStringCharacters->False],
+        -11.307692307692307`,
+        AutoDelete->True],
+       NumberForm[#, {7, 7}]& ], GridBox[{
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.5726496\"\>",
+           ShowStringCharacters->False],
+          -0.5726495726495727,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"0.6282051\"\>",
+           ShowStringCharacters->False],
+          0.6282051282051283,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"1.\"\>",
+           ShowStringCharacters->False],
+          1.,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.4487179\"\>",
+           ShowStringCharacters->False],
+          -0.4487179487179488,
+          AutoDelete->True]}
+       },
+       GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+       GridBoxSpacings->{"Columns" -> {
+           Offset[0.27999999999999997`], {
+            Offset[0.7]}, 
+           Offset[0.27999999999999997`]}, "Rows" -> {
+           Offset[0.2], {
+            Offset[0.1]}, 
+           Offset[0.2]}}], 
+      InterpretationBox[
+       StyleBox["\<\"0.1496599\"\>",
+        ShowStringCharacters->False],
+       0.1496598639455784,
+       AutoDelete->True]},
+     {"\<\"---\"\>", "\<\"----------\"\>", "\<\"-------------\"\>", \
+"\<\"\"\>"},
+     {
+      InterpretationBox[
+       StyleBox["\<\"4\"\>",
+        ShowStringCharacters->False],
+       4,
+       Editable->False], 
+      TagBox[
+       InterpretationBox[
+        StyleBox["\<\"-11.0544200\"\>",
+         ShowStringCharacters->False],
+        -11.05442176870748,
+        AutoDelete->True],
+       NumberForm[#, {7, 7}]& ], GridBox[{
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.6220711\"\>",
+           ShowStringCharacters->False],
+          -0.6220710506424794,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"0.633031\"\>",
+           ShowStringCharacters->False],
+          0.6330309901738473,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"1.\"\>",
+           ShowStringCharacters->False],
+          1.,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.382842\"\>",
+           ShowStringCharacters->False],
+          -0.3828420256991686,
+          AutoDelete->True]}
+       },
+       GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+       GridBoxSpacings->{"Columns" -> {
+           Offset[0.27999999999999997`], {
+            Offset[0.7]}, 
+           Offset[0.27999999999999997`]}, "Rows" -> {
+           Offset[0.2], {
+            Offset[0.1]}, 
+           Offset[0.2]}}], 
+      InterpretationBox[
+       StyleBox["\<\"0.06029557\"\>",
+        ShowStringCharacters->False],
+       0.06029556560129742,
+       AutoDelete->True]},
+     {"\<\"---\"\>", "\<\"----------\"\>", "\<\"-------------\"\>", \
+"\<\"\"\>"},
+     {
+      InterpretationBox[
+       StyleBox["\<\"5\"\>",
+        ShowStringCharacters->False],
+       5,
+       Editable->False], 
+      TagBox[
+       InterpretationBox[
+        StyleBox["\<\"-11.0098500\"\>",
+         ShowStringCharacters->False],
+        -11.009846153846153`,
+        AutoDelete->True],
+       NumberForm[#, {7, 7}]& ], GridBox[{
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.6581197\"\>",
+           ShowStringCharacters->False],
+          -0.6581196581196582,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"0.6602051\"\>",
+           ShowStringCharacters->False],
+          0.6602051282051283,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"1.\"\>",
+           ShowStringCharacters->False],
+          1.,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.3428718\"\>",
+           ShowStringCharacters->False],
+          -0.3428717948717949,
+          AutoDelete->True]}
+       },
+       GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+       GridBoxSpacings->{"Columns" -> {
+           Offset[0.27999999999999997`], {
+            Offset[0.7]}, 
+           Offset[0.27999999999999997`]}, "Rows" -> {
+           Offset[0.2], {
+            Offset[0.1]}, 
+           Offset[0.2]}}], 
+      InterpretationBox[
+       StyleBox["\<\"0.05382699\"\>",
+        ShowStringCharacters->False],
+       0.05382698739028307,
+       AutoDelete->True]},
+     {"\<\"---\"\>", "\<\"----------\"\>", "\<\"-------------\"\>", \
+"\<\"\"\>"},
+     {
+      InterpretationBox[
+       StyleBox["\<\"6\"\>",
+        ShowStringCharacters->False],
+       6,
+       Editable->False], 
+      TagBox[
+       InterpretationBox[
+        StyleBox["\<\"-11.0017900\"\>",
+         ShowStringCharacters->False],
+        -11.001788608797714`,
+        AutoDelete->True],
+       NumberForm[#, {7, 7}]& ], GridBox[{
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.6894776\"\>",
+           ShowStringCharacters->False],
+          -0.689477639284805,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"0.6898658\"\>",
+           ShowStringCharacters->False],
+          0.6898657922356989,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"1.\"\>",
+           ShowStringCharacters->False],
+          0.9999999999999999,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.3107118\"\>",
+           ShowStringCharacters->False],
+          -0.3107117793552313,
+          AutoDelete->True]}
+       },
+       GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+       GridBoxSpacings->{"Columns" -> {
+           Offset[0.27999999999999997`], {
+            Offset[0.7]}, 
+           Offset[0.27999999999999997`]}, "Rows" -> {
+           Offset[0.2], {
+            Offset[0.1]}, 
+           Offset[0.2]}}], 
+      InterpretationBox[
+       StyleBox["\<\"0.04888138\"\>",
+        ShowStringCharacters->False],
+       0.048881379598470574`,
+       AutoDelete->True]},
+     {"\<\"---\"\>", "\<\"----------\"\>", "\<\"-------------\"\>", \
+"\<\"\"\>"},
+     {
+      InterpretationBox[
+       StyleBox["\<\"7\"\>",
+        ShowStringCharacters->False],
+       7,
+       Editable->False], 
+      TagBox[
+       InterpretationBox[
+        StyleBox["\<\"-11.0003300\"\>",
+         ShowStringCharacters->False],
+        -11.000325148730138`,
+        AutoDelete->True],
+       NumberForm[#, {7, 7}]& ], GridBox[{
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.7177528\"\>",
+           ShowStringCharacters->False],
+          -0.7177528384185805,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"0.7178242\"\>",
+           ShowStringCharacters->False],
+          0.7178242469504605,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"1.\"\>",
+           ShowStringCharacters->False],
+          0.9999999999999999,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.2822824\"\>",
+           ShowStringCharacters->False],
+          -0.28228244247661705`,
+          AutoDelete->True]}
+       },
+       GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+       GridBoxSpacings->{"Columns" -> {
+           Offset[0.27999999999999997`], {
+            Offset[0.7]}, 
+           Offset[0.27999999999999997`]}, "Rows" -> {
+           Offset[0.2], {
+            Offset[0.1]}, 
+           Offset[0.2]}}], 
+      InterpretationBox[
+       StyleBox["\<\"0.04443852\"\>",
+        ShowStringCharacters->False],
+       0.044438516886465704`,
+       AutoDelete->True]},
+     {"\<\"---\"\>", "\<\"----------\"\>", "\<\"-------------\"\>", \
+"\<\"\"\>"},
+     {
+      InterpretationBox[
+       StyleBox["\<\"8\"\>",
+        ShowStringCharacters->False],
+       8,
+       Editable->False], 
+      TagBox[
+       InterpretationBox[
+        StyleBox["\<\"-11.0000600\"\>",
+         ShowStringCharacters->False],
+        -11.00005911620352,
+        AutoDelete->True],
+       NumberForm[#, {7, 7}]& ], GridBox[{
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.7434193\"\>",
+           ShowStringCharacters->False],
+          -0.7434192555535493,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"0.7434323\"\>",
+           ShowStringCharacters->False],
+          0.7434323155134417,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"1.\"\>",
+           ShowStringCharacters->False],
+          1.,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.2565872\"\>",
+           ShowStringCharacters->False],
+          -0.2565872359392853,
+          AutoDelete->True]}
+       },
+       GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+       GridBoxSpacings->{"Columns" -> {
+           Offset[0.27999999999999997`], {
+            Offset[0.7]}, 
+           Offset[0.27999999999999997`]}, "Rows" -> {
+           Offset[0.2], {
+            Offset[0.1]}, 
+           Offset[0.2]}}], 
+      InterpretationBox[
+       StyleBox["\<\"0.04040006\"\>",
+        ShowStringCharacters->False],
+       0.0404000596613196,
+       AutoDelete->True]},
+     {"\<\"---\"\>", "\<\"----------\"\>", "\<\"-------------\"\>", \
+"\<\"\"\>"},
+     {
+      InterpretationBox[
+       StyleBox["\<\"9\"\>",
+        ShowStringCharacters->False],
+       9,
+       Editable->False], 
+      TagBox[
+       InterpretationBox[
+        StyleBox["\<\"-11.0000100\"\>",
+         ShowStringCharacters->False],
+        -11.000010748342877`,
+        AutoDelete->True],
+       NumberForm[#, {7, 7}]& ], GridBox[{
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.766746\"\>",
+           ShowStringCharacters->False],
+          -0.7667460313295069,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"0.7667484\"\>",
+           ShowStringCharacters->False],
+          0.7667484128525273,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"1.\"\>",
+           ShowStringCharacters->False],
+          1.,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.2332552\"\>",
+           ShowStringCharacters->False],
+          -0.23325515593319357`,
+          AutoDelete->True]}
+       },
+       GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+       GridBoxSpacings->{"Columns" -> {
+           Offset[0.27999999999999997`], {
+            Offset[0.7]}, 
+           Offset[0.27999999999999997`]}, "Rows" -> {
+           Offset[0.2], {
+            Offset[0.1]}, 
+           Offset[0.2]}}], 
+      InterpretationBox[
+       StyleBox["\<\"0.03672777\"\>",
+        ShowStringCharacters->False],
+       0.0367277697773501,
+       AutoDelete->True]},
+     {"\<\"---\"\>", "\<\"----------\"\>", "\<\"-------------\"\>", \
+"\<\"\"\>"},
+     {
+      InterpretationBox[
+       StyleBox["\<\"10\"\>",
+        ShowStringCharacters->False],
+       10,
+       Editable->False], 
+      TagBox[
+       InterpretationBox[
+        StyleBox["\<\"-11.0000000\"\>",
+         ShowStringCharacters->False],
+        -11.000001954242254`,
+        AutoDelete->True],
+       NumberForm[#, {7, 7}]& ], GridBox[{
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.7879511\"\>",
+           ShowStringCharacters->False],
+          -0.7879511447698975,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"0.7879516\"\>",
+           ShowStringCharacters->False],
+          0.7879515784098067,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"1.\"\>",
+           ShowStringCharacters->False],
+          1.,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.2120491\"\>",
+           ShowStringCharacters->False],
+          -0.21204907173198378`,
+          AutoDelete->True]}
+       },
+       GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+       GridBoxSpacings->{"Columns" -> {
+           Offset[0.27999999999999997`], {
+            Offset[0.7]}, 
+           Offset[0.27999999999999997`]}, "Rows" -> {
+           Offset[0.2], {
+            Offset[0.1]}, 
+           Offset[0.2]}}], 
+      InterpretationBox[
+       StyleBox["\<\"0.03338899\"\>",
+        ShowStringCharacters->False],
+       0.033388992289973156`,
+       AutoDelete->True]},
+     {"\<\"---\"\>", "\<\"----------\"\>", "\<\"-------------\"\>", \
+"\<\"\"\>"},
+     {
+      InterpretationBox[
+       StyleBox["\<\"11\"\>",
+        ShowStringCharacters->False],
+       11,
+       Editable->False], 
+      TagBox[
+       InterpretationBox[
+        StyleBox["\<\"-11.0000000\"\>",
+         ShowStringCharacters->False],
+        -11.000000355316708`,
+        AutoDelete->True],
+       NumberForm[#, {7, 7}]& ], GridBox[{
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.8072283\"\>",
+           ShowStringCharacters->False],
+          -0.8072283476746802,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"0.8072284\"\>",
+           ShowStringCharacters->False],
+          0.8072284265761174,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"1.\"\>",
+           ShowStringCharacters->False],
+          1.,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.1927717\"\>",
+           ShowStringCharacters->False],
+          -0.1927716917471226,
+          AutoDelete->True]}
+       },
+       GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+       GridBoxSpacings->{"Columns" -> {
+           Offset[0.27999999999999997`], {
+            Offset[0.7]}, 
+           Offset[0.27999999999999997`]}, "Rows" -> {
+           Offset[0.2], {
+            Offset[0.1]}, 
+           Offset[0.2]}}], 
+      InterpretationBox[
+       StyleBox["\<\"0.03035365\"\>",
+        ShowStringCharacters->False],
+       0.03035365443607035,
+       AutoDelete->True]},
+     {"\<\"---\"\>", "\<\"----------\"\>", "\<\"-------------\"\>", \
+"\<\"\"\>"},
+     {
+      InterpretationBox[
+       StyleBox["\<\"12\"\>",
+        ShowStringCharacters->False],
+       12,
+       Editable->False], 
+      TagBox[
+       InterpretationBox[
+        StyleBox["\<\"-11.0000000\"\>",
+         ShowStringCharacters->False],
+        -11.000000064603038`,
+        AutoDelete->True],
+       NumberForm[#, {7, 7}]& ], GridBox[{
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.824753\"\>",
+           ShowStringCharacters->False],
+          -0.8247530490013611,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"0.8247531\"\>",
+           ShowStringCharacters->False],
+          0.824753063352334,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"1.\"\>",
+           ShowStringCharacters->False],
+          1.,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.175247\"\>",
+           ShowStringCharacters->False],
+          -0.17524695817149652`,
+          AutoDelete->True]}
+       },
+       GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+       GridBoxSpacings->{"Columns" -> {
+           Offset[0.27999999999999997`], {
+            Offset[0.7]}, 
+           Offset[0.27999999999999997`]}, "Rows" -> {
+           Offset[0.2], {
+            Offset[0.1]}, 
+           Offset[0.2]}}], 
+      InterpretationBox[
+       StyleBox["\<\"0.02759424\"\>",
+        ShowStringCharacters->False],
+       0.02759423668448565,
+       AutoDelete->True]},
+     {"\<\"---\"\>", "\<\"----------\"\>", "\<\"-------------\"\>", \
+"\<\"\"\>"},
+     {
+      InterpretationBox[
+       StyleBox["\<\"13\"\>",
+        ShowStringCharacters->False],
+       13,
+       Editable->False], 
+      TagBox[
+       InterpretationBox[
+        StyleBox["\<\"-11.0000000\"\>",
+         ShowStringCharacters->False],
+        -11.000000011746007`,
+        AutoDelete->True],
+       NumberForm[#, {7, 7}]& ], GridBox[{
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.8406846\"\>",
+           ShowStringCharacters->False],
+          -0.8406845909368973,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"0.8406846\"\>",
+           ShowStringCharacters->False],
+          0.840684593546643,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"1.\"\>",
+           ShowStringCharacters->False],
+          1.,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.1593154\"\>",
+           ShowStringCharacters->False],
+          -0.15931541036773664`,
+          AutoDelete->True]}
+       },
+       GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+       GridBoxSpacings->{"Columns" -> {
+           Offset[0.27999999999999997`], {
+            Offset[0.7]}, 
+           Offset[0.27999999999999997`]}, "Rows" -> {
+           Offset[0.2], {
+            Offset[0.1]}, 
+           Offset[0.2]}}], 
+      InterpretationBox[
+       StyleBox["\<\"0.02508567\"\>",
+        ShowStringCharacters->False],
+       0.0250856708264472,
+       AutoDelete->True]},
+     {"\<\"---\"\>", "\<\"----------\"\>", "\<\"-------------\"\>", \
+"\<\"\"\>"},
+     {
+      InterpretationBox[
+       StyleBox["\<\"14\"\>",
+        ShowStringCharacters->False],
+       14,
+       Editable->False], 
+      TagBox[
+       InterpretationBox[
+        StyleBox["\<\"-11.0000000\"\>",
+         ShowStringCharacters->False],
+        -11.000000002135634`,
+        AutoDelete->True],
+       NumberForm[#, {7, 7}]& ], GridBox[{
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.8551678\"\>",
+           ShowStringCharacters->False],
+          -0.8551678100972885,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"0.8551678\"\>",
+           ShowStringCharacters->False],
+          0.855167810571831,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"1.\"\>",
+           ShowStringCharacters->False],
+          0.9999999999999999,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.1448322\"\>",
+           ShowStringCharacters->False],
+          -0.14483219013996107`,
+          AutoDelete->True]}
+       },
+       GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+       GridBoxSpacings->{"Columns" -> {
+           Offset[0.27999999999999997`], {
+            Offset[0.7]}, 
+           Offset[0.27999999999999997`]}, "Rows" -> {
+           Offset[0.2], {
+            Offset[0.1]}, 
+           Offset[0.2]}}], 
+      InterpretationBox[
+       StyleBox["\<\"0.02280516\"\>",
+        ShowStringCharacters->False],
+       0.022805155521544315`,
+       AutoDelete->True]},
+     {"\<\"---\"\>", "\<\"----------\"\>", "\<\"-------------\"\>", \
+"\<\"\"\>"},
+     {
+      InterpretationBox[
+       StyleBox["\<\"15\"\>",
+        ShowStringCharacters->False],
+       15,
+       Editable->False], 
+      TagBox[
+       InterpretationBox[
+        StyleBox["\<\"-11.0000000\"\>",
+         ShowStringCharacters->False],
+        -11.0000000003883,
+        AutoDelete->True],
+       NumberForm[#, {7, 7}]& ], GridBox[{
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.8683344\"\>",
+           ShowStringCharacters->False],
+          -0.8683343728412796,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"0.8683344\"\>",
+           ShowStringCharacters->False],
+          0.8683343729275642,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"1.\"\>",
+           ShowStringCharacters->False],
+          1.,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.1316656\"\>",
+           ShowStringCharacters->False],
+          -0.1316656272018607,
+          AutoDelete->True]}
+       },
+       GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+       GridBoxSpacings->{"Columns" -> {
+           Offset[0.27999999999999997`], {
+            Offset[0.7]}, 
+           Offset[0.27999999999999997`]}, "Rows" -> {
+           Offset[0.2], {
+            Offset[0.1]}, 
+           Offset[0.2]}}], 
+      InterpretationBox[
+       StyleBox["\<\"0.02073196\"\>",
+        ShowStringCharacters->False],
+       0.020731959609603903`,
+       AutoDelete->True]},
+     {"\<\"---\"\>", "\<\"----------\"\>", "\<\"-------------\"\>", \
+"\<\"\"\>"},
+     {
+      InterpretationBox[
+       StyleBox["\<\"16\"\>",
+        ShowStringCharacters->False],
+       16,
+       Editable->False], 
+      TagBox[
+       InterpretationBox[
+        StyleBox["\<\"-11.0000000\"\>",
+         ShowStringCharacters->False],
+        -11.0000000000706,
+        AutoDelete->True],
+       NumberForm[#, {7, 7}]& ], GridBox[{
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.880304\"\>",
+           ShowStringCharacters->False],
+          -0.8803039753144795,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"0.880304\"\>",
+           ShowStringCharacters->False],
+          0.8803039753301679,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"1.\"\>",
+           ShowStringCharacters->False],
+          1.,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.119696\"\>",
+           ShowStringCharacters->False],
+          -0.1196960246933645,
+          AutoDelete->True]}
+       },
+       GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+       GridBoxSpacings->{"Columns" -> {
+           Offset[0.27999999999999997`], {
+            Offset[0.7]}, 
+           Offset[0.27999999999999997`]}, "Rows" -> {
+           Offset[0.2], {
+            Offset[0.1]}, 
+           Offset[0.2]}}], 
+      InterpretationBox[
+       StyleBox["\<\"0.01884724\"\>",
+        ShowStringCharacters->False],
+       0.018847236017444216`,
+       AutoDelete->True]},
+     {"\<\"---\"\>", "\<\"----------\"\>", "\<\"-------------\"\>", \
+"\<\"\"\>"},
+     {
+      InterpretationBox[
+       StyleBox["\<\"17\"\>",
+        ShowStringCharacters->False],
+       17,
+       Editable->False], 
+      TagBox[
+       InterpretationBox[
+        StyleBox["\<\"-11.0000000\"\>",
+         ShowStringCharacters->False],
+        -11.000000000012838`,
+        AutoDelete->True],
+       NumberForm[#, {7, 7}]& ], GridBox[{
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.8911854\"\>",
+           ShowStringCharacters->False],
+          -0.8911854321047706,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"0.8911854\"\>",
+           ShowStringCharacters->False],
+          0.8911854321076234,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"1.\"\>",
+           ShowStringCharacters->False],
+          1.,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.1088146\"\>",
+           ShowStringCharacters->False],
+          -0.10881456789665564`,
+          AutoDelete->True]}
+       },
+       GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+       GridBoxSpacings->{"Columns" -> {
+           Offset[0.27999999999999997`], {
+            Offset[0.7]}, 
+           Offset[0.27999999999999997`]}, "Rows" -> {
+           Offset[0.2], {
+            Offset[0.1]}, 
+           Offset[0.2]}}], 
+      InterpretationBox[
+       StyleBox["\<\"0.01713385\"\>",
+        ShowStringCharacters->False],
+       0.017133850926634473`,
+       AutoDelete->True]},
+     {"\<\"---\"\>", "\<\"----------\"\>", "\<\"-------------\"\>", \
+"\<\"\"\>"},
+     {
+      InterpretationBox[
+       StyleBox["\<\"18\"\>",
+        ShowStringCharacters->False],
+       18,
+       Editable->False], 
+      TagBox[
+       InterpretationBox[
+        StyleBox["\<\"-11.0000000\"\>",
+         ShowStringCharacters->False],
+        -11.00000000000233,
+        AutoDelete->True],
+       NumberForm[#, {7, 7}]& ], GridBox[{
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.9010777\"\>",
+           ShowStringCharacters->False],
+          -0.9010776655499071,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"0.9010777\"\>",
+           ShowStringCharacters->False],
+          0.9010776655504256,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"1.\"\>",
+           ShowStringCharacters->False],
+          1.,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.09892233\"\>",
+           ShowStringCharacters->False],
+          -0.09892233445035231,
+          AutoDelete->True]}
+       },
+       GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+       GridBoxSpacings->{"Columns" -> {
+           Offset[0.27999999999999997`], {
+            Offset[0.7]}, 
+           Offset[0.27999999999999997`]}, "Rows" -> {
+           Offset[0.2], {
+            Offset[0.1]}, 
+           Offset[0.2]}}], 
+      InterpretationBox[
+       StyleBox["\<\"0.01557623\"\>",
+        ShowStringCharacters->False],
+       0.015576228115445468`,
+       AutoDelete->True]},
+     {"\<\"---\"\>", "\<\"----------\"\>", "\<\"-------------\"\>", \
+"\<\"\"\>"},
+     {
+      InterpretationBox[
+       StyleBox["\<\"19\"\>",
+        ShowStringCharacters->False],
+       19,
+       Editable->False], 
+      TagBox[
+       InterpretationBox[
+        StyleBox["\<\"-11.0000000\"\>",
+         ShowStringCharacters->False],
+        -11.000000000000423`,
+        AutoDelete->True],
+       NumberForm[#, {7, 7}]& ], GridBox[{
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.9100706\"\>",
+           ShowStringCharacters->False],
+          -0.9100706050453893,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"0.9100706\"\>",
+           ShowStringCharacters->False],
+          0.9100706050454835,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"1.\"\>",
+           ShowStringCharacters->False],
+          1.,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.08992939\"\>",
+           ShowStringCharacters->False],
+          -0.0899293949546581,
+          AutoDelete->True]}
+       },
+       GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+       GridBoxSpacings->{"Columns" -> {
+           Offset[0.27999999999999997`], {
+            Offset[0.7]}, 
+           Offset[0.27999999999999997`]}, "Rows" -> {
+           Offset[0.2], {
+            Offset[0.1]}, 
+           Offset[0.2]}}], 
+      InterpretationBox[
+       StyleBox["\<\"0.01416021\"\>",
+        ShowStringCharacters->False],
+       0.014160207377738983`,
+       AutoDelete->True]},
+     {"\<\"---\"\>", "\<\"----------\"\>", "\<\"-------------\"\>", \
+"\<\"\"\>"},
+     {
+      InterpretationBox[
+       StyleBox["\<\"20\"\>",
+        ShowStringCharacters->False],
+       20,
+       Editable->False], 
+      TagBox[
+       InterpretationBox[
+        StyleBox["\<\"-11.0000000\"\>",
+         ShowStringCharacters->False],
+        -11.000000000000076`,
+        AutoDelete->True],
+       NumberForm[#, {7, 7}]& ], GridBox[{
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.918246\"\>",
+           ShowStringCharacters->False],
+          -0.9182460045867207,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"0.918246\"\>",
+           ShowStringCharacters->False],
+          0.9182460045867376,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"1.\"\>",
+           ShowStringCharacters->False],
+          1.,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.081754\"\>",
+           ShowStringCharacters->False],
+          -0.08175399541328793,
+          AutoDelete->True]}
+       },
+       GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+       GridBoxSpacings->{"Columns" -> {
+           Offset[0.27999999999999997`], {
+            Offset[0.7]}, 
+           Offset[0.27999999999999997`]}, "Rows" -> {
+           Offset[0.2], {
+            Offset[0.1]}, 
+           Offset[0.2]}}], 
+      InterpretationBox[
+       StyleBox["\<\"0.01287292\"\>",
+        ShowStringCharacters->False],
+       0.012872915797956233`,
+       AutoDelete->True]},
+     {"\<\"---\"\>", "\<\"----------\"\>", "\<\"-------------\"\>", \
+"\<\"\"\>"},
+     {
+      InterpretationBox[
+       StyleBox["\<\"21\"\>",
+        ShowStringCharacters->False],
+       21,
+       Editable->False], 
+      TagBox[
+       InterpretationBox[
+        StyleBox["\<\"-11.0000000\"\>",
+         ShowStringCharacters->False],
+        -11.000000000000016`,
+        AutoDelete->True],
+       NumberForm[#, {7, 7}]& ], GridBox[{
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.9256782\"\>",
+           ShowStringCharacters->False],
+          -0.9256781859879283,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"0.9256782\"\>",
+           ShowStringCharacters->False],
+          0.9256781859879314,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"1.\"\>",
+           ShowStringCharacters->False],
+          1.,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.07432181\"\>",
+           ShowStringCharacters->False],
+          -0.07432181401207312,
+          AutoDelete->True]}
+       },
+       GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+       GridBoxSpacings->{"Columns" -> {
+           Offset[0.27999999999999997`], {
+            Offset[0.7]}, 
+           Offset[0.27999999999999997`]}, "Rows" -> {
+           Offset[0.2], {
+            Offset[0.1]}, 
+           Offset[0.2]}}], 
+      InterpretationBox[
+       StyleBox["\<\"0.01170265\"\>",
+        ShowStringCharacters->False],
+       0.011702650725416628`,
+       AutoDelete->True]},
+     {"\<\"---\"\>", "\<\"----------\"\>", "\<\"-------------\"\>", \
+"\<\"\"\>"},
+     {
+      InterpretationBox[
+       StyleBox["\<\"22\"\>",
+        ShowStringCharacters->False],
+       22,
+       Editable->False], 
+      TagBox[
+       InterpretationBox[
+        StyleBox["\<\"-11.0000000\"\>",
+         ShowStringCharacters->False],
+        -11.000000000000007`,
+        AutoDelete->True],
+       NumberForm[#, {7, 7}]& ], GridBox[{
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.9324347\"\>",
+           ShowStringCharacters->False],
+          -0.9324347145344801,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"0.9324347\"\>",
+           ShowStringCharacters->False],
+          0.9324347145344808,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"1.\"\>",
+           ShowStringCharacters->False],
+          1.,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.06756529\"\>",
+           ShowStringCharacters->False],
+          -0.06756528546551999,
+          AutoDelete->True]}
+       },
+       GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+       GridBoxSpacings->{"Columns" -> {
+           Offset[0.27999999999999997`], {
+            Offset[0.7]}, 
+           Offset[0.27999999999999997`]}, "Rows" -> {
+           Offset[0.2], {
+            Offset[0.1]}, 
+           Offset[0.2]}}], 
+      InterpretationBox[
+       StyleBox["\<\"0.01063877\"\>",
+        ShowStringCharacters->False],
+       0.010638773386743048`,
+       AutoDelete->True]},
+     {"\<\"---\"\>", "\<\"----------\"\>", "\<\"-------------\"\>", \
+"\<\"\"\>"},
+     {
+      InterpretationBox[
+       StyleBox["\<\"23\"\>",
+        ShowStringCharacters->False],
+       23,
+       Editable->False], 
+      TagBox[
+       InterpretationBox[
+        StyleBox["\<\"-11.0000000\"\>",
+         ShowStringCharacters->False],
+        -11.000000000000002`,
+        AutoDelete->True],
+       NumberForm[#, {7, 7}]& ], GridBox[{
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.938577\"\>",
+           ShowStringCharacters->False],
+          -0.9385770132131638,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"0.938577\"\>",
+           ShowStringCharacters->False],
+          0.938577013213164,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"1.\"\>",
+           ShowStringCharacters->False],
+          1.,
+          AutoDelete->True]},
+        {
+         InterpretationBox[
+          StyleBox["\<\"-0.06142299\"\>",
+           ShowStringCharacters->False],
+          -0.061422986786836276`,
+          AutoDelete->True]}
+       },
+       GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+       GridBoxSpacings->{"Columns" -> {
+           Offset[0.27999999999999997`], {
+            Offset[0.7]}, 
+           Offset[0.27999999999999997`]}, "Rows" -> {
+           Offset[0.2], {
+            Offset[0.1]}, 
+           Offset[0.2]}}], 
+      InterpretationBox[
+       StyleBox["\<\"0.009671612\"\>",
+        ShowStringCharacters->False],
+       0.009671612169766516,
+       AutoDelete->True]},
+     {"\<\"---\"\>", "\<\"----------\"\>", "\<\"-------------\"\>", "\<\"\"\>"}
+    },
+    GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[2.0999999999999996`]}, 
+        Offset[0.27999999999999997`]}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}}],
+   TableForm[{{0, 1., {1., 0., 0., 0.}}, {
+     "---", "----------", "-------------"}, {1, 
+      NumberForm[-18., {7, 7}], {1., 0., 0., 0.}, 1.9953649995631078`}, {
+     "---", "----------", "-------------"}, {2, 
+      NumberForm[-13., {7, 7}], {-0.4444444444444444, 0.7222222222222222, 
+      1., -0.611111111111111}, 0.3846153846153846}, {
+     "---", "----------", "-------------"}, {3, 
+      NumberForm[-11.307692307692307`, {7, 7}], {-0.5726495726495727, 
+      0.6282051282051283, 1., -0.4487179487179488}, 0.1496598639455784}, {
+     "---", "----------", "-------------"}, {4, 
+      NumberForm[-11.05442176870748, {7, 7}], {-0.6220710506424794, 
+      0.6330309901738473, 1., -0.3828420256991686}, 0.06029556560129742}, {
+     "---", "----------", "-------------"}, {5, 
+      NumberForm[-11.009846153846153`, {7, 7}], {-0.6581196581196582, 
+      0.6602051282051283, 1., -0.3428717948717949}, 0.05382698739028307}, {
+     "---", "----------", "-------------"}, {6, 
+      NumberForm[-11.001788608797714`, {7, 7}], {-0.689477639284805, 
+      0.6898657922356989, 0.9999999999999999, -0.3107117793552313}, 
+      0.048881379598470574`}, {"---", "----------", "-------------"}, {7, 
+      NumberForm[-11.000325148730138`, {7, 7}], {-0.7177528384185805, 
+      0.7178242469504605, 0.9999999999999999, -0.28228244247661705`}, 
+      0.044438516886465704`}, {"---", "----------", "-------------"}, {8, 
+      NumberForm[-11.00005911620352, {7, 7}], {-0.7434192555535493, 
+      0.7434323155134417, 1., -0.2565872359392853}, 0.0404000596613196}, {
+     "---", "----------", "-------------"}, {9, 
+      NumberForm[-11.000010748342877`, {7, 7}], {-0.7667460313295069, 
+      0.7667484128525273, 1., -0.23325515593319357`}, 0.0367277697773501}, {
+     "---", "----------", "-------------"}, {10, 
+      NumberForm[-11.000001954242254`, {7, 7}], {-0.7879511447698975, 
+      0.7879515784098067, 1., -0.21204907173198378`}, 
+      0.033388992289973156`}, {"---", "----------", "-------------"}, {11, 
+      NumberForm[-11.000000355316708`, {7, 7}], {-0.8072283476746802, 
+      0.8072284265761174, 1., -0.1927716917471226}, 0.03035365443607035}, {
+     "---", "----------", "-------------"}, {12, 
+      NumberForm[-11.000000064603038`, {7, 7}], {-0.8247530490013611, 
+      0.824753063352334, 1., -0.17524695817149652`}, 0.02759423668448565}, {
+     "---", "----------", "-------------"}, {13, 
+      NumberForm[-11.000000011746007`, {7, 7}], {-0.8406845909368973, 
+      0.840684593546643, 1., -0.15931541036773664`}, 0.0250856708264472}, {
+     "---", "----------", "-------------"}, {14, 
+      NumberForm[-11.000000002135634`, {7, 7}], {-0.8551678100972885, 
+      0.855167810571831, 0.9999999999999999, -0.14483219013996107`}, 
+      0.022805155521544315`}, {"---", "----------", "-------------"}, {15, 
+      NumberForm[-11.0000000003883, {7, 7}], {-0.8683343728412796, 
+      0.8683343729275642, 1., -0.1316656272018607}, 0.020731959609603903`}, {
+     "---", "----------", "-------------"}, {16, 
+      NumberForm[-11.0000000000706, {7, 7}], {-0.8803039753144795, 
+      0.8803039753301679, 1., -0.1196960246933645}, 0.018847236017444216`}, {
+     "---", "----------", "-------------"}, {17, 
+      NumberForm[-11.000000000012838`, {7, 7}], {-0.8911854321047706, 
+      0.8911854321076234, 1., -0.10881456789665564`}, 
+      0.017133850926634473`}, {"---", "----------", "-------------"}, {18, 
+      NumberForm[-11.00000000000233, {7, 7}], {-0.9010776655499071, 
+      0.9010776655504256, 1., -0.09892233445035231}, 0.015576228115445468`}, {
+     "---", "----------", "-------------"}, {19, 
+      NumberForm[-11.000000000000423`, {7, 7}], {-0.9100706050453893, 
+      0.9100706050454835, 1., -0.0899293949546581}, 0.014160207377738983`}, {
+     "---", "----------", "-------------"}, {20, 
+      NumberForm[-11.000000000000076`, {7, 7}], {-0.9182460045867207, 
+      0.9182460045867376, 1., -0.08175399541328793}, 0.012872915797956233`}, {
+     "---", "----------", "-------------"}, {21, 
+      NumberForm[-11.000000000000016`, {7, 7}], {-0.9256781859879283, 
+      0.9256781859879314, 1., -0.07432181401207312}, 0.011702650725416628`}, {
+     "---", "----------", "-------------"}, {22, 
+      NumberForm[-11.000000000000007`, {7, 7}], {-0.9324347145344801, 
+      0.9324347145344808, 1., -0.06756528546551999}, 0.010638773386743048`}, {
+     "---", "----------", "-------------"}, {23, 
+      NumberForm[-11.000000000000002`, {7, 7}], {-0.9385770132131638, 
+      0.938577013213164, 1., -0.061422986786836276`}, 0.009671612169766516}, {
+     "---", "----------", "-------------"}}, 
+    TableHeadings -> {
+     None, {"p", "\!\(\*SuperscriptBox[\(\[Lambda]\), \((p)\)]\)", 
+       "\!\(\*SuperscriptBox[\(X\), \((p)\)]\)"}}]],
+  NumberForm[#, 7]& ]], "Print",
+ CellChangeTimes->{3.950761463852191*^9, 3.9507615208091183`*^9, 
+  3.9507615604108267`*^9, 3.9508327258035483`*^9},
+ CellLabel->
+  "During evaluation of \
+In[5]:=",ExpressionUUID->"5abfe0b9-4d6b-47ff-90b3-0f3d133c063d"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"-", "11.000000000000002`"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "0.9441609211028762`"}], ",", "0.9441609211028762`", ",", 
+     "1.`", ",", 
+     RowBox[{"-", "0.055839078897123806`"}]}], "}"}], ",", 
+   "0.009671612169766516`"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.950676372685444*^9, 3.9506777804124904`*^9, {3.950761449806522*^9, 
+   3.950761463858191*^9}, 3.950761520835226*^9, 3.950761560440813*^9, 
+   3.9508327258215475`*^9},
+ CellLabel->"Out[5]=",ExpressionUUID->"2f2bea79-c92a-4f2c-9aec-7615af75c3b7"]
+}, Open  ]]
+},
+WindowSize->{954., 678.75},
+WindowMargins->{{25.5, Automatic}, {Automatic, 39}},
+PrivateNotebookOptions->{"VersionedStylesheet"->{"Default.nb"[8.] -> True}},
+FrontEndVersion->"13.1 for Microsoft Windows (64-bit) (June 16, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"dc606e8e-f7f3-445d-8706-ede2c67e30e0"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 5157, 136, 767, "Text",ExpressionUUID->"ee217595-f78f-42bb-a9f9-094383752994"],
+Cell[5717, 158, 6281, 141, 465, "Input",ExpressionUUID->"ad51bda5-2a47-4367-99b2-595a11785bda"],
+Cell[12001, 301, 3882, 100, 547, "Text",ExpressionUUID->"5e460005-f28a-4220-b4ea-37755f2b986e"],
+Cell[15886, 403, 1808, 45, 154, "Input",ExpressionUUID->"9462c877-b401-4cb0-ab65-29b502a77699"],
+Cell[17697, 450, 497, 14, 47, "Input",ExpressionUUID->"bd28c339-ea7d-4a58-978b-a119f3e936e5"],
+Cell[18197, 466, 1036, 28, 75, "Input",ExpressionUUID->"63713152-1e89-4a87-8670-2da71315af24"],
+Cell[CellGroupData[{
+Cell[19258, 498, 438, 9, 29, "Input",ExpressionUUID->"4ff4d20f-8716-49b5-91f7-7ee8d970841d"],
+Cell[19699, 509, 44043, 1357, 1670, "Print",ExpressionUUID->"5abfe0b9-4d6b-47ff-90b3-0f3d133c063d"],
+Cell[63745, 1868, 588, 14, 29, "Output",ExpressionUUID->"2f2bea79-c92a-4f2c-9aec-7615af75c3b7"]
+}, Open  ]]
+}
+]
+*)
+
