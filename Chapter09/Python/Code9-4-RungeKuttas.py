@@ -116,7 +116,7 @@ def Runge_Kutta(order, h, x0, y0, xlast):
 #    x, y  :: Current estimates, x^(p+1) and y^(p+1).                                          
 #                                                                                              
 #   USES                                                                                       
-#     abs  :: Built-in Intrinsic function returning the absolute value of a real value.        
+#     abs  :: Built-in NumPy library function returning the absolute value of a real value.        
 #    DRV_RK:: A driver subprogram performing one-step RK scheme.                               
 #                                                                                              
 #  REVISION DATE :: 03/05/2025                                                                 
