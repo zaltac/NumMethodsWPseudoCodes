@@ -38,8 +38,8 @@ def expa(x,eps):
 #    eps  :: A user-defined convergence tolerance.                                             
 #                                                                                              
 #  USES                                                                                        
-#   float :: A built-in intrinsic function that converts an integer argument to a real value.  
-#    abs  :: Built-in Intrinsic function returning the absolute value of a real value.         
+#   float :: Built-in NumPy library function converting an integer argument to a real value.  
+#    abs  :: Built-in NumPy library function returning the absolute value of a real value.         
 #                                                                                              
 #  REVISION DATE :: 04/11/2024                                                                                                                                           
 #  ==================================================================================
