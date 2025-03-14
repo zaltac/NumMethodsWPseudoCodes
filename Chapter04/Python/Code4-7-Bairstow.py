@@ -38,7 +38,7 @@ import numpy as np
 #                                                                                              
 #  USES                                                                                        
 #    abs  :: Built-in NumPy function returning the absolute value of a real value;         
-#    QUADRATIC :: Subroutine that solves a quadratic equation of the form x2 + p x + q = 0. (see CODE1-3)   
+#    QUADRATIC :: A module that solves a quadratic equation of the form x2 + p x + q = 0. (see CODE1-3)   
 #                                                                                              
 #  REVISION DATE :: 11/20/2024                                                                 
 #  ==================================================================================
@@ -67,7 +67,7 @@ def bairstow(n, p0, q0, a, eps, maxit, iprnt):
 
     USES
         quadratic_eq, abs
-!  Last-modified: April 29, 2024. 
+   Last-modified: April 29, 2024. 
     """
     xr = np.zeros(2);  xi = np.zeros(2)
     xre= np.zeros(n);  xim= np.zeros(n)
