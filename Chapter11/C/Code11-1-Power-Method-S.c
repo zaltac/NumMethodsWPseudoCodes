@@ -26,7 +26,7 @@ double MAX_SIZE(int n, double X[n]) {
     //  USES                                                                                       
     //    fabs  :: Built-in Math library function returning the absolute value of a real value;       
     //                                                                                             
-    //  REVISION DATE :: 03/10/2025                                                                
+    //  REVISION DATE :: 03/14/2025                                                                
     // ==================================================================================
     double xmax = X[0];
     for (int i = 1; i < n; i++) {
