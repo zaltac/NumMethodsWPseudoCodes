@@ -40,7 +40,7 @@ def quadratic_eq(p, q):
 #    im   :: Array of length 2 containing imaginary parts of the roots: im1, im2.    
 #                                                                                    
 #  USES                                                                              
-#    SQRT :: Built-in Intrinsic function to evaluate the square root of a real value.
+#    SQRT :: Built-in NumPy library function to evaluate the square root of a real value.
 #                                                                                    
 #  REVISION DATE :: 03/18/2024                                                       
 #                                                                                    
