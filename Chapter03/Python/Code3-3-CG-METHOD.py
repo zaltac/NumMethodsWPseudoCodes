@@ -6,7 +6,7 @@ def cgm(n, eps, a, b, xo, maxit):
   CODE3.3-CGM.py. A Python module implementing Pseudocode 3.3.                                   
  
   NUMERICAL METHODS FOR SCIENTISTS AND ENGINEERS: WITH PSEUDOCODES
-  First Edition. (c) By Zekeriya ALTA� (2024).
+  First Edition. (c) By Zekeriya ALTAÇ (2024).
   ISBN: 978-1-032-75474-1 (hbk)
   ISBN: 978-1-032-75642-4 (pbk)
   ISBN: 978-1-003-47494-4 (ebk)
@@ -21,7 +21,7 @@ def cgm(n, eps, a, b, xo, maxit):
                                                                                               
   ON ENTRY                                                                                    
      n   :: Number of equations;                                                              
-     A   :: Coefficient matrix (n×n);                                                        
+     A   :: Coefficient matrix (nÃ—n);                                                        
      b   :: Array of length n containing the right hand side;                                 
      x   :: Array of length n containing the initial guess;                                   
     eps  :: Convergence tolerance;                                                            
@@ -34,7 +34,7 @@ def cgm(n, eps, a, b, xo, maxit):
                                                                                               
   USES                                                                                           
     AX   :: Subroutine to evaluate A*x matrix vector product;                                 
-    SQRT :: Built-in Intrinsic function returning the square root of a real value;            
+    SQRT :: Built-in NumPy library function returning the square root of a real value;            
     XdotY:: Function to evaluate the dot product of two vectors.                              
                                                                                               
   REVISION DATE :: 12/11/2024                                                                 
@@ -84,7 +84,7 @@ def Ax(A, x):
   CODE2.5-Ax.py. A Python module implementing Pseudocode 2.5.                                    
  
   NUMERICAL METHODS FOR SCIENTISTS AND ENGINEERS: WITH PSEUDOCODES
-  First Edition. (c) By Zekeriya ALTA� (2024).
+  First Edition. (c) By Zekeriya ALTAÇ (2024).
   ISBN: 978-1-032-75474-1 (hbk)
   ISBN: 978-1-032-75642-4 (pbk)
   ISBN: 978-1-003-47494-4 (ebk)
@@ -99,7 +99,7 @@ def Ax(A, x):
                                                                                               
   ON ENTRY                                                                                    
      n   :: Dimension attributes of input/output matrices;                                    
-     A   :: An input matrix of size n×n;                                                     
+     A   :: An input matrix of size nÃ—n;                                                     
      x   :: An input vector of length n.                                                      
                                                                                               
   ON EXIT                                                                                     
@@ -126,7 +126,7 @@ def XdotY(x, y):
   CODE2.3-XdotY.PY. A Python module implementing Pseudocode 2.3.                                 
  
   NUMERICAL METHODS FOR SCIENTISTS AND ENGINEERS: WITH PSEUDOCODES
-  First Edition. (c) By Zekeriya ALTA� (2024).
+  First Edition. (c) By Zekeriya ALTAÇ (2024).
   ISBN: 978-1-032-75474-1 (hbk)
   ISBN: 978-1-032-75642-4 (pbk)
   ISBN: 978-1-003-47494-4 (ebk)
