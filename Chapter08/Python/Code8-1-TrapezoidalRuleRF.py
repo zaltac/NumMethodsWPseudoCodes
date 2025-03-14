@@ -45,7 +45,7 @@ def Trapezoidal_Rule_RF(FX, FU, a, b, n):
 #  USES                                                                              
 #     FX   :: User-defined external function providing the function, f(x);                     
 #     FU   :: User-defined external function providing the first derivative, f'(x);                                      
-#    FLOAT :: A built-in intrinsic function that converts an integer argument to a real value. 
+#    FLOAT :: A built-in NumPy library function that converts an integer argument to a real value. 
 #                                                                                              
 #  REVISION DATE :: 03/03/2025                                                                 
 #  ==================================================================================
