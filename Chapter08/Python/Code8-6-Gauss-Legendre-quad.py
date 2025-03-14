@@ -29,8 +29,8 @@ def Gauss_Legendre_Quad(n, eps):
 #     w   :: Array of length N containing the weights.                                         
 #                                                                                              
 #  USES                                                                                        
-#    abs  :: Built-in NP function returning the absolute value of a real value;         
-#    cos  :: Built-in NP function returning trigonometric cosine value.  
+#    abs  :: Built-in NumPy library function returning the absolute value of a real value;         
+#    cos  :: Built-in NumPy library function returning trigonometric cosine value.  
 #                                                                                              
 #  REVISION DATE :: 03/04/2025                                                                 
 #  ==================================================================================
