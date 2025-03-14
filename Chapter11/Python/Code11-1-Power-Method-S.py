@@ -39,7 +39,7 @@ def POWER_METHOD_S(n, a, x, eigeno, eps, maxit):
 #     AX      :: A module for computing Ax matrix-vector product (see Pseudocode 2.5);          
 #     MAX_SIZE:: A function module providing largest (in absolute) value of a vector.          
 #                                                                                              
-#   REVISION DATE :: 03/10/2025                                                                
+#   REVISION DATE :: 03/14/2025                                                                
 #  ==================================================================================
     x = np.array(x)
     a = np.array(a)
