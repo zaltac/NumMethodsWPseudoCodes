@@ -64,7 +64,7 @@ function [lambda, x, error] = POWER_METHOD_S(A, x, lambda, eps, maxit)
 %     max  :: Built-in intrinsic function returning the maximum of the input values.         
 %     MAX_SIZE:: A function module providing largest (in absolute) value of a vector.          
 %                                                                                              
-%   REVISION DATE :: 03/10/2025                                                                
+%   REVISION DATE :: 03/14/2025                                                                
 %  ==================================================================================
     n = size(A, 1);
     xn = x;
