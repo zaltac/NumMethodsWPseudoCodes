@@ -51,7 +51,7 @@ def PC_Heun(h, x0, y0, xlast):
 #    x,y   :: Current estimates, x^(p+1) and y^(p+1).                                          
 #                                                                                              
 #  USES                                                                                        
-#    abs  :: Built-in NumPy function returning the absolute value of a real value.         
+#    abs  :: Built-in NumPy library function returning the absolute value of a real value.         
 #    FCN  :: User-defined external function providing y'=f(x,y).                               
 #                                                                                              
 #  REVISION DATE :: 03/07/2025                                                                 
