@@ -42,7 +42,7 @@ SUBROUTINE POWER_METHOD_S(n, A, x, lambda, error, eps, maxit)
 !  CODE11.1-POWER_METHOD_S.f95. A Fortran95 module implementing Pseudocode 11.1.                  
 !  
 !  NUMERICAL METHODS FOR SCIENTISTS AND ENGINEERS: WITH PSEUDOCODES
-!  First Edition. (c) By Zekeriya ALTAÇ (2024).
+!  First Edition. (c) By Zekeriya ALTAÃ‡ (2024).
 !  ISBN: 978-1-032-75474-1 (hbk)
 !  ISBN: 978-1-032-75642-4 (pbk)
 !  ISBN: 978-1-003-47494-4 (ebk)
@@ -75,7 +75,7 @@ SUBROUTINE POWER_METHOD_S(n, A, x, lambda, error, eps, maxit)
 !     AX      :: A module for computing Ax matrix-vector product (see Pseudocode 2.5);          
 !     MAX_SIZE:: A function module providing largest (in absolute) value of a vector.          
 !                                                                                              
-!   REVISION DATE :: 03/10/2025                                                                
+!   REVISION DATE :: 03/14/2025                                                                
 !  ==================================================================================
 IMPLICIT NONE
 INTEGER, INTENT(IN) :: n, maxit
@@ -114,7 +114,7 @@ DOUBLE PRECISION FUNCTION MAX_SIZE(n,x)
 !  CODE11.1-MAX_SIZE.f95 of a module in Pseudocode 11.1.                  
 !  
 !  NUMERICAL METHODS FOR SCIENTISTS AND ENGINEERS: WITH PSEUDOCODES
-!  First Edition. (c) By Zekeriya ALTAÇ (2024).
+!  First Edition. (c) By Zekeriya ALTAÃ‡ (2024).
 !  ISBN: 978-1-032-75474-1 (hbk)
 !  ISBN: 978-1-032-75642-4 (pbk)
 !  ISBN: 978-1-003-47494-4 (ebk)
@@ -154,7 +154,7 @@ SUBROUTINE AX(n,A,x,b)
 ! CODE2-5-AX.F95. A fortran program for implementing Pseudocode 2.5.
 !     
 ! NUMERICAL METHODS FOR SCIENTISTS AND ENGINEERS With Pseudocodes.
-! First Edition. (c) By Zekeriya ALTAÇ (2024).
+! First Edition. (c) By Zekeriya ALTAÃ‡ (2024).
 ! ISBN: 9781032754741 (hbk)
 ! ISBN: 9781032756424 (pbk)
 ! ISBN: 9781003474944 (ebk)
@@ -169,7 +169,7 @@ SUBROUTINE AX(n,A,x,b)
 !
 ! ON ENTRY
 !    n   :: Dimension attributes of input/output matrices;
-!    A   :: An input matrix of size n×n;
+!    A   :: An input matrix of size nÃ—n;
 !    x   :: An input vector of length n.
 !
 ! ON EXIT
@@ -198,7 +198,7 @@ DOUBLE PRECISION FUNCTION ENORM(n,x)
 !  CODE3.1-JACOBI.F95. A Fortran95 module implementing ENORM module of Pseudocode 3.1.                            
 ! 
 !  NUMERICAL METHODS FOR SCIENTISTS AND ENGINEERS: WITH PSEUDOCODES
-!  First Edition. (c) By Zekeriya ALTAÇ (2024).
+!  First Edition. (c) By Zekeriya ALTAÃ‡ (2024).
 !  ISBN: 978-1-032-75474-1 (hbk)
 !  ISBN: 978-1-032-75642-4 (pbk)
 !  ISBN: 978-1-003-47494-4 (ebk)
