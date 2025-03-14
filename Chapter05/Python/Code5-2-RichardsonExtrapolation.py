@@ -51,10 +51,8 @@ def test_richardson():
 #    deriv :: Estimated derivative.                                                            
 #                                                                                              
 #  USES                                                                                        
-#     abs  :: Built-in Intrinsic function returning the absolute value of a real value. 
-#                                                                                              
-#  ALSO REQUIRED                                                                               
-#     func  :: User-defined external function providing the nonlinear equation.                
+#     abs  :: Built-in NumPy library function returning the absolute value of a real value.                                                                              
+#     func :: A user-defined external function providing the nonlinear equation.                
 #                                                                                              
 #  REVISION DATE :: 06/13/2024                                                                 
 #  ==================================================================================  
