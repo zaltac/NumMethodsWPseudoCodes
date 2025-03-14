@@ -50,10 +50,8 @@ def bisection(a, b, maxit, eps):
     tol   :: accuracy tolerance achieved.   
                                                                                               
   USES                                                                                        
-    abs   :: Built-in Intrinsic function returning the absolute value of a real value;         
-                                                                                              
-  ALSO REQUIRED                                                                               
-    func  :: User-defined external function providing the nonlinear equation.                  
+    abs   :: Built-in NumPy library function returning the absolute value of a real value;                                                                               
+    func  :: A user-defined external function providing the nonlinear equation.                  
                                                                                               
   REVISION DATE :: 11/20/2024                                                                 
   ==================================================================================
