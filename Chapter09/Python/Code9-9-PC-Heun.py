@@ -52,7 +52,7 @@ def PC_Heun(h, x0, y0, xlast):
 #                                                                                              
 #  USES                                                                                        
 #    abs  :: Built-in NumPy library function returning the absolute value of a real value.         
-#    FCN  :: User-defined external function providing y'=f(x,y).                               
+#    FCN  :: A user-defined external function providing y'=f(x,y).                               
 #                                                                                              
 #  REVISION DATE :: 03/07/2025                                                                 
 #  ==================================================================================   
