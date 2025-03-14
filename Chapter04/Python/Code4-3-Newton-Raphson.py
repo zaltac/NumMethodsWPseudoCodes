@@ -31,8 +31,7 @@ def newton_raphson(root, maxit, eps):
   This free software is complimented by the author to accompany the textbook.
   E-mail: altacz@gmail.com.
   
-  DESCRIPTION: A module to compute a root of a nonlinear equation using the                   
-    Newton-Raphson method.                                                                    
+  DESCRIPTION: A module to compute a root of a nonlinear equation using the Newton-Raphson method.                                                                    
                                                                                               
   ON ENTRY                                                                                    
     root  :: Initial guess for the root;                                                      
@@ -44,17 +43,13 @@ def newton_raphson(root, maxit, eps):
     root  :: Computed approximation for the root.                                             
                                                                                               
   USES                                                                                        
-    ABS   :: Built-in Intrinsic function returning the absolute value of a real value;        
-                                                                                              
-  ALSO REQUIRED                                                                               
-    FUNC  :: User-defined external function providing the nonlinear equation, f(x).           
-    FUNCP :: User-defined external function providing the first derivative                    
-             of the nonlinear equation, f'(x).                                                
+    ABS   :: Built-in NumPy library function returning the absolute value of a real value;                                                                                  
+    FUNC  :: A user-defined external function providing the nonlinear equation, f(x).           
+    FUNCP :: A user-defined external function providing the first derivative of the nonlinear equation, f'(x).
                                                                                               
   REVISION DATE :: 11/20/2024                                                                 
   ==================================================================================    
     """
-
     p = 0
     x0 = root
     del0 = 1.0
@@ -93,7 +88,7 @@ def func(x):
 
 
 # ==========================================================================          
-# User-defined function providing f'(x)=funcp(x).
+# User-defined function providing f'(x)=funcx(x).
 # ========================================================================== 
 def funcx(x):
     return 3.0*x**2
