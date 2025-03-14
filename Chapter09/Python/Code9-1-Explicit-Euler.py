@@ -30,8 +30,8 @@ def explicit_euler(h, x0, y0, xlast):
 #   x,y   :: Current estimates, x^(p+1) and y^(p+1).                                           
 #                                                                                              
 #  USES                                                                                        
-#    abs  :: Built-in NP library function returning the absolute value of a real value;
-#    fcn  :: User-defined external function providing y'=f(x,y).                               
+#    abs  :: Built-in NumPy library function returning the absolute value of a real value;
+#    fcn  :: A user-defined external function providing y'=f(x,y).                               
 #                                                                                              
 #  REVISION DATE :: 03/05/2025                                                                 
 #  ==================================================================================
