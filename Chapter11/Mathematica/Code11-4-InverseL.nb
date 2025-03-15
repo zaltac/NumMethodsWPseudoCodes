@@ -1,0 +1,461 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     17392,        453]
+NotebookOptionsPosition[     16256,        425]
+NotebookOutlinePosition[     16891,        446]
+CellTagsIndexPosition[     16848,        443]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ StyleBox[" ",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Normal",
+  FontColor->GrayLevel[0]],
+ StyleBox["CODE11.4-InverseL.nb.",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Bold",
+  FontColor->GrayLevel[0]],
+ StyleBox[" A Mathematica (nb) module implementing Pseudocode 11.4.           \
+    \n  \n NUMERICAL METHODS FOR SCIENTISTS AND ENGINEERS: WITH PSEUDOCODES\n \
+  First Edition. (c) By Zekeriya ALTA\[CapitalCCedilla] (2024).\n   ISBN: \
+978-1-032-75474-1 (hbk)\n   ISBN: 978-1-032-75642-4 (pbk)\n   ISBN: \
+978-1-003-47494-4 (ebk)\n   \n   DOI : 10.1201/9781003474944\n   C&H/CRC \
+PRESS, Boca Raton, FL, USA & London, UK.\n   \n   This free software is \
+complimented by the author to accompany the textbook.\n  ",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Normal",
+  FontColor->GrayLevel[0]],
+ StyleBox[" E-mail: ",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Bold",
+  FontColor->GrayLevel[0]],
+ StyleBox["altacz@gmail.com.\n   \n",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Normal",
+  FontColor->GrayLevel[0]],
+ StyleBox["DESCRIPTION:",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Bold",
+  FontVariations->{"Underline"->True},
+  FontColor->GrayLevel[0]],
+ StyleBox[" A Wolfram Mathematica module to invert a lower-triangular matrix. \
+                                                                    \n        \
+                                                                              \
+         \n",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Normal",
+  FontColor->GrayLevel[0]],
+ StyleBox["ON ENTRY",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Bold",
+  FontVariations->{"Underline"->True},
+  FontColor->GrayLevel[0]],
+ StyleBox["                                                  ",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Normal",
+  FontColor->GrayLevel[0]],
+ StyleBox["                                   \n     ",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Bold",
+  FontColor->GrayLevel[0]],
+ StyleBox["n",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Bold",
+  FontSlant->"Italic",
+  FontColor->GrayLevel[0]],
+ StyleBox["    :: ",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Bold",
+  FontColor->GrayLevel[0]],
+ StyleBox["Dimension attribute of the matrix ",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontColor->GrayLevel[0]],
+ StyleBox["L",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Bold",
+  FontColor->GrayLevel[0]],
+ StyleBox[";                                              \n     ",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Normal",
+  FontColor->GrayLevel[0]],
+ StyleBox["L",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Bold",
+  FontColor->GrayLevel[0]],
+ StyleBox["    :: A lower-triangular matrix, ",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Normal",
+  FontColor->GrayLevel[0]],
+ StyleBox["n",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Normal",
+  FontSlant->"Italic",
+  FontColor->GrayLevel[0]],
+ StyleBox["x",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Normal",
+  FontColor->GrayLevel[0]],
+ StyleBox["n",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Normal",
+  FontSlant->"Italic",
+  FontColor->GrayLevel[0]],
+ StyleBox[".                              \n                                  \
+                                                             \n",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Normal",
+  FontColor->GrayLevel[0]],
+ StyleBox["ON EXIT",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Bold",
+  FontVariations->{"Underline"->True},
+  FontColor->GrayLevel[0]],
+ StyleBox["                                                                   \
+                 \n      e\[ScriptL] :: Inverse of ",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Normal",
+  FontColor->GrayLevel[0]],
+ StyleBox["L",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Bold",
+  FontColor->GrayLevel[0]],
+ StyleBox[", also a lower-triangular matrix, ",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Normal",
+  FontColor->GrayLevel[0]],
+ StyleBox["n",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Normal",
+  FontSlant->"Italic",
+  FontColor->GrayLevel[0]],
+ StyleBox["x",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Normal",
+  FontColor->GrayLevel[0]],
+ StyleBox["n",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Normal",
+  FontSlant->"Italic",
+  FontColor->GrayLevel[0]],
+ StyleBox[".                                      \n                          \
+                                                                     \n",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Normal",
+  FontColor->GrayLevel[0]],
+ StyleBox["REVISION DATE",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Bold",
+  FontVariations->{"Underline"->True},
+  FontColor->GrayLevel[0]],
+ StyleBox[" ",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Bold",
+  FontColor->GrayLevel[0]],
+ StyleBox[":: 03/15/2025       ",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Normal",
+  FontColor->GrayLevel[0]],
+ StyleBox["                                                           ",
+  FontFamily->"Times New Roman",
+  FontSize->14,
+  FontWeight->"Normal",
+  FontColor->RGBColor[0., 0.3215686274509804, 0.8313725490196079]]
+}], "Text",
+ CellChangeTimes->{{3.923093487642823*^9, 3.923093524350528*^9}, {
+   3.9230935743903294`*^9, 3.9230935905325923`*^9}, {3.9230936339688053`*^9, 
+   3.9230937009917173`*^9}, {3.923093744143427*^9, 3.923093763696294*^9}, {
+   3.9230938098149796`*^9, 3.9230938191284676`*^9}, {3.923094077292467*^9, 
+   3.923094085806695*^9}, {3.9230941342053876`*^9, 3.923094230413158*^9}, {
+   3.9230942672209077`*^9, 3.9230944489956894`*^9}, {3.9230945219542007`*^9, 
+   3.923094541317068*^9}, {3.9230945808798018`*^9, 3.923094657077287*^9}, {
+   3.923094810615257*^9, 3.923094879155466*^9}, {3.9230950818904343`*^9, 
+   3.92309508236843*^9}, {3.923095132046416*^9, 3.923095166490863*^9}, {
+   3.923095222032588*^9, 3.9230952847630696`*^9}, {3.923095400906288*^9, 
+   3.9230954060832376`*^9}, {3.9230967605836735`*^9, 3.923096762926092*^9}, {
+   3.923096818988628*^9, 3.9230969188780837`*^9}, {3.923096953604848*^9, 
+   3.9230969540579395`*^9}, {3.923097749545703*^9, 3.923097758483841*^9}, {
+   3.923097911317814*^9, 3.9230979195970535`*^9}, {3.923194334256816*^9, 
+   3.923194337766816*^9}, {3.923743531260601*^9, 3.923743575890601*^9}, 
+   3.9237436880206013`*^9, {3.923743814850601*^9, 3.923744263010601*^9}, {
+   3.9394342038693085`*^9, 3.9394342226210265`*^9}, {3.939434289748727*^9, 
+   3.9394343079806304`*^9}, {3.939436641696206*^9, 3.939436660954361*^9}, {
+   3.9510070176690984`*^9, 3.951007185144529*^9}},
+ FontSize->14,
+ Background->RGBColor[
+  1, 1, 0.85],ExpressionUUID->"b76adf13-cb40-4a1e-9993-2bfdf7a8fbf4"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"InverseL", "[", "\[ScriptL]0_", "]"}], ":=", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"\[ScriptL]", "=", " ", 
+         RowBox[{"N", "[", "\[ScriptL]0", "]"}]}], ",", "i", ",", "j", ",", 
+        "k"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"n", " ", "=", " ", 
+        RowBox[{"Length", "[", "\[ScriptL]", "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"e\[ScriptL]", "=", 
+        RowBox[{"Table", "[", 
+         RowBox[{"0", ",", 
+          RowBox[{"{", "n", "}"}], ",", 
+          RowBox[{"{", "n", "}"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{
+        SubscriptBox["e\[ScriptL]", 
+         RowBox[{"\[LeftDoubleBracket]", 
+          RowBox[{"1", ",", "1"}], "\[RightDoubleBracket]"}]], "=", 
+        FractionBox["1", 
+         SubscriptBox["\[ScriptL]", 
+          RowBox[{"\[LeftDoubleBracket]", 
+           RowBox[{"1", ",", "1"}], "\[RightDoubleBracket]"}]]]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"For", "[", 
+        RowBox[{
+         RowBox[{"i", "=", "2"}], ",", 
+         RowBox[{"i", "\[LessEqual]", "n"}], ",", 
+         RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", "   ", 
+         RowBox[{
+          RowBox[{
+           SubscriptBox["e\[ScriptL]", 
+            RowBox[{"\[LeftDoubleBracket]", 
+             RowBox[{"i", ",", "i"}], "\[RightDoubleBracket]"}]], "=", 
+           FractionBox["1", 
+            SubscriptBox["\[ScriptL]", 
+             RowBox[{"\[LeftDoubleBracket]", 
+              RowBox[{"i", ",", "i"}], "\[RightDoubleBracket]"}]]]}], ";", 
+          "\[IndentingNewLine]", "    ", 
+          RowBox[{"For", "[", 
+           RowBox[{
+            RowBox[{"j", "=", 
+             RowBox[{"i", "-", "1"}]}], ",", 
+            RowBox[{"j", "\[GreaterEqual]", "1"}], ",", " ", 
+            RowBox[{"j", "--"}], ",", "\[IndentingNewLine]", "          ", 
+            RowBox[{
+             SubscriptBox["e\[ScriptL]", 
+              RowBox[{"\[LeftDoubleBracket]", 
+               RowBox[{"i", ",", "j"}], "\[RightDoubleBracket]"}]], "=", 
+             RowBox[{
+              RowBox[{"-", 
+               FractionBox["1", 
+                SubscriptBox["\[ScriptL]", 
+                 RowBox[{"\[LeftDoubleBracket]", 
+                  RowBox[{"j", ",", "j"}], "\[RightDoubleBracket]"}]]]}], 
+              RowBox[{
+               UnderoverscriptBox["\[Sum]", 
+                RowBox[{"k", "=", 
+                 RowBox[{"j", "+", "1"}]}], "i"], 
+               RowBox[{
+                SubscriptBox["e\[ScriptL]", 
+                 RowBox[{"\[LeftDoubleBracket]", 
+                  RowBox[{"i", ",", "k"}], "\[RightDoubleBracket]"}]], 
+                SubscriptBox["\[ScriptL]", 
+                 RowBox[{"\[LeftDoubleBracket]", 
+                  RowBox[{"k", ",", "j"}], 
+                  "\[RightDoubleBracket]"}]]}]}]}]}]}], "\[IndentingNewLine]",
+            "]"}], ";"}]}], " ", 
+        RowBox[{"(*", " ", 
+         RowBox[{"End", " ", "of", " ", "loop", " ", "j"}], " ", "*)"}], 
+        "\[IndentingNewLine]", "]"}], ";", " ", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+         RowBox[{"End", " ", "of", " ", "loop"}], "-", "i"}], " ", "*)"}], 
+       "\[IndentingNewLine]", "  ", "\[IndentingNewLine]", 
+       RowBox[{"Return", "[", "e\[ScriptL]", "]"}], ";"}]}], " ", "]"}]}], 
+   ";"}], " "}]], "Input",
+ CellChangeTimes->{{3.9244717390906134`*^9, 3.924471804907014*^9}, {
+   3.924472173691016*^9, 3.9244723825282173`*^9}, {3.9244724439922175`*^9, 
+   3.9244724706370177`*^9}, {3.9244725020086184`*^9, 
+   3.9244727590186195`*^9}, {3.92447292492362*^9, 3.9244730079780207`*^9}, {
+   3.924473105493621*^9, 3.9244731370212216`*^9}, 3.9244732617744226`*^9, {
+   3.9244733036604223`*^9, 3.9244733051892223`*^9}, {3.924473336623223*^9, 
+   3.9244733697576227`*^9}, {3.924473518644024*^9, 3.924473524852824*^9}, {
+   3.924473950472227*^9, 3.924473952047827*^9}, {3.924474269694027*^9, 
+   3.924474273955827*^9}, {3.9244743066204276`*^9, 3.924474367657628*^9}, {
+   3.924474416196628*^9, 3.9244744200342283`*^9}, {3.9244744899790287`*^9, 
+   3.924474519797629*^9}, {3.9244746082962294`*^9, 3.9244746193908296`*^9}, {
+   3.92447465778743*^9, 3.92447468234523*^9}, {3.924474883886431*^9, 
+   3.9244748869440312`*^9}, {3.924475021181232*^9, 3.9244750220704317`*^9}, {
+   3.9244752779784336`*^9, 3.9244752875880337`*^9}, {3.9251124716262007`*^9, 
+   3.9251124947298007`*^9}, {3.925112540453801*^9, 3.9251125449778013`*^9}, {
+   3.9251126148120003`*^9, 3.9251127821688013`*^9}, {3.9251128150536013`*^9, 
+   3.925112941866002*^9}, {3.925112985546003*^9, 3.925113000288003*^9}, {
+   3.9251130541246033`*^9, 3.9251130829534035`*^9}, 3.925113133622204*^9, {
+   3.951007245365965*^9, 3.9510072558898664`*^9}, 3.9510073270832014`*^9},
+ AspectRatioFixed->True,
+ Background->RGBColor[0.87, 0.94, 1],
+ CellLabel->"In[16]:=",ExpressionUUID->"16988295-9c0a-4ce9-a67b-4482de891d5f"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"A", "=", 
+  RowBox[{"(", GridBox[{
+     {"1", "0", "0", "0", "0"},
+     {"4", "3", "0", "0", "0"},
+     {"5", "2", "4", "0", "0"},
+     {"3", "1", "8", "2", "0"},
+     {
+      RowBox[{"-", "1"}], "1", "1", "1", "1"}
+    },
+    GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.7]}, 
+        Offset[0.27999999999999997`]}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}}], ")"}], " "}]], "Input",
+ CellChangeTimes->{{3.9244713970126114`*^9, 3.9244714045162115`*^9}, {
+   3.924471440661812*^9, 3.9244714539082117`*^9}, 3.9244731685956216`*^9, {
+   3.9251125054786005`*^9, 3.925112515103801*^9}, 3.925112897390402*^9, {
+   3.951006650997535*^9, 3.9510066605164423`*^9}, {3.9510068154864845`*^9, 
+   3.9510068193029566`*^9}, 3.9510072038363543`*^9},
+ CellLabel->"In[17]:=",ExpressionUUID->"189ccb37-c6f6-4f7d-b58f-7355291dded0"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "0", ",", "0", ",", "0", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"4", ",", "3", ",", "0", ",", "0", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"5", ",", "2", ",", "4", ",", "0", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"3", ",", "1", ",", "8", ",", "2", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "1"}], ",", "1", ",", "1", ",", "1", ",", "1"}], "}"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.9510072044951057`*^9, 3.9510073308331976`*^9},
+ CellLabel->"Out[17]=",ExpressionUUID->"2487749d-f796-4eb8-9096-c6882a93aba2"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"InverseL", "[", "A", "]"}]], "Input",
+ CellChangeTimes->{{3.924473085868821*^9, 3.9244730917812214`*^9}, {
+   3.924473677051025*^9, 3.9244736776282253`*^9}, {3.9244737774370255`*^9, 
+   3.924473777717826*^9}, 3.9244739756194267`*^9, {3.924474380779228*^9, 
+   3.9244743817620277`*^9}, 3.9244744588832283`*^9, {3.924475001442232*^9, 
+   3.924475005782032*^9}, 3.9244750591098323`*^9, {3.925112960492402*^9, 
+   3.925112965640403*^9}, {3.9251130164184027`*^9, 3.9251130188988028`*^9}, 
+   3.951006838174779*^9},
+ CellLabel->"In[18]:=",ExpressionUUID->"7a72e217-8574-4507-9649-408eca8baf88"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1.`", ",", "0", ",", "0", ",", "0", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "1.3333333333333333`"}], ",", "0.3333333333333333`", ",", 
+     "0", ",", "0", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "0.5833333333333334`"}], ",", 
+     RowBox[{"-", "0.16666666666666666`"}], ",", "0.25`", ",", "0", ",", 
+     "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1.5`", ",", "0.5`", ",", 
+     RowBox[{"-", "1.`"}], ",", "0.5`", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1.4166666666666665`", ",", 
+     RowBox[{"-", "0.6666666666666666`"}], ",", "0.75`", ",", 
+     RowBox[{"-", "0.5`"}], ",", "1.`"}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.9251129668416023`*^9, {3.9251130086964025`*^9, 3.9251130195384026`*^9}, 
+   3.9251131366642036`*^9, {3.951006826996626*^9, 3.9510068388427267`*^9}, 
+   3.951006897112176*^9, {3.951007208359703*^9, 3.9510072209049478`*^9}, 
+   3.9510072592688417`*^9, 3.9510073345803394`*^9},
+ CellLabel->"Out[18]=",ExpressionUUID->"864bc6fc-a9cd-4cf1-ab91-ddaeb64c93ca"]
+}, Open  ]]
+},
+AutoGeneratedPackage->None,
+CellGrouping->Manual,
+WindowSize->{843.75, 690.75},
+WindowMargins->{{36.75, Automatic}, {Automatic, 36}},
+PrivateNotebookOptions->{"VersionedStylesheet"->{"Default.nb"[8.] -> True}},
+Magnification:>FEPrivate`If[
+  FEPrivate`Equal[FEPrivate`$VersionNumber, 6.], 1.25, 1.25 Inherited],
+FrontEndVersion->"13.1 for Microsoft Windows (64-bit) (June 16, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"029e4536-4e36-40e8-9a7e-bd7e0a47dc3c"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 7164, 208, 603, "Text",ExpressionUUID->"b76adf13-cb40-4a1e-9993-2bfdf7a8fbf4"],
+Cell[7724, 230, 5023, 105, 477, "Input",ExpressionUUID->"16988295-9c0a-4ce9-a67b-4482de891d5f"],
+Cell[CellGroupData[{
+Cell[12772, 339, 995, 23, 114, "Input",ExpressionUUID->"189ccb37-c6f6-4f7d-b58f-7355291dded0"],
+Cell[13770, 364, 669, 16, 36, "Output",ExpressionUUID->"2487749d-f796-4eb8-9096-c6882a93aba2"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14476, 385, 612, 9, 36, "Input",ExpressionUUID->"7a72e217-8574-4507-9649-408eca8baf88"],
+Cell[15091, 396, 1149, 26, 107, "Output",ExpressionUUID->"864bc6fc-a9cd-4cf1-ab91-ddaeb64c93ca"]
+}, Open  ]]
+}
+]
+*)
+
